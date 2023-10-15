@@ -852,7 +852,7 @@ void server_loop() {
 
 							printf("[LIST:SUCCESS]\n");
 
-							printf("LIST:%s\n", DataToSend);
+							printf("%s\n", DataToSend);
 
 							printf("[IP:END]\n");
 
@@ -977,16 +977,7 @@ void server_loop() {
 
 
 						}
-
-
-
-						
-
-
-
 						char *DataR = (char*) malloc(sizeof(char)*256);
-
-
 
 						int bytes_received = recv(fdaccept, DataR, 255,0);
 
