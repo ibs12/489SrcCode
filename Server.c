@@ -866,11 +866,9 @@ void server_loop() {
 
 
 
-
-
 							cse4589_print_and_log("[%s:ERROR]\n",cmd);
 
-
+							cse4589_print_and_log("[%s:END]\n",cmd);
 
 							
 
