@@ -44,7 +44,7 @@ int create_client_socket(int portno) {
 
 	if (client_fd < 0) {
 
-		printf("\n Socket creation error \n");
+		cse4589_print_and_log("\n Socket creation error \n");
 
 		return -1;
 
@@ -78,7 +78,7 @@ void close_connection(int client_fd) {
 
 void login_to_server(const char* server_ip, int server_port) {
 
-	printf("\nLOGIN CALLED]\n");
+
 
 	struct sockaddr_in serv_addr;
 
@@ -104,7 +104,7 @@ void login_to_server(const char* server_ip, int server_port) {
 
 	if (inet_pton(AF_INET, server_ip, &serv_addr.sin_addr) <= 0) {
 
-		printf("ERROR: Invalid IP address.\n");
+		cse4589_print_and_log("ERROR: Invalid IP address.\n");
 
 		close(ClientFD);
 
@@ -126,7 +126,6 @@ void login_to_server(const char* server_ip, int server_port) {
 
 	else{
 
-		printf("Logging in !/n");
 
 		LoggedIn=1;
 
@@ -150,7 +149,7 @@ void login_to_server(const char* server_ip, int server_port) {
 
 		DataR[bytes_received] = '\0';
 
-		printf("%s\n", DataR);
+		cse4589_print_and_log("%s\n", DataR);
 
 		process_client_commands();
 
@@ -169,8 +168,6 @@ void process_client_commands() {
 	// The loop to keep client running and accept commands
 
 	while(1) {
-
-		printf("[PA1-Client@CSE489/589]$ \n");
 
 
 
@@ -208,7 +205,7 @@ void process_client_commands() {
 
 		else if (strcmp(msg,"EXIT")==0){
 
-			printf("TRYING TO CLOSE");
+		
 
 			close_connection(ClientFD);
 
@@ -234,11 +231,11 @@ void process_client_commands() {
 
 			DataR[bytes_received] = '\0';
 
-			printf("[REFRESH:SUCCESS]\n");
+			cse4589_print_and_log("[REFRESH:SUCCESS]\n");
 
-			printf("%s\n", DataR);
+			cse4589_print_and_log("%s\n", DataR);
 
-			printf("[REFRESH:END]\n");
+			cse4589_print_and_log("[REFRESH:END]\n");
 
 			free(msg);
 
@@ -265,8 +262,6 @@ void process_client_commands() {
 			for (int i=0; i<strlen(msg); i++){
 
 
-
-				printf("%c\n",msg[i]);
 
 				char Character[1];
 
