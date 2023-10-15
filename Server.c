@@ -102,7 +102,7 @@ char* ReturnMessage(const Clients LIST[]){
 
 		if (port_num!=0){
 
-			scse4589_print_and_log(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, port_num);
+			sprintf(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, port_num);
 
 			id+=1;
 
@@ -176,8 +176,6 @@ int Create_Server(int PortNO){
 
 	if (port <= 0) {
 
-	    cse4589_print_and_log("Error: Invalid port number provided.\n");
-
 	    return 1;
 
 	}
@@ -186,7 +184,7 @@ int Create_Server(int PortNO){
 
     	if (initialize_server(port) < 0) {
 
-		cse4589_print_and_log("Error: Server initialization failed.\n");
+	
 
 		return 1;
 
@@ -242,7 +240,7 @@ int initialize_server(int port) {
 
     if (bind(server_socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
 
-        cse4589_print_and_log("Bind failed\n");
+
 
         return -1;
 
@@ -456,8 +454,6 @@ void server_loop() {
 
 						}
 
-						cse4589_print_and_log("\nRemote Host connected!\n");                        
-
 						char client_ip[INET_ADDRSTRLEN];
 
 						char client_hostname[256];
@@ -472,9 +468,6 @@ void server_loop() {
 
 						
 
-						cse4589_print_and_log("Client IP: %s\n", client_ip);
-
-						cse4589_print_and_log("Client Hostname:%s\n",client_hostname);
 
 						/* Add to watched socket list */
 
@@ -538,7 +531,7 @@ void server_loop() {
 
 							remove_connection(sock_index);
 
-							cse4589_print_and_log("Remote Host terminated connection!\n");
+						
 
 							
 
@@ -555,8 +548,6 @@ void server_loop() {
 							if (strlen(NewData) > 0) {
 
 								DataR[strlen(NewData)-1] = '\0';
-
-								cse4589_print_and_log("Received from Client: %s\n", DataR);
 
 							}
 
