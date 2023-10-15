@@ -528,7 +528,7 @@ void process_client_commands() {
 
 
 
-			cse4589_print_and_log("%s\n", DataR);
+			cse4589_print_and_log("%s", DataR);
 
 
 
