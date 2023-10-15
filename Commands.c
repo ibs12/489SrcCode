@@ -48,11 +48,11 @@ void handle_author_command() {
 
 /*    cse4589_print_and_log("[%s:END]\n", command_str);*/
 
-	printf("[%s:SUCCESS]\n", command_str);
+	cse4589_print_and_log("[%s:SUCCESS]\n", command_str);
 
-	printf("I, %s, have read and understood the course academic integrity policy.\n", ubit_name);
+	cse4589_print_and_log("I, %s, have read and understood the course academic integrity policy.\n", ubit_name);
 
-	printf("[%s:END]\n", command_str);
+	cse4589_print_and_log("[%s:END]\n", command_str);
 
 }
 
@@ -110,11 +110,11 @@ void handle_ip_command(const char *Address) {
 
 	close(socket_desc);
 
-	printf("[IP:SUCCESS]\n");
+	cse4589_print_and_log("[IP:SUCCESS]\n");
 
-	printf("IP:%s\n", ip);
+	cse4589_print_and_log("IP:%s\n", ip);
 
-	printf("[IP:END]\n");
+	cse4589_print_and_log("[IP:END]\n");
 
 	}
 
@@ -132,11 +132,11 @@ void handle_port_command(int listening_port) {
 
 /*    cse4589_print_and_log("[%s:END]\n", command_str);*/
 
-	printf("[%s:SUCCESS]\n", command_str);
+	cse4589_print_and_log("[%s:SUCCESS]\n", command_str);
 
-	printf("PORT:%d\n", listening_port);
+	cse4589_print_and_log("PORT:%d\n", listening_port);
 
-	printf("[%s:END]\n", command_str);
+	cse4589_print_and_log("[%s:END]\n", command_str);
 
 }
 
