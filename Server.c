@@ -848,11 +848,11 @@ void server_loop() {
 
 							char *DataToSend= ReturnMessage(List);
 
-							printf("[LIST:SUCCESS]\n");
+							cse4589_print_and_log("[LIST:SUCCESS]\n");
 
-							printf("%s", DataToSend);
+							cse4589_print_and_log("%s", DataToSend);
 
-							printf("[LIST:END]\n");
+							cse4589_print_and_log("[LIST:END]\n");
 
 
 
