@@ -734,12 +734,6 @@ void server_loop() {
 
 
 
-							cse4589_print_and_log("[EXIT:SUCCESS]\n");
-
-
-
-							cse4589_print_and_log("[EXIT:END]\n");
-
 
 
 							exit(-1);
@@ -770,7 +764,11 @@ void server_loop() {
 
 
 
+							cse4589_print_and_log("[EXIT:SUCCESS]\n");
 
+
+
+							cse4589_print_and_log("[EXIT:END]\n");
 
 
 
