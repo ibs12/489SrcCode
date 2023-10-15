@@ -102,7 +102,7 @@ char* ReturnMessage(const Clients LIST[]){
 
 		if (port_num!=0){
 
-			sprintf(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, port_num);
+			scse4589_print_and_log(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, port_num);
 
 			id+=1;
 
@@ -176,7 +176,7 @@ int Create_Server(int PortNO){
 
 	if (port <= 0) {
 
-	    printf("Error: Invalid port number provided.\n");
+	    cse4589_print_and_log("Error: Invalid port number provided.\n");
 
 	    return 1;
 
@@ -186,7 +186,7 @@ int Create_Server(int PortNO){
 
     	if (initialize_server(port) < 0) {
 
-		printf("Error: Server initialization failed.\n");
+		cse4589_print_and_log("Error: Server initialization failed.\n");
 
 		return 1;
 
@@ -242,7 +242,7 @@ int initialize_server(int port) {
 
     if (bind(server_socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
 
-        printf("Bind failed\n");
+        cse4589_print_and_log("Bind failed\n");
 
         return -1;
 
@@ -368,9 +368,9 @@ void server_loop() {
 
 						if(fgets(cmd, CMD_SIZE-1, stdin) == NULL){ //Mind the newline character that will be written to cmd
 
-							printf("[EXIT:SUCCESS]\n");
+							cse4589_print_and_log("[EXIT:SUCCESS]\n");
 
-							printf("[EXIT:END]\n");
+							cse4589_print_and_log("[EXIT:END]\n");
 
 							exit(-1);
 
@@ -428,7 +428,7 @@ void server_loop() {
 
 
 
-							printf("[%s:ERROR]\n",cmd);
+							cse4589_print_and_log("[%s:ERROR]\n",cmd);
 
 
 
@@ -456,7 +456,7 @@ void server_loop() {
 
 						}
 
-						printf("\nRemote Host connected!\n");                        
+						cse4589_print_and_log("\nRemote Host connected!\n");                        
 
 						char client_ip[INET_ADDRSTRLEN];
 
@@ -472,9 +472,9 @@ void server_loop() {
 
 						
 
-						printf("Client IP: %s\n", client_ip);
+						cse4589_print_and_log("Client IP: %s\n", client_ip);
 
-						printf("Client Hostname:%s\n",client_hostname);
+						cse4589_print_and_log("Client Hostname:%s\n",client_hostname);
 
 						/* Add to watched socket list */
 
@@ -538,7 +538,7 @@ void server_loop() {
 
 							remove_connection(sock_index);
 
-							printf("Remote Host terminated connection!\n");
+							cse4589_print_and_log("Remote Host terminated connection!\n");
 
 							
 
@@ -556,7 +556,7 @@ void server_loop() {
 
 								DataR[strlen(NewData)-1] = '\0';
 
-								printf("Received from Client: %s\n", DataR);
+								cse4589_print_and_log("Received from Client: %s\n", DataR);
 
 							}
 
