@@ -306,7 +306,7 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		cse4589_print_and_log("%s\n", DataR);
+		cse4589_print_and_log("%s", DataR);
 
 
 
