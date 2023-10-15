@@ -474,7 +474,7 @@ void process_client_commands() {
 
 
 
-			cse4589_print_and_log("%s\n", DataR);
+			cse4589_print_and_log("%s", DataR);
 
 
 
@@ -547,10 +547,6 @@ void process_client_commands() {
 		else if ((strcmp(login,"LOGIN")==0)){
 
 			if (LoggedIn==0){
-
-				cse4589_print_and_log("[LOGIN:ERROR]\n");
-
-				cse4589_print_and_log("[LOGIN:END]\n");
 
 				char *Client_Port = (char*) malloc(30*sizeof(char));
 
