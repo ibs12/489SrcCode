@@ -174,13 +174,13 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-	
+		cse4589_print_and_log("[LOGIN:ERROR]\n");
+
+		cse4589_print_and_log("[LOGIN:END]\n");
 
 
 
-		perror("Socket Error");
-
-
+		
 
 		return;
 
@@ -210,7 +210,9 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		cse4589_print_and_log("ERROR: Invalid IP address.\n");
+		cse4589_print_and_log("[LOGIN:ERROR]\n");
+
+		cse4589_print_and_log("[LOGIN:END]\n");
 
 
 
@@ -234,7 +236,9 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		perror("Connect Error");
+		cse4589_print_and_log("[LOGIN:ERROR]\n");
+
+		cse4589_print_and_log("[LOGIN:END]\n");
 
 
 
@@ -254,9 +258,9 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		cse4589_print_and_log("[LOGIN:SUCCESS]");
+		cse4589_print_and_log("[LOGIN:SUCCESS]\n");
 
-		cse4589_print_and_log("[LOGIN:END]");
+		cse4589_print_and_log("[LOGIN:END]\n");
 
 		LoggedIn=1;
 
@@ -540,53 +544,41 @@ void process_client_commands() {
 
 
 
-		else if ((strcmp(login,"LOGIN")==0) && (LoggedIn==0)){
+		else if ((strcmp(login,"LOGIN")==0)){
+
+			if (LoggedIn==0){
+
+				cse4589_print_and_log("[LOGIN:ERROR]\n");
+
+				cse4589_print_and_log("[LOGIN:END]\n");
+
+				char *Client_Port = (char*) malloc(30*sizeof(char));
 
 
 
-			char *Client_Port = (char*) malloc(30*sizeof(char));
-
-
-
-			char *Client_IP = (char*) malloc(30*sizeof(char));
-
-
-
-
-
-			int count=0;
-
-
-
-			int iterator=0;
-
-
-
-			int iterator2=0;
-
-
-
-			
-
-
-
-			for (int i=0; i<strlen(msg); i++){
+				char *Client_IP = (char*) malloc(30*sizeof(char));
 
 
 
 
 
-
-
-				char Character[1];
-
-
-
-				strncpy(Character,&msg[i],1);
+				int count=0;
 
 
 
-				Character[1]='\0';
+				int iterator=0;
+
+
+
+				int iterator2=0;
+
+
+
+				
+
+
+
+				for (int i=0; i<strlen(msg); i++){
 
 
 
@@ -594,101 +586,119 @@ void process_client_commands() {
 
 
 
-				if(count==1){
+					char Character[1];
 
 
 
-					Client_IP[iterator2]=*Character;
+					strncpy(Character,&msg[i],1);
 
 
 
-					iterator2 ++;
+					Character[1]='\0';
+
+
+
+
+
+
+
+					if(count==1){
+
+
+
+						Client_IP[iterator2]=*Character;
+
+
+
+						iterator2 ++;
+
+
+
+					}
+
+
+
+					if(count==2){
+
+
+
+						Client_Port[iterator]=*Character;
+
+
+
+						iterator ++;
+
+
+
+					}
+
+
+
+					if (strcmp(Character," ")==0){
+
+
+
+						count++;
+
+
+
+					}
+
+				}
+
+				Client_IP[strlen(Client_IP)-1]= '\0';
+
+
+
+				int IPlen= strlen(Client_IP);
+
+
+
+				int Portlen= strlen(Client_Port);
+
+
+
+				int PORTN= atoi(Client_Port);
+
+
+
+				login_to_server(Client_IP,PORTN);
+
+
+
+				free(msg);
 
 
 
 				}
 
+			else{
 
+				
 
-				if(count==2){
+				cse4589_print_and_log("[LOGIN:ERROR]\n");
 
-
-
-					Client_Port[iterator]=*Character;
-
-
-
-					iterator ++;
-
-
-
-				}
-
-
-
-				if (strcmp(Character," ")==0){
-
-
-
-					count++;
-
-
-
-				}
-
-
+				cse4589_print_and_log("[LOGIN:END]\n");
 
 			}
 
 
 
-			
+		}
+
+	else{
 
 
 
-			Client_IP[strlen(Client_IP)-1]= '\0';
+		cse4589_print_and_log("[%s:ERROR]\n",msg);
 
-
-
-			int IPlen= strlen(Client_IP);
-
-
-
-			int Portlen= strlen(Client_Port);
-
-
-
-			int PORTN= atoi(Client_Port);
-
-
-
-			login_to_server(Client_IP,PORTN);
-
-
-
-			free(msg);
+		cse4589_print_and_log("[%s:END]\n",msg);
 
 
 
 		}
-
-
-
-		else{
-
-
-
-		printf("[%s:ERROR]\n",msg);
-
-
-
-		}
-
-
 
 	}
-
-
 
 }
 
