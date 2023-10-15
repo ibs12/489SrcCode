@@ -38,6 +38,10 @@
 #include "Server.h"
 
 #include "Client.h"
+#include "../include/global.h"
+
+#include "../include/logger.h"
+
 
 
 
@@ -73,8 +77,14 @@ void *get_in_addr(struct sockaddr *sa) {
 
 int main(int argc, char **argv) {
 
+cse4589_init_log(argv[2]);
 
 
+
+        fclose(fopen(LOGFILE, "w"));
+
+
+	
 	int sock;
 
 	
