@@ -123,7 +123,7 @@ cse4589_init_log(argv[2]);
 
 		
 
-		printf("Trying to start Server\n");
+
 
 		int Port= atoi(argv[2]);
 
@@ -135,7 +135,6 @@ cse4589_init_log(argv[2]);
 
 	else if(strcmp(argv[1],"c")==0){
 
-		printf("Trying to start Client\n");
 
 		int Port= atoi(argv[2]);
 
