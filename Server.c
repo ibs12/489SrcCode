@@ -908,7 +908,7 @@ void server_loop() {
 
 								Parse1(&Command,&Arg1,&Arg2,NewData);
 
-								if (strcmp(Command,"SEND")){
+								if (strcmp(Command,"SEND")==0){
 
 									for (int i = 0; i < 5; i++) {
 
