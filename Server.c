@@ -120,7 +120,7 @@ void remove_connection(int socket) {
 
 
 
-void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
+void Parse1(char** Command,char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
 
 	char msg[]="SEND 1248.489.399.234 HI MY NAME IS JOHN JOHN FUCKING JOHN   3 SPACES";
 
@@ -906,7 +906,7 @@ void server_loop() {
 
 								char *Arg2 = (char*) malloc(256*sizeof(char));
 
-								Parse(&Command,&Arg1,&Arg2,NewData);
+								Parse1(&Command,&Arg1,&Arg2,NewData);
 
 								if strcmp(Command,"SEND"){
 
