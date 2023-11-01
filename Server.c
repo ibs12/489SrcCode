@@ -908,6 +908,8 @@ void server_loop() {
 
 								Parse1(&Command,&Arg1,&Arg2,NewData);
 
+								Arg1[strlen(Arg1)-1]='\0';
+
 								if (strcmp(Command,"SEND")==0){
 
 									for (int i = 0; i < 5; i++) {
