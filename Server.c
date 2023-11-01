@@ -124,7 +124,7 @@ const char* GetIPAddress(int client_fd) {
 
         if (List[i].FD == client_fd) {
 
-            return List[i].ip_address;
+            return List[i].IPaddress;
 
         }
 
@@ -239,6 +239,20 @@ char* ReturnMessage(const Clients LIST[]){
 }
 
 
+
+char* MessageForRelayed(char* IP,char* message){
+
+ 	int length = snprintf(NULL, 0, "RELAYED msg from: %s\n[msg]: %s\n", IP, message);
+
+ 	char* formattedMessage = (char*)malloc(length + 1);
+
+ 	snprintf(formattedMessage, length + 1, "RELAYED msg from: %s\n[msg]: %s\n", IP, message);
+
+    	return formattedMessage;
+
+
+
+}
 
 int compareClients(const void *a, const void *b) {
 
@@ -948,7 +962,13 @@ void server_loop() {
 
 								  			send(sock_index,"1",1,0);
 
-								  			send(currentClient.FD,"RELAYED msg from:%s\n[msg]:%s\n",GetIPAddress(sock_index),Arg2);
+								  			char* MessageFromServerToClient=MessageForRelayed(GetIPAddress(sock_index),Arg2);
+
+								  			send(currentClient.FD,MessageFromServerToClient,strlen(MessageFromServerToClient),0);
+
+								  			printf("Message sent to %d. The message is %s.\n",currentClient.FD,MessageFromServerToClient);
+
+								  			fflush(stdout);
 
 								  			break;
 
