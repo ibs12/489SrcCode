@@ -932,15 +932,13 @@ void server_loop() {
 
 										}
 
-										
+									}
 
 									if (Exists==0){
 
 										send(sock_index,"12",2,0);
 
 									}
-
-								}
 
 
 
