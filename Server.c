@@ -966,6 +966,8 @@ void server_loop() {
 
 								  			send(currentClient.FD,MessageFromServerToClient,strlen(MessageFromServerToClient),0);
 
+								  			
+
 								  			printf("Message sent to %d. The message is %s.\n",currentClient.FD,MessageFromServerToClient);
 
 								  			fflush(stdout);
@@ -985,14 +987,6 @@ void server_loop() {
 
 
 							}
-
-							printf("COMMAND IS %s",Command);
-
-							printf("RECEIVED FROM CLIENT:%s",NewData);
-
-							fflush(stdout);
-
-
 
 						}
 
