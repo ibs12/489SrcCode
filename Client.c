@@ -164,7 +164,7 @@ void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char*
 
 }
 
-void ParseServerMessage(char** ServerCommand,char** ServerMessage){
+void ParseServerMessage(char** ServerCommand,char* ServerMessage){
 
 	int count=0;
 
@@ -178,7 +178,7 @@ void ParseServerMessage(char** ServerCommand,char** ServerMessage){
 
 		char Character[1];
 
-		strncpy(Character,&Actualmsg[i],1);
+		strncpy(Character,&ServerMessage[i],1);
 
 		Character[1]='\0';
 
@@ -684,7 +684,7 @@ void process_client_commands() {
 
 		}
 
-		ParseServerMessage(&ServerCommand,&DataReceived);
+		ParseServerMessage(&ServerCommand,DataReceived);
 
 		if (strcmp(ServerCommand,"RELAYED")){
 
