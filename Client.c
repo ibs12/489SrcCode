@@ -634,7 +634,7 @@ void process_client_commands() {
 
 		int LengthOfMessageSent=send(ClientFD,msg,strlen(msg),0);
 
-		cse4589_print_and_log(LengthOfMessageSent);
+		cse4589_print_and_log("%d",LengthOfMessageSent);
 
 		int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
@@ -679,4 +679,5 @@ void process_client_commands() {
 	}
 
 }
+
 }
