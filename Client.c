@@ -338,7 +338,7 @@ void process_client_commands() {
 
 		int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
-		if (LengthOfMessageReceived <= 0) {
+		if (LengthOfMessageReceived > 0) {
 
             		printf("RECEIVED FROM SERVER: %s\n",DataReceived);
 
@@ -346,7 +346,7 @@ void process_client_commands() {
 
            		break;
 
-        }
+        	}
 
 		char *msg = (char*) malloc(sizeof(char)*256);
 
