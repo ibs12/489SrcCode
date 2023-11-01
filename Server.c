@@ -118,7 +118,21 @@ void remove_connection(int socket) {
 
 }
 
+const char* GetIPAddress(int client_fd) {
 
+    for (int i = 0; i < 5; i++) {
+
+        if (List[i].FD == client_fd) {
+
+            return List[i].ip_address;
+
+        }
+
+    }
+
+    return NULL; // Client with the given FD not found
+
+}
 
 void Parse1(char** Command,char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
 
@@ -904,6 +918,8 @@ void server_loop() {
 
 								char *Arg2 = (char*) malloc(256*sizeof(char));
 
+								char *SenderIP=(char*) malloc(256*sizeof(char));
+
 								int Exists=0;
 
 								Parse1(&Command,&Arg1,&Arg2,NewData);
@@ -922,7 +938,7 @@ void server_loop() {
 
 								  		fflush(stdout);
 
-								  		if (strcmp(Arg1,ClientIP)==0){
+								  		if (strcmp(Arg1,ClientIP)==0 && currentClient.FD!=sock_index){
 
 								  			printf("Client exists!");
 
@@ -932,7 +948,7 @@ void server_loop() {
 
 								  			send(sock_index,"1",1,0);
 
-								  			
+								  			send(currentClient.FD,"RELAYED msg from:%s\n[msg]:%s\n",GetIPAddress(sock_index),Arg2);
 
 								  			break;
 
