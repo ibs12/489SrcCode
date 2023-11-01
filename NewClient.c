@@ -106,8 +106,6 @@ int create_client_socket(int portno) {
 
 void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
 
-	char msg[]="SEND 1248.489.399.234 HI MY NAME IS JOHN JOHN FUCKING JOHN   3 SPACES";
-
 	int count=0;
 
 	int iterator1=0;
@@ -126,7 +124,7 @@ void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char*
 
 		char Character[1];
 
-		strncpy(Character,&msg[i],1);
+		strncpy(Character,&Actualmsg[i],1);
 
 		Character[1]='\0';
 
@@ -154,7 +152,7 @@ void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char*
 
 		}
 
-		if count==0{
+		if (count==0){
 
 			(*Command)[iterator1]=*Character;
 
@@ -628,7 +626,7 @@ void process_client_commands() {
 
 		char *Arg2 = (char*) malloc(256*sizeof(char));
 
-		Parse(&Command,&Arg1,&newMessage,msg);
+		Parse(&Command,&Arg1,&Arg2,msg);
 
 		cse4589_print_and_log("Command is %s\n",Command);
 
