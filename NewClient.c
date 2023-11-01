@@ -104,15 +104,17 @@ int create_client_socket(int portno) {
 
 
 
-void Parse(char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
+void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
 
 	char msg[]="SEND 1248.489.399.234 HI MY NAME IS JOHN JOHN FUCKING JOHN   3 SPACES";
 
 	int count=0;
 
-	int iterator=0;
+	int iterator1=0;
 
 	int iterator2=0;
+
+	int iterator3=0;
 
 	
 
@@ -128,21 +130,19 @@ void Parse(char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
 
 		Character[1]='\0';
 
-		
-
 		if(count==1){
 
-			(*FirstArgPointer)[iterator]=*Character;
+			(*FirstArgPointer)[iterator2]=*Character;
 
-			iterator ++;
+			iterator2 ++;
 
 		}
 
 		if (count>1){
 
-			(*SecondArgPointer)[iterator2]=*Character;
+			(*SecondArgPointer)[iterator3]=*Character;
 
-			iterator2++;
+			iterator3++;
 
 		}
 
@@ -151,6 +151,14 @@ void Parse(char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
 			count++;
 
 
+
+		}
+
+		if count==0{
+
+			(*Command)[iterator1]=*Character;
+
+			iterator1++;		
 
 		}
 
