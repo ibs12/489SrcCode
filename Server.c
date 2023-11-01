@@ -963,6 +963,5 @@ void server_loop() {
 	}
 
 }
-
-
+}
 
