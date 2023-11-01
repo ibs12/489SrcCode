@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 
+
 #include <stdlib.h>
 
 
@@ -633,7 +634,7 @@ void process_client_commands() {
 
 		int LengthOfMessageSent=send(ClientFD,msg,strlen(msg),0);
 
-		cse4589_print_and_log("%d",LengthOfMessageSent);
+		cse4589_print_and_log("Length of message sent:*%d*\n",LengthOfMessageSent);
 
 		int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
