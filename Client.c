@@ -164,6 +164,42 @@ void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char*
 
 }
 
+void ParseServerMessage(char** ServerCommand,char* ServerMessage){
+
+	int count=0;
+
+	int iterator1=0;
+
+	
+
+	int j=strlen(ServerMessage);
+
+	for (int i=0; i<strlen(ServerMessage); i++){
+
+		char Character[1];
+
+		strncpy(Character,&Actualmsg[i],1);
+
+		Character[1]='\0';
+
+		if (strcmp(Character," ")==0){
+
+			count++;
+
+		}
+
+		if (count==0){
+
+			(*ServerCommand)[iterator1]=*Character;
+
+			iterator1++;		
+
+		}
+
+		}
+
+}
+
 
 
 void close_connection(int client_fd) {
@@ -618,15 +654,19 @@ void process_client_commands() {
 
 		char *DataReceived=(char*) malloc(256*sizeof(char));
 
-		char *Command= (char*) malloc(256*sizeof(char));
+		char *ClientCommand= (char*) malloc(256*sizeof(char));
 
 		char *Arg1= (char*) malloc(256*sizeof(char));
 
 		char *Arg2 = (char*) malloc(256*sizeof(char));
 
-		Parse(&Command,&Arg1,&Arg2,msg);
+		char *ServerCommand=(char*) malloc(256*sizeof(char));
 
-		cse4589_print_and_log("Command is %s\n",Command);
+		
+
+		Parse(&ClientCommand,&Arg1,&Arg2,msg);
+
+		cse4589_print_and_log("ClientCommand is %s\n",ClientCommand);
 
 		cse4589_print_and_log("Arg1 is %s\n",Arg1);
 
@@ -644,9 +684,15 @@ void process_client_commands() {
 
 		}
 
-		if (strcmp(Command,"SEND")==0){
+		ParseServerMessage(&ServerCommand,&DataReceived);
 
-			printf("Received from server:%s",DataReceived);
+		if (strcmp(ServerCommand,"RELAYED"){
+
+			cse4589_print_and_log("RELAYED\n");
+
+		}
+
+		if (strcmp(ClientCommand,"SEND")==0){
 
 			if (LengthOfMessageReceived==1){
 
