@@ -170,7 +170,7 @@ void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char*
 
 		}
 
-		if count==0{
+		if (count==0){
 
 			(*Command)[iterator1]=*Character;
 
@@ -910,7 +910,7 @@ void server_loop() {
 
 								if strcmp(Command,"SEND"){
 
-									for (int i = 0; i < MAX_CLIENTS; i++) {
+									for (int i = 0; i < 5; i++) {
 
 										struct Client currentClient = List[i];
 
