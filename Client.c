@@ -690,6 +690,8 @@ void process_client_commands() {
 
 			cse4589_print_and_log("RELAYED\n");
 
+			cse4589_print_and_log("%s\n",DataReceived);
+
 		}
 
 		if (strcmp(ClientCommand,"SEND")==0){
