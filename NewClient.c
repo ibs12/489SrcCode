@@ -308,8 +308,6 @@ void process_client_commands() {
 
 		
 
-		char *send = (char*) malloc(sizeof(char)*5);
-
 			
 
 		fgets(msg, 256, stdin);
@@ -324,9 +322,7 @@ void process_client_commands() {
 
 		
 
-		strncpy(send,msg,4);
 
-		send[4]= '\0';
 
 		login[5] = '\0' ;
 
