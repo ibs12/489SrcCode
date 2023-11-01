@@ -122,7 +122,7 @@ void remove_connection(int socket) {
 
 void Parse1(char** Command,char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
 
-	char msg[]="SEND 1248.489.399.234 HI MY NAME IS JOHN JOHN FUCKING JOHN   3 SPACES";
+	
 
 	int count=0;
 
@@ -142,7 +142,7 @@ void Parse1(char** Command,char** FirstArgPointer, char** SecondArgPointer, char
 
 		char Character[1];
 
-		strncpy(Character,&msg[i],1);
+		strncpy(Character,&Actualmsg[i],1);
 
 		Character[1]='\0';
 
@@ -920,11 +920,17 @@ void server_loop() {
 
 								  			printf("Client exists!");
 
+								  			send(sock_index,"1",1,0);
+
+								  			break;
+
 										}
 
 										else{
 
 											printf("Client does not exist");
+
+											send(sock_index,"12",2,0);
 
 									}
 
