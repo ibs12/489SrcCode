@@ -936,6 +936,10 @@ void server_loop() {
 
 							}
 
+							printf("COMMAND IS %s",Command);
+
+							printf("RECEIVED FROM CLIENT:%s",NewData);
+
 
 
 						}
@@ -963,5 +967,6 @@ void server_loop() {
 	}
 
 }
+
 }
 
