@@ -136,8 +136,6 @@ void Parse1(char** Command,char** FirstArgPointer, char** SecondArgPointer, char
 
 	int j=strlen(Actualmsg);
 
-	printf("Length of Command is %d\n",j);
-
 	for (int i=0; i<strlen(Actualmsg); i++){
 
 		char Character[1];
@@ -920,6 +918,8 @@ void server_loop() {
 
 								  			printf("Client exists!");
 
+								  			fflush(stdout);
+
 								  			send(sock_index,"1",1,0);
 
 								  			break;
@@ -929,6 +929,8 @@ void server_loop() {
 										else{
 
 											printf("Client does not exist");
+
+											fflush(stdout);
 
 											send(sock_index,"12",2,0);
 
@@ -945,6 +947,8 @@ void server_loop() {
 							printf("COMMAND IS %s",Command);
 
 							printf("RECEIVED FROM CLIENT:%s",NewData);
+
+							fflush(stdout);
 
 
 
