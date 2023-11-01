@@ -916,6 +916,10 @@ void server_loop() {
 
 								  		char *ClientIP= currentClient.IPaddress;
 
+								  		printf("LIST CLIENT IP IS *%s* and RECEIVED IP IS *%s*\n",ClientIP,Arg1);
+
+								  		fflush(stdout);
+
 								  		if (strcmp(Arg1,ClientIP)==0){
 
 								  			printf("Client exists!");
