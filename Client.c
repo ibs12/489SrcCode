@@ -68,23 +68,11 @@ int ClientFD;
 
 
 
-
-
 int create_client_socket(int portno) {
-
-
 
 	Portno=portno;
 
-
-
 	int client_fd = socket(AF_INET, SOCK_STREAM, 0);
-
-
-
-	
-
-
 
 	if (client_fd < 0) {
 
@@ -96,15 +84,9 @@ int create_client_socket(int portno) {
 
 		return -1;
 
-
-
 	}
 
-
-
 	else{
-
-
 
 		process_client_commands();
 
@@ -116,41 +98,79 @@ int create_client_socket(int portno) {
 
 		return client_fd;
 
-
-
 	}
-
-
 
 }
 
 
 
+void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
 
+	int count=0;
+
+	int iterator1=0;
+
+	int iterator2=0;
+
+	int iterator3=0;
+
+	
+
+	int j=strlen(Actualmsg);
+
+	printf("Length of Command is %d\n",j);
+
+	for (int i=0; i<strlen(Actualmsg); i++){
+
+		char Character[1];
+
+		strncpy(Character,&Actualmsg[i],1);
+
+		Character[1]='\0';
+
+		if(count==1){
+
+			(*FirstArgPointer)[iterator2]=*Character;
+
+			iterator2 ++;
+
+		}
+
+		if (count>1){
+
+			(*SecondArgPointer)[iterator3]=*Character;
+
+			iterator3++;
+
+		}
+
+		if (strcmp(Character," ")==0){
+
+			count++;
+
+
+
+		}
+
+		if (count==0){
+
+			(*Command)[iterator1]=*Character;
+
+			iterator1++;		
+
+		}
+
+		}
+
+}
 
 
 
 void close_connection(int client_fd) {
 
-
-
-
-
-
-
 	close(client_fd);
 
-
-
-	
-
-
-
 }
-
-
-
-
 
 
 
@@ -158,15 +178,7 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-
-
-
-
 	struct sockaddr_in serv_addr;
-
-
-
-
 
 
 
@@ -178,31 +190,15 @@ void login_to_server(const char* server_ip, int server_port) {
 
 		cse4589_print_and_log("[LOGIN:END]\n");
 
-
-
-		
-
 		return;
 
-
-
 	}
-
-
-
-
-
-
 
 	serv_addr.sin_family = AF_INET;
 
 
 
 	serv_addr.sin_port = htons(server_port);
-
-
-
-	
 
 
 
@@ -214,23 +210,11 @@ void login_to_server(const char* server_ip, int server_port) {
 
 		cse4589_print_and_log("[LOGIN:END]\n");
 
-
-
 		close(ClientFD);
-
-
 
 		return;
 
-
-
 	}
-
-
-
-
-
-
 
 	if (connect(ClientFD, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1) {
 
@@ -244,19 +228,11 @@ void login_to_server(const char* server_ip, int server_port) {
 
 		close(ClientFD);
 
-
-
 		return;
-
-
 
 	}
 
-
-
 	else{
-
-
 
 		cse4589_print_and_log("[LOGIN:SUCCESS]\n");
 
@@ -286,10 +262,6 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-
-
-
-
 		while(bytes_received<=0){
 
 
@@ -299,8 +271,6 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 		}
-
-
 
 		DataR[bytes_received] = '\0';
 
@@ -312,25 +282,9 @@ void login_to_server(const char* server_ip, int server_port) {
 
 		process_client_commands();
 
-
-
 	}
 
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
 
 
 
@@ -346,21 +300,15 @@ void process_client_commands() {
 
 
 
-
-
-
-
 		char *msg = (char*) malloc(sizeof(char)*256);
 
 
 
 		char *login = (char*) malloc(sizeof(char)*6);		
 
+		
 
-
-
-
-
+			
 
 		fgets(msg, 256, stdin);
 
@@ -371,6 +319,8 @@ void process_client_commands() {
 
 
 		strncpy(login,msg,5);
+
+		
 
 
 
@@ -422,11 +372,7 @@ void process_client_commands() {
 
 
 
-
-
 			cse4589_print_and_log("[EXIT:END]\n");
-
-
 
 
 
@@ -455,10 +401,6 @@ void process_client_commands() {
 
 
 			int bytes_received = recv(ClientFD, DataR, 1023,0);	
-
-
-
-
 
 
 
@@ -512,10 +454,6 @@ void process_client_commands() {
 
 
 
-
-
-
-
 			while(bytes_received<=0){
 
 
@@ -564,8 +502,6 @@ void process_client_commands() {
 
 
 
-
-
 				int count=0;
 
 
@@ -578,15 +514,7 @@ void process_client_commands() {
 
 
 
-				
-
-
-
 				for (int i=0; i<strlen(msg); i++){
-
-
-
-
 
 
 
@@ -599,10 +527,6 @@ void process_client_commands() {
 
 
 					Character[1]='\0';
-
-
-
-
 
 
 
@@ -687,6 +611,56 @@ void process_client_commands() {
 			}
 
 
+
+		}
+
+	else if (LoggedIn==1){
+
+		char *DataReceived=(char*) malloc(256*sizeof(char));
+
+		char *Command= (char*) malloc(256*sizeof(char));
+
+		char *Arg1= (char*) malloc(256*sizeof(char));
+
+		char *Arg2 = (char*) malloc(256*sizeof(char));
+
+		Parse(&Command,&Arg1,&Arg2,msg);
+
+		cse4589_print_and_log("Command is %s\n",Command);
+
+		cse4589_print_and_log("Arg1 is %s\n",Arg1);
+
+		cse4589_print_and_log("Arg2 is %s\n",Arg2);
+
+		int LengthOfMessageSent=send(ClientFD,msg,strlen(msg),0);
+
+		cse4589_print_and_log(LengthOfMessageSent);
+
+		int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
+
+		while (LengthOfMessageReceived<=0){
+
+			int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
+
+		}
+
+		if (strcmp(Command,"SEND")==0){
+
+			if (LengthOfMessageReceived==1){
+
+				cse4589_print_and_log("[%s:SUCCESS]\n","SEND");
+
+				cse4589_print_and_log("[%s:END]\n","SEND");
+
+			}
+
+			else if (LengthOfMessageReceived==2){
+
+				cse4589_print_and_log("[%s:ERROR]\n","SEND");
+
+				cse4589_print_and_log("[%s:END]\n","SEND");
+
+			}
 
 		}
 
