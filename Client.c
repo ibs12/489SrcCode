@@ -334,7 +334,19 @@ void process_client_commands() {
 
 	while(1) {
 
+		char *DataReceived=(char*) malloc(256*sizeof(char));
 
+		int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
+
+		if (LengthOfMessageReceived <= 0) {
+
+            		printf("RECEIVED FROM SERVER: %s\n",DataReceived);
+
+            		fflush(stdout);
+
+           		break;
+
+        }
 
 		char *msg = (char*) malloc(sizeof(char)*256);
 
@@ -652,8 +664,6 @@ void process_client_commands() {
 
 	else if (LoggedIn==1){
 
-		char *DataReceived=(char*) malloc(256*sizeof(char));
-
 		char *ClientCommand= (char*) malloc(256*sizeof(char));
 
 		char *Arg1= (char*) malloc(256*sizeof(char));
@@ -678,7 +688,7 @@ void process_client_commands() {
 
 		int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
-		while (LengthOfMessageReceived<=0){
+		if (LengthOfMessageReceived<=0){
 
 			int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
@@ -686,7 +696,7 @@ void process_client_commands() {
 
 		ParseServerMessage(&ServerCommand,DataReceived);
 
-		if (strcmp(ServerCommand,"RELAYED")){
+		if (strcmp(ServerCommand,"RELAYED")==0){
 
 			cse4589_print_and_log("RELAYED\n");
 
