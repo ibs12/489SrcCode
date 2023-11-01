@@ -904,6 +904,8 @@ void server_loop() {
 
 								char *Arg2 = (char*) malloc(256*sizeof(char));
 
+								int Exists=0;
+
 								Parse1(&Command,&Arg1,&Arg2,NewData);
 
 								if (strcmp(Command,"SEND")==0){
@@ -920,23 +922,23 @@ void server_loop() {
 
 								  			fflush(stdout);
 
+								  			Exists=1;
+
 								  			send(sock_index,"1",1,0);
+
+								  			
 
 								  			break;
 
 										}
 
-										else{
+										
 
-											printf("Client does not exist");
+									if (Exists==0){
 
-											fflush(stdout);
-
-											send(sock_index,"12",2,0);
+										send(sock_index,"12",2,0);
 
 									}
-
-
 
 								}
 
@@ -979,4 +981,6 @@ void server_loop() {
 }
 
 }
+
+
 
