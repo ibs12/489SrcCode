@@ -1,62 +1,28 @@
 #include "Server.h"
 
-
-
 #include <arpa/inet.h>
-
-
 
 #include <stdio.h>
 
-
-
 #include <string.h>
-
-
 
 #include <sys/socket.h>
 
-
-
 #include <unistd.h>
-
-
 
 #include <netinet/in.h>
 
-
-
 #include <stdlib.h>
-
-
 
 #include "../include/global.h"
 
-
-
 #include "../include/logger.h"
-
-
-
-
-
-
 
 #include "Commands.h"
 
-
-
-#include "Server.h"
-
-
-
 #include <netdb.h>
 
-
-
 #define CMD_SIZE 100
-
-
 
 #define BUFFER_SIZE 256
 
@@ -88,12 +54,6 @@ char buffer[256];
 
 
 
-
-
-
-
-
-
 typedef struct Client {
 
 
@@ -118,15 +78,7 @@ typedef struct Client {
 
 
 
-
-
-
-
 Clients List[5];
-
-
-
-
 
 
 
@@ -158,21 +110,77 @@ void remove_connection(int socket) {
 
 
 
+	}	
+
+
+
 	}
 
-
-
 }
 
 
 
+void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
+
+	char msg[]="SEND 1248.489.399.234 HI MY NAME IS JOHN JOHN FUCKING JOHN   3 SPACES";
+
+	int count=0;
+
+	int iterator1=0;
+
+	int iterator2=0;
+
+	int iterator3=0;
+
+	
+
+	int j=strlen(Actualmsg);
+
+	printf("Length of Command is %d\n",j);
+
+	for (int i=0; i<strlen(Actualmsg); i++){
+
+		char Character[1];
+
+		strncpy(Character,&msg[i],1);
+
+		Character[1]='\0';
+
+		if(count==1){
+
+			(*FirstArgPointer)[iterator2]=*Character;
+
+			iterator2 ++;
+
+		}
+
+		if (count>1){
+
+			(*SecondArgPointer)[iterator3]=*Character;
+
+			iterator3++;
+
+		}
+
+		if (strcmp(Character," ")==0){
+
+			count++;
+
+
+
+		}
+
+		if count==0{
+
+			(*Command)[iterator1]=*Character;
+
+			iterator1++;		
+
+		}
+
+		}
+
 }
-
-
-
-
-
-
 
 char* ReturnMessage(const Clients LIST[]){
 
@@ -190,15 +198,7 @@ char* ReturnMessage(const Clients LIST[]){
 
 
 
-	
-
-
-
 		int port_num= List[i].ListeningPort;
-
-
-
-		
 
 
 
@@ -220,17 +220,11 @@ char* ReturnMessage(const Clients LIST[]){
 
 }
 
-
-
 	return	ReturnM;
 
 
 
 }
-
-
-
-
 
 
 
@@ -251,18 +245,6 @@ int compareClients(const void *a, const void *b) {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -308,8 +290,6 @@ int AddClient(char ip[], char Name[], int LP, int FD) {
 
 			return (0);
 
-
-
 		}
 
 
@@ -328,25 +308,11 @@ return 0;
 
 
 
-
-
-
-
-
-
 int Create_Server(int PortNO){
 
 
 
-
-
-
-
     	int port = PortNO; 
-
-
-
-
 
 
 
@@ -362,15 +328,7 @@ int Create_Server(int PortNO){
 
 
 
-
-
-
-
     	if (initialize_server(port) < 0) {
-
-
-
-	
 
 
 
@@ -386,15 +344,11 @@ int Create_Server(int PortNO){
 
 
 
-	PORT=port;
+		PORT=port;
 
 
 
-
-
-
-
-	server_loop();
+		server_loop();
 
 
 
@@ -410,14 +364,6 @@ int Create_Server(int PortNO){
 
 
 
-
-
-
-
-
-
-
-
 // Initialize the server
 
 
@@ -426,15 +372,7 @@ int initialize_server(int port) {
 
 
 
-
-
-
-
     PORT = port;
-
-
-
-
 
 
 
@@ -458,10 +396,6 @@ int initialize_server(int port) {
 
 
 
-
-
-
-
     server_addr.sin_family = AF_INET;
 
 
@@ -474,15 +408,7 @@ int initialize_server(int port) {
 
 
 
-
-
-
-
     if (bind(server_socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
-
-
-
-
 
 
 
@@ -491,10 +417,6 @@ int initialize_server(int port) {
 
 
     }
-
-
-
-
 
 
 
@@ -514,10 +436,6 @@ int initialize_server(int port) {
 
 
 
-
-
-
-
     FD_ZERO(&master_list);
 
 
@@ -534,19 +452,11 @@ int initialize_server(int port) {
 
 
 
-
-
-
-
     return 0;  // success
 
 
 
 }
-
-
-
-
 
 
 
@@ -558,19 +468,11 @@ int accept_new_connection() {
 
 
 
-
-
-
-
     int new_socket;
 
 
 
     socklen_t addr_len = sizeof(client_addr);
-
-
-
-
 
 
 
@@ -594,10 +496,6 @@ int accept_new_connection() {
 
 
 
-
-
-
-
     // Add to master_list
 
 
@@ -618,10 +516,6 @@ int accept_new_connection() {
 
 
 
-    
-
-
-
     return new_socket;
 
 
@@ -630,15 +524,7 @@ int accept_new_connection() {
 
 
 
-
-
-
-
 void server_loop() { 
-
-
-
-
 
 
 
@@ -650,23 +536,11 @@ void server_loop() {
 
 
 
-		
-
-
-
 		int STDIN= fileno(stdin);
 
 
 
-
-
-
-
 		selret = select(head_socket + 1, &watch_list, NULL, NULL, NULL);
-
-
-
-		
 
 
 
@@ -686,10 +560,6 @@ void server_loop() {
 
 
 
-
-
-
-
 			/* Loop through socket descriptors to check which ones are ready */
 
 
@@ -698,41 +568,19 @@ void server_loop() {
 
 
 
-				
-
-
-
 				if(FD_ISSET(sock_index, &watch_list)){
-
-
-
-					
-
-
-
-					/* Check if new command on STDIN */
 
 
 
 					if (sock_index == STDIN){
 
-
-
 					
-
-
 
 						char *cmd = (char*) malloc(sizeof(char)*CMD_SIZE);
 
 
 
-
-
-
-
 						if(fgets(cmd, CMD_SIZE-1, stdin) == NULL){ //Mind the newline character that will be written to cmd
-
-
 
 
 
@@ -742,21 +590,11 @@ void server_loop() {
 
 						}
 
-
-
 						cmd[strlen(cmd)-1]='\0';
 
 
 
-
-
-
-
 						if (strcmp(cmd,"EXIT")==0){
-
-
-
-
 
 
 
@@ -776,10 +614,6 @@ void server_loop() {
 
 
 
-
-
-
-
 						}
 
 
@@ -788,15 +622,7 @@ void server_loop() {
 
 
 
-
-
-
-
 							handle_author_command();
-
-
-
-
 
 
 
@@ -806,19 +632,9 @@ void server_loop() {
 
 						else if (strcmp(cmd,"IP")==0){
 
-
-
-
-
-
+						
 
 							handle_ip_command();
-
-
-
-
-
-
 
 						}
 
@@ -828,15 +644,7 @@ void server_loop() {
 
 
 
-
-
-
-
 							handle_port_command(PORT);
-
-
-
-							
 
 
 
@@ -896,10 +704,6 @@ void server_loop() {
 
 
 
-					
-
-
-
 						caddr_len = sizeof(client_addr);
 
 
@@ -936,20 +740,6 @@ void server_loop() {
 
 
 
-						
-
-
-
-		
-
-
-
-						
-
-
-
-
-
 						/* Add to watched socket list */
 
 
@@ -958,15 +748,7 @@ void server_loop() {
 
 
 
-						
-
-
-
 						if(fdaccept > head_socket) {
-
-
-
-						
 
 
 
@@ -1048,11 +830,13 @@ void server_loop() {
 
 					else{
 
+	
 
+						
 
 						/* Initialize buffer to receieve response */
 
-
+	
 
 						char *NewData = (char*) malloc(sizeof(char)*256);
 
@@ -1060,11 +844,7 @@ void server_loop() {
 
 						memset(NewData, '\0', 256);
 
-
-
 						
-
-
 
 						if(recv(sock_index, NewData, 256, 0) <= 0){
 
@@ -1074,31 +854,17 @@ void server_loop() {
 
 
 
-						
-
-
-
-							
-
-
-
 						}
 
 
 
 						else {
 
-
-
 							char *DataR = (char*) malloc(sizeof(char)*256);
 
-
+							
 
 							//Process incoming data from existing clients here ...
-
-
-
-							
 
 
 
@@ -1112,7 +878,7 @@ void server_loop() {
 
 							}
 
-
+							
 
 							if ((strcmp(NewData,"REFRESH")==0) || (strcmp(NewData,"LIST")==0)){
 
@@ -1132,17 +898,51 @@ void server_loop() {
 
 							}
 
+							else{
+
+								char *Command= (char*) malloc(256*sizeof(char));
+
+								char *Arg1= (char*) malloc(256*sizeof(char));
+
+								char *Arg2 = (char*) malloc(256*sizeof(char));
+
+								Parse(&Command,&Arg1,&Arg2,NewData);
+
+								if strcmp(Command,"SEND"){
+
+									for (int i = 0; i < MAX_CLIENTS; i++) {
+
+										struct Client currentClient = List[i];
+
+								  		char *ClientIP= currentClient.IPaddress;
+
+								  		if (strcmp(Arg1,ClientIP)==0){
+
+								  			printf("Client exists!");
+
+										}
+
+										else{
+
+											printf("Client does not exist");
+
+									}
 
 
-						
+
+								}
 
 
 
-					
+							}
 
 
 
 						}
+
+
+
+			
 
 
 
@@ -1154,21 +954,15 @@ void server_loop() {
 
 
 
-			
-
-
-
 			}
 
 
 
 		}
 
-
-
 	}
 
-
-
 }
+
+
 
