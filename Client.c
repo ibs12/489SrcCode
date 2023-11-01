@@ -646,6 +646,8 @@ void process_client_commands() {
 
 		if (strcmp(Command,"SEND")==0){
 
+			printf("Received from server:%s",DataReceived);
+
 			if (LengthOfMessageReceived==1){
 
 				cse4589_print_and_log("[%s:SUCCESS]\n","SEND");
