@@ -650,7 +650,7 @@ void process_client_commands() {
 
 	else if (LoggedIn==1){
 
-		
+		char *DataReceived= (char*) malloc(256*sizeof(char));
 
 		char *ClientCommand= (char*) malloc(256*sizeof(char));
 
