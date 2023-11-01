@@ -118,7 +118,7 @@ void remove_connection(int socket) {
 
 }
 
-const char* GetIPAddress(int client_fd) {
+char* GetIPAddress(int client_fd) {
 
     for (int i = 0; i < 5; i++) {
 
