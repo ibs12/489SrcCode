@@ -164,7 +164,7 @@ void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char*
 
 }
 
-void ParseServerMessage(char** ServerCommand,char* ServerMessage){
+void ParseServerMessage(char** ServerCommand,char** ServerMessage){
 
 	int count=0;
 
@@ -686,7 +686,7 @@ void process_client_commands() {
 
 		ParseServerMessage(&ServerCommand,&DataReceived);
 
-		if (strcmp(ServerCommand,"RELAYED"){
+		if (strcmp(ServerCommand,"RELAYED")){
 
 			cse4589_print_and_log("RELAYED\n");
 
