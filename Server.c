@@ -954,7 +954,7 @@ void server_loop() {
 
 								  		if (strcmp(Arg1,ClientIP)==0 && currentClient.FD!=sock_index){
 
-								  			printf("Client exists!");
+								  			printf("Client exists!"\n);
 
 								  			fflush(stdout);
 
