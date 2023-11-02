@@ -326,13 +326,13 @@ void login_to_server(const char* server_ip, int server_port) {
 
 void process_client_commands() {
 
-	FD_SET(0,&watch_list);
-
 	// The loop to keep client running and accept commands
 
 
 
 	while(1) {
+
+		FD_SET(0,&watch_list);
 
 		printf("TOP OF LOOP\n");
 
