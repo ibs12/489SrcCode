@@ -718,10 +718,6 @@ void process_client_commands() {
 
 					fflush(stdout);
 
-					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
-
-					ParseServerMessage(&ServerCommand,DataReceived);
-
 					if (strcmp(ClientCommand,"LOGOUT")==0){
 
 						send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
@@ -732,7 +728,13 @@ void process_client_commands() {
 
 						printf("Log OUT");
 
+						process_client_commands();
+
 					}
+
+					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
+
+					ParseServerMessage(&ServerCommand,DataReceived);
 
 					if (strcmp(ServerCommand,"RELAYED")==0){
 
