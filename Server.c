@@ -166,9 +166,13 @@ void ClearBacklog(char* IP,char* Message){
 
 			char* EmptyList[100];
 
-			strcpy(CurrentClient.string_list,EmptyList);
+			
 
-			CurrentClient.string_list=EmptyList;
+			for (int j = 0; j < 100; j++) {
+
+                		CurrentClient.string_list[j] = ""; // Assign an empty string
+
+            }
 
 			CurrentClient.NumberOfStrings==0;		
 
