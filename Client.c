@@ -64,8 +64,6 @@ fd_set watch_list;
 
 
 
-int STDIN= fileno(stdin);
-
 
 
 
@@ -344,7 +342,7 @@ void process_client_commands() {
 
 
 
-				if (sock_index == STDIN){
+				if (sock_index == 0){
 
 					char *msg = (char*) malloc(sizeof(char)*256);
 
