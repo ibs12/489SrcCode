@@ -358,7 +358,7 @@ void process_client_commands() {
 
 			for (int i=0; i<10; i++){
 
-				(if (FD_ISSET(i, &watch_list)) {
+				if (FD_ISSET(i, &watch_list)) {
 
             			printf("File descriptor %d is set in the set.\n", i);
 
