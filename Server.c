@@ -856,18 +856,6 @@ void server_loop() {
 
 					else{
 
-	
-
-						
-
-						/* Initialize buffer to receieve response */
-
-	
-
-						char *NewData = (char*) malloc(sizeof(char)*256);
-
-
-
 						memset(NewData, '\0', 256);
 
 						
@@ -904,7 +892,9 @@ void server_loop() {
 
 							}
 
-							
+							printf("RECEIVED DATA FROM CLIENT:%s\n",NewData);
+
+							fflush(stdout);
 
 							if ((strcmp(NewData,"REFRESH")==0) || (strcmp(NewData,"LIST")==0)){
 
@@ -939,6 +929,10 @@ void server_loop() {
 								Parse1(&Command,&Arg1,&Arg2,NewData);
 
 								Arg1[strlen(Arg1)-1]='\0';
+
+								printf("COMMAND IS %s\n",Command);
+
+								fflush(stdout);
 
 								if (strcmp(Command,"SEND")==0){
 
