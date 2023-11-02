@@ -142,7 +142,7 @@ void AddToBacklog(char* IP,char* Message){
 
 			//Might be unexpected values//
 
-			if ListOfBacklogs[i].IPaddress==0{
+			if (ListOfBacklogs[i].IPaddress==0){
 
 				ListOfBacklogs[i]=NewBacklog;
 
