@@ -716,9 +716,9 @@ void process_client_commands() {
 
 					cse4589_print_and_log("Arg2 is %s\n",Arg2);
 
-					int LengthOfMessageSent=send(ClientFD,msg,strlen(msg),0);
 
-					cse4589_print_and_log("Length of message sent:*%d*\n",LengthOfMessageSent);
+
+					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
 					ParseServerMessage(&ServerCommand,DataReceived);
 
@@ -742,6 +742,8 @@ void process_client_commands() {
 
 					if (strcmp(ClientCommand,"SEND")==0){
 
+						int LengthOfMessageSent=send(ClientFD,msg,strlen(msg),0);
+
 						if (LengthOfMessageReceived==1){
 
 							cse4589_print_and_log("[%s:SUCCESS]\n","SEND");
@@ -758,15 +760,15 @@ void process_client_commands() {
 
 						}
 
-					}	
+					}
 
-					else{
+				else{
 
 
 
-						cse4589_print_and_log("[%s:ERROR]\n",msg);
+					cse4589_print_and_log("[%s:ERROR]\n",msg);
 
-						cse4589_print_and_log("[%s:END]\n",msg);
+					cse4589_print_and_log("[%s:END]\n",msg);
 
 
 
