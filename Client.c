@@ -779,5 +779,3 @@ void process_client_commands() {
 	}
 
 }}}
-
-}
