@@ -58,29 +58,149 @@ typedef struct Client {
 
 
 
-  char IPaddress[30];
+	char IPaddress[30];
 
 
 
-  char Name[30];
+	char Name[30];
 
 
 
-  int ListeningPort;
+	int ListeningPort;
 
 
 
-  int FD;
+	int FD;
 
+	
 
+	int MessagesReceived;
+
+	
+
+	int MessagesSent;
+
+	
+
+	int LoggedIn;
 
 } Clients;
 
 
 
+typedef struct Backlog {
+
+	char IPaddress[30];
+
+	
+
+	char* string_list[100];
+
+	
+
+	int NumberOfStrings=0;
+
+} Backlogs;
+
+
+
+Backlogs ListOfBacklogs[5];
+
+
+
+void AddToBacklog(char* IP,char* Message){
+
+	int exists=0;
+
+	for(int i=0; i<5; i++){
+
+		struct CurrentClient=ListOfBacklogs[i];
+
+		if (CurrentClient.IPaddress==IP){
+
+			exists=1;
+
+			CurrentClient.string_list[currentClient.NumberOfStrings]=Message;
+
+			printf("%s\n",CurrentClient.string_list[currentClient.NumberOfStrings]);
+
+			CurrentClient.NumberOfStrings+=1;		
+
+		}
+
+	}
+
+	if (exists==0){
+
+		struct Backlog NewBacklog;
+
+		NewBacklog.IPaddress=IP;
+
+		NewBacklog.NumberOfStrings=1;
+
+		for(int i=0; i<5; i++){
+
+			//Might be unexpected values//
+
+			if ListOfBacklogs[i].IPaddress==0{
+
+				ListOfBacklogs[i]=NewBacklog;
+
+				}
+
+		}	
+
+	}
+
+}
+
+
+
+void ClearBacklog(char* IP,char* Message){
+
+	for(int i=0; i<5; i++){
+
+		struct CurrentClient=ListOfBacklogs[i];
+
+		if (CurrentClient.IPaddress==IP){
+
+			char* EmptyList[100];
+
+			CurrentClient.string_list=EmptyList;
+
+			CurrentClient.NumberOfStrings==0;		
+
+		}
+
+	}
+
+		
+
+}
+
 Clients List[5];
 
 
+
+void LogClientOut(int socket){
+
+	close(socket);
+
+
+
+	FD_CLR(socket, &master_list);
+
+	for (int i = 0; i < 5; i++) {
+
+
+
+		if (List[i].FD == socket) {
+
+			List[i].LoggedIn==0;
+
+	}
+
+}
 
 void remove_connection(int socket) {
 
@@ -166,7 +286,9 @@ void Parse1(char** Command,char** FirstArgPointer, char** SecondArgPointer, char
 
 		}
 
-		if (count>1){
+		//POSSIBLE ERRORS DUE TO MESSAGE SIZE 
+
+		if ((count>1)&&(iterator3<256)){
 
 			(*SecondArgPointer)[iterator3]=*Character;
 
@@ -296,7 +418,17 @@ int AddClient(char ip[], char Name[], int LP, int FD) {
 
 	ClientToAdd.FD=FD;
 
+	
 
+	ClientToAdd.MessagesReceived=0;
+
+	
+
+	ClientToAdd.MessagesSent=0;
+
+	
+
+	ClientToAdd.LoggedIn=1;
 
 	for (int i=0; i<5; i++){
 
@@ -642,8 +774,6 @@ void server_loop() {
 
 						}
 
-
-
 						else if (strcmp(cmd,"AUTHOR")==0){
 
 
@@ -844,6 +974,8 @@ void server_loop() {
 
 						send(fdaccept,DataToSend,strlen(DataToSend),0);
 
+						//also send every message if there are messages
+
 
 
 					}
@@ -896,7 +1028,15 @@ void server_loop() {
 
 							printf("RECEIVED DATA FROM CLIENT:%s\n",NewData);
 
+							
+
 							fflush(stdout);
+
+							if (strcmp(NewData,"LOGOUT")==0){
+
+								LogClientOut(sock_index);
+
+							}
 
 							if ((strcmp(NewData,"REFRESH")==0) || (strcmp(NewData,"LIST")==0)){
 
@@ -948,7 +1088,7 @@ void server_loop() {
 
 								  		fflush(stdout);
 
-								  		if (strcmp(Arg1,ClientIP)==0 && currentClient.FD!=sock_index){
+								  		if ((strcmp(Arg1,ClientIP)==0 && currentClient.FD!=sock_index)&&currentClient.PortNO!=0){
 
 								  			printf("Client exists!\n");
 
@@ -960,9 +1100,19 @@ void server_loop() {
 
 								  			char* MessageFromServerToClient=MessageForRelayed(GetIPAddress(sock_index),Arg2);
 
-								  			send(currentClient.FD,MessageFromServerToClient,strlen(MessageFromServerToClient),0);
+								  			if (currentClient.LoggedIn==1){
 
-								  			
+								  				send(currentClient.FD,MessageFromServerToClient,strlen(MessageFromServerToClient),0);
+
+								  			}
+
+								  			else{
+
+								  				AddToBacklog(GetIPAddress(sock_index),Arg2);
+
+								  				//buffer message
+
+								  			}
 
 								  			printf("Message sent to %d. The message is %s.\n",currentClient.FD,MessageFromServerToClient);
 
