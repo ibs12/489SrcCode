@@ -854,9 +854,11 @@ void server_loop() {
 
 
 
-					else{
+					else{	
 
-						memset(NewData, '\0', 256);
+					
+
+						char *NewData= (char*) malloc(sizeof(char)*256);
 
 						
 
@@ -932,7 +934,7 @@ void server_loop() {
 
 								printf("COMMAND IS %s\n",Command);
 
-								fflush(stdout);
+								
 
 								if (strcmp(Command,"SEND")==0){
 
