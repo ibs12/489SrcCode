@@ -782,6 +782,8 @@ void process_client_commands() {
 
 				fflush(stdout);
 
+				fflush(stdin);
+
 				}
 
 		}
