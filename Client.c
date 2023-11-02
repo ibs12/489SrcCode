@@ -334,6 +334,10 @@ void process_client_commands() {
 
 	while(1) {
 
+		printf("TOP OF LOOP\n");
+
+		fflush(stdout);
+
 		int selret = select(6, &watch_list, NULL, NULL, NULL);
 
 
@@ -752,7 +756,7 @@ void process_client_commands() {
 
 			//socket index is server//
 
-			else{
+			else if (sock_index==ClientFD){
 
 				char *DataReceived= (char*) malloc(256*sizeof(char));
 
@@ -769,6 +773,8 @@ void process_client_commands() {
 				int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
 				cse4589_print_and_log("Received from server:%s",DataReceived);
+
+				fflush(stdout);
 
 				}
 
