@@ -340,8 +340,6 @@ void process_client_commands() {
 
 		int selret = select(6, &watch_list, NULL, NULL, NULL);
 
-
-
 		if(selret < 0){
 
 
@@ -356,6 +354,10 @@ void process_client_commands() {
 
 		if(selret > 0){
 
+			printf("SELRET IS %d\n",selret);
+
+			fflush(stdout);
+
 		for(int sock_index=0; sock_index<=5; sock_index+=1){
 
 
@@ -365,6 +367,10 @@ void process_client_commands() {
 
 
 				if (sock_index == 0){
+
+					printf("SOCK INDEX==0"\n);
+
+					fflush(stdout);
 
 					char *msg = (char*) malloc(sizeof(char)*256);
 
