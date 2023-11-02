@@ -334,6 +334,26 @@ void process_client_commands() {
 
 	while(1) {
 
+
+
+		selret = select(6, &watch_list, NULL, NULL, NULL);
+
+
+
+		if(selret < 0){
+
+
+
+			perror("select failed.\n");
+
+
+
+			}
+
+
+
+		if(selret > 0){
+
 		for(int sock_index=0; sock_index<=5; sock_index+=1){
 
 
@@ -758,6 +778,6 @@ void process_client_commands() {
 
 	}
 
-}
+}}}
 
 }
