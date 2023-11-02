@@ -334,6 +334,8 @@ void process_client_commands() {
 
 	while(1) {
 
+		printf("TOP OF LOOP");
+
 		char *msg = (char*) malloc(sizeof(char)*256);
 
 
@@ -676,7 +678,7 @@ void process_client_commands() {
 
 		int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
-		if (LengthOfMessageReceived<=0){
+		while (LengthOfMessageReceived<=0){
 
 			int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
