@@ -356,7 +356,15 @@ void process_client_commands() {
 
 			printf("SELRET IS %d\n",selret);
 
-			fflush(stdout);
+			for (int i=0; i<10;, i++){
+
+				(if (FD_ISSET(i, &watch_list)) {
+
+            			printf("File descriptor %d is set in the set.\n", i);
+
+        }
+
+    }
 
 		for(int sock_index=0; sock_index<=5; sock_index+=1){
 
@@ -764,7 +772,7 @@ void process_client_commands() {
 
 			else if (sock_index==ClientFD){
 
-				char *DataReceived= (char*) malloc(256*sizeof(char));
+				char *DataReceived= (char*) malloc(1023*sizeof(char));
 
 				char *ClientCommand= (char*) malloc(256*sizeof(char));
 
