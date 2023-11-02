@@ -166,6 +166,8 @@ void ClearBacklog(char* IP,char* Message){
 
 			char* EmptyList[100];
 
+			strcpy(CurrentClient.string_list,EmptyList);
+
 			CurrentClient.string_list=EmptyList;
 
 			CurrentClient.NumberOfStrings==0;		
@@ -199,6 +201,8 @@ void LogClientOut(int socket){
 			List[i].LoggedIn==0;
 
 	}
+
+}
 
 }
 
@@ -1088,7 +1092,7 @@ void server_loop() {
 
 								  		fflush(stdout);
 
-								  		if ((strcmp(Arg1,ClientIP)==0 && currentClient.FD!=sock_index)&&currentClient.PortNO!=0){
+								  		if ((strcmp(Arg1,ClientIP)==0 && currentClient.FD!=sock_index)&&currentClient.ListeningPort!=0){
 
 								  			printf("Client exists!\n");
 
