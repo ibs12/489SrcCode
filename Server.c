@@ -134,7 +134,7 @@ void AddToBacklog(char* IP,char* Message){
 
 		struct Backlog NewBacklog;
 
-		NewBacklog.IPaddress=IP;
+		strcpy(NewBacklog.IPaddress,IP);
 
 		NewBacklog.NumberOfStrings=1;
 
