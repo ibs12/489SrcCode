@@ -368,7 +368,7 @@ void process_client_commands() {
 
 				if (sock_index == 0){
 
-					printf("SOCK INDEX==0"\n);
+					printf("SOCK INDEX==0\n");
 
 					fflush(stdout);
 
