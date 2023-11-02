@@ -334,7 +334,7 @@ void process_client_commands() {
 
 		FD_SET(0,&watch_list);
 
-		FD_set(ClientFD,&watch_list);
+		FD_SET(ClientFD,&watch_list);
 
 		printf("TOP OF LOOP\n");
 
