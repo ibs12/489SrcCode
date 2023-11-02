@@ -730,6 +730,8 @@ void process_client_commands() {
 
 						LoggedIn==0;
 
+						printf("Log OUT");
+
 					}
 
 					if (strcmp(ServerCommand,"RELAYED")==0){
