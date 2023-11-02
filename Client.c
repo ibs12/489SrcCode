@@ -716,7 +716,7 @@ void process_client_commands() {
 
 					cse4589_print_and_log("Arg2 is %s\n",Arg2);
 
-
+					fflush(stdout);
 
 					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
@@ -770,7 +770,7 @@ void process_client_commands() {
 
 					cse4589_print_and_log("[%s:END]\n",msg);
 
-
+					fflush(stdout);
 
 					}
 
