@@ -720,8 +720,6 @@ void process_client_commands() {
 
 					cse4589_print_and_log("Length of message sent:*%d*\n",LengthOfMessageSent);
 
-					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
-
 					ParseServerMessage(&ServerCommand,DataReceived);
 
 					if (strcmp(ClientCommand,"LOGOUT")==0){
@@ -760,15 +758,15 @@ void process_client_commands() {
 
 						}
 
-					}
+					}	
 
-				else{
+					else{
 
 
 
-					cse4589_print_and_log("[%s:ERROR]\n",msg);
+						cse4589_print_and_log("[%s:ERROR]\n",msg);
 
-					cse4589_print_and_log("[%s:END]\n",msg);
+						cse4589_print_and_log("[%s:END]\n",msg);
 
 
 
