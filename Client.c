@@ -748,7 +748,7 @@ void process_client_commands() {
 
 				char *ServerCommand=(char*) malloc(256*sizeof(char));	
 
-				Parse(&ClientCommand,&Arg1,&Arg2,msg);
+/*				Parse(&ClientCommand,&Arg1,&Arg2,msg);*/
 
 				int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
