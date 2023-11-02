@@ -336,7 +336,7 @@ void process_client_commands() {
 
 
 
-		selret = select(6, &watch_list, NULL, NULL, NULL);
+		int selret = select(6, &watch_list, NULL, NULL, NULL);
 
 
 
