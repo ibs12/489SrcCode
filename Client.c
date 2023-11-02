@@ -340,12 +340,6 @@ void process_client_commands() {
 
 		if(selret < 0){
 
-			for (int i=0; i<10; i++){
-
-				if (FD_ISSET(i, &watch_list)) {
-
-            			printf("File descriptor %d is set in the set.\n", i);
-
        
 
 			perror("select failed.\n");
@@ -353,8 +347,6 @@ void process_client_commands() {
 
 
 			}
-
-}}
 
 		if(selret >= 0){
 
@@ -728,9 +720,7 @@ void process_client_commands() {
 
 						send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
 
-						close_connection(ClientFD);
 
-						LoggedIn==0;
 
 						printf("Log OUT");
 
