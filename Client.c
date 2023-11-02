@@ -336,7 +336,7 @@ void process_client_commands() {
 
 	while(1) {
 
-		for(sock_index=0; sock_index<=5; sock_index+=1){
+		for(int sock_index=0; sock_index<=5; sock_index+=1){
 
 
 
