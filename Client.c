@@ -346,7 +346,7 @@ void process_client_commands() {
 
 			
 
-		fgets(msg, 256, stdin);
+		if(fgets(msg, 256, stdin)>1){
 
 
 
@@ -727,6 +727,8 @@ void process_client_commands() {
 		}
 
 	}
+
+}
 
 }
 
