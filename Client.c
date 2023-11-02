@@ -76,11 +76,7 @@ int create_client_socket(int portno) {
 
 	if (client_fd < 0) {
 
-
-
 		cse4589_print_and_log("\n Socket creation error \n");
-
-
 
 		return -1;
 
@@ -698,6 +694,8 @@ void process_client_commands() {
 
 				else if (LoggedIn==1){
 
+					
+
 					char *DataReceived= (char*) malloc(256*sizeof(char));
 
 					char *ClientCommand= (char*) malloc(256*sizeof(char));
@@ -725,6 +723,16 @@ void process_client_commands() {
 					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
 					ParseServerMessage(&ServerCommand,DataReceived);
+
+					if (strcmp(ClientCommand,"LOGOUT")==0){
+
+						send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
+
+						close_connection(ClientFD);
+
+						LoggedIn==0;
+
+					}
 
 					if (strcmp(ServerCommand,"RELAYED")==0){
 
@@ -788,7 +796,17 @@ void process_client_commands() {
 
 				int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
-				cse4589_print_and_log("Received from server:%s",DataReceived);
+				ParseServerMessage(&ServerCommand,DataReceived);
+
+				if(strcmp(ServerCommand,"RELAYED")==0){
+
+					cse4589_print_and_log("[%s:SUCCESS]\n","RECEIVED");
+
+					cse4589_print_and_log("%s",DataReceived);
+
+					cse4589_print_and_log("[%s:END]\n","RECEIVED");
+
+					}
 
 				fflush(stdout);
 
