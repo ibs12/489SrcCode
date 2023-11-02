@@ -356,7 +356,7 @@ void process_client_commands() {
 
 			printf("SELRET IS %d\n",selret);
 
-			for (int i=0; i<10;, i++){
+			for (int i=0; i<10; i++){
 
 				(if (FD_ISSET(i, &watch_list)) {
 
