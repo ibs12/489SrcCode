@@ -98,7 +98,7 @@ typedef struct Backlog {
 
 	
 
-	int NumberOfStrings=0;
+	int NumberOfStrings;
 
 } Backlogs;
 
@@ -114,15 +114,15 @@ void AddToBacklog(char* IP,char* Message){
 
 	for(int i=0; i<5; i++){
 
-		struct CurrentClient=ListOfBacklogs[i];
+		struct Backlog CurrentClient=ListOfBacklogs[i];
 
 		if (CurrentClient.IPaddress==IP){
 
 			exists=1;
 
-			CurrentClient.string_list[currentClient.NumberOfStrings]=Message;
+			strcpy(CurrentClient.string_list[CurrentClient.NumberOfStrings], Message);
 
-			printf("%s\n",CurrentClient.string_list[currentClient.NumberOfStrings]);
+			printf("%s\n",CurrentClient.string_list[CurrentClient.NumberOfStrings]);
 
 			CurrentClient.NumberOfStrings+=1;		
 
@@ -160,7 +160,7 @@ void ClearBacklog(char* IP,char* Message){
 
 	for(int i=0; i<5; i++){
 
-		struct CurrentClient=ListOfBacklogs[i];
+		struct Backlog CurrentClient=ListOfBacklogs[i];
 
 		if (CurrentClient.IPaddress==IP){
 
