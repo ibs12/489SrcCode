@@ -1158,7 +1158,7 @@ void server_loop() {
 
 								  			 	printf("Client FD is not -1\n");
 
-								  			 	if(CFD!=sock_index){
+								  			 	if(CFD==100){
 
 														printf("Client FD is not -1\n");
 
