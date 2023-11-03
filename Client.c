@@ -358,7 +358,7 @@ void process_client_commands() {
 
 
 
-			}
+		}
 
 		if(selret >= 0){
 
@@ -372,235 +372,227 @@ void process_client_commands() {
 
             			fflush(stdout);
 
-        }
+        			}
 
-    }
+    			}
 
-		for(int sock_index=0; sock_index<=5; sock_index+=1){
+			for(int sock_index=0; sock_index<=5; sock_index+=1){
 
 
 
-			if(FD_ISSET(sock_index, &watch_list)){
+				if(FD_ISSET(sock_index, &watch_list)){
 
 
 
+					if (sock_index == 0){
 
+						char *Input = (char*) malloc(sizeof(char)*256);
 
 
 
-
-
-
-
-				if (sock_index == 0){
-
-					char *Input = (char*) malloc(sizeof(char)*256);
-
-
-
-					char *login = (char*) malloc(sizeof(char)*6);		
-
-					
-
-					char *Command= (char*) malloc(sizeof(char)*256);
-
-					
-
-					char *Arg1 = (char*) malloc(sizeof(char)*256);
-
-					
-
-					char *Arg2 = (char*) malloc(sizeof(char)*256);
-
-					
-
-					fgets(Input, 256, stdin);
-
-					
-
-					Parse(&Command,&Arg1,&Arg2,Input);
-
-					Input[strlen(Input)-1]= '\0';
-
-
-
-					strncpy(login,Input,5);
-
-					
-
-
-
-					login[5] = '\0' ;
-
-
-
-					if (strcmp(Input, "AUTHOR") == 0) {
-
-
-
-						handle_author_command();
-
-
-
-					} 
-
-
-
-					else if (strcmp(Input, "IP") == 0) {
-
-
-
-						handle_ip_command();
-
-
-
-					} 
-
-
-
-					else if (strcmp(Input,"PORT")==0){
-
-
-
-						handle_port_command(Portno);
-
-
-
-					}
-
-
-
-					else if (strcmp(Input,"EXIT")==0){
-
-
-
-						cse4589_print_and_log("[EXIT:SUCCESS]\n");
-
-
-
-						cse4589_print_and_log("[EXIT:END]\n");
-
-
-
-						close_connection(ClientFD);
-
-
-
-						exit(-1);
-
-
-
-					}
-
-					if (LoggedIn==0){
-
-						if ((strcmp(login,"LOGIN")==0)){
+						char *login = (char*) malloc(sizeof(char)*6);		
 
 						
 
-/*							char *Client_Port = (char*) malloc(30*sizeof(char));*/
+						char *Command= (char*) malloc(sizeof(char)*256);
 
+						
 
+						char *Arg1 = (char*) malloc(sizeof(char)*256);
 
-/*							char *Client_IP = (char*) malloc(30*sizeof(char));*/
+						
 
+						char *Arg2 = (char*) malloc(sizeof(char)*256);
 
+						
 
-/*							int count=0;*/
+						fgets(Input, 256, stdin);
 
+						
 
+						Parse(&Command,&Arg1,&Arg2,Input);
 
-/*							int iterator=0;*/
+						Input[strlen(Input)-1]= '\0';
 
 
 
-/*							int iterator2=0;*/
+						strncpy(login,Input,5);
 
+						
 
 
-/*							for (int i=0; i<strlen(msg); i++){*/
 
+						login[5] = '\0' ;
 
 
-/*								char Character[1];*/
 
+						if (strcmp(Input, "AUTHOR") == 0) {
 
 
-/*								strncpy(Character,&msg[i],1);*/
 
+							handle_author_command();
 
 
-/*								Character[1]='\0';*/
 
+						} 
 
 
-/*								if(count==1){*/
 
+						else if (strcmp(Input, "IP") == 0) {
 
 
-/*									Client_IP[iterator2]=*Character;*/
 
+							handle_ip_command();
 
 
-/*									iterator2 ++;*/
 
+						} 
 
 
-/*								}*/
 
+						else if (strcmp(Input,"PORT")==0){
 
 
-/*								if(count==2){*/
 
-
-
-/*									Client_Port[iterator]=*Character;*/
-
-
-
-/*									iterator ++;*/
-
-
-
-/*								}*/
-
-
-
-/*								if (strcmp(Character," ")==0){*/
-
-
-
-/*									count++;*/
-
-
-
-/*								}*/
-
-/*							}*/
-
-							Arg1[strlen(Arg1)-1]= '\0';
-
-
-
-							int IPlen= strlen(Arg1);
-
-
-
-							int PORTN= atoi(Arg2);
-
-
-
-							login_to_server(Arg1,PORTN);
-
-
-
-							free(Input);
+							handle_port_command(Portno);
 
 
 
 						}
 
-					if (LoggedIn==1){
+
+
+						else if (strcmp(Input,"EXIT")==0){
+
+
+
+							cse4589_print_and_log("[EXIT:SUCCESS]\n");
+
+
+
+							cse4589_print_and_log("[EXIT:END]\n");
+
+
+
+							close_connection(ClientFD);
+
+
+
+							exit(-1);
+
+
+
+						}
+
+						if (LoggedIn==0){
+
+							if ((strcmp(login,"LOGIN")==0)){
+
+							
+
+	/*							char *Client_Port = (char*) malloc(30*sizeof(char));*/
+
+
+
+	/*							char *Client_IP = (char*) malloc(30*sizeof(char));*/
+
+
+
+	/*							int count=0;*/
+
+
+
+	/*							int iterator=0;*/
+
+
+
+	/*							int iterator2=0;*/
+
+
+
+	/*							for (int i=0; i<strlen(msg); i++){*/
+
+
+
+	/*								char Character[1];*/
+
+
+
+	/*								strncpy(Character,&msg[i],1);*/
+
+
+
+	/*								Character[1]='\0';*/
+
+
+
+	/*								if(count==1){*/
+
+
+
+	/*									Client_IP[iterator2]=*Character;*/
+
+
+
+	/*									iterator2 ++;*/
+
+
+
+	/*								}*/
+
+
+
+	/*								if(count==2){*/
+
+
+
+	/*									Client_Port[iterator]=*Character;*/
+
+
+
+	/*									iterator ++;*/
+
+
+
+	/*								}*/
+
+
+
+	/*								if (strcmp(Character," ")==0){*/
+
+
+
+	/*									count++;*/
+
+
+
+	/*								}*/
+
+	/*							}*/
+
+								Arg1[strlen(Arg1)-1]= '\0';
+
+
+
+								int IPlen= strlen(Arg1);
+
+
+
+								int PORTN= atoi(Arg2);
+
+
+
+								login_to_server(Arg1,PORTN);
+
+
+
+								free(Input);
+
+
+
+							}
+
+						if (LoggedIn==1){
 
 					
 
@@ -798,6 +790,8 @@ void process_client_commands() {
 
 					}
 
+				}
+
 				//END OF READING FROM STDIN
 
 				if ((LoggedIn==1)&&(sock_index!=0)){
@@ -925,8 +919,6 @@ void process_client_commands() {
 /*		*/
 
 /*			}*/
-
-			}
 
 		}
 
