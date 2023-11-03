@@ -332,6 +332,8 @@ void process_client_commands() {
 
 		FD_SET(0,&watch_list);
 
+		FD_SET(2,&watch_list);
+
 		if(ClientFD!=0){
 
 			FD_SET(ClientFD,&watch_list);
@@ -737,6 +739,8 @@ void process_client_commands() {
 						ClientFD=-1;
 
 						LoggedIn=0;
+
+						printf("strcmp LOGOUT ACHIEVED");
 
 					}
 
