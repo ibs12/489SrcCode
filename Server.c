@@ -1108,7 +1108,7 @@ void server_loop() {
 
 								int Exists=0;
 
-								Parse1(&Command,&Arg1,&Arg2,NewData);
+								Parse1(&Command,&Arg1,&Arg2,DataReceived);
 
 								Arg1[strlen(Arg1)-1]='\0';
 
