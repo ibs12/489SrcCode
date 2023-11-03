@@ -610,33 +610,33 @@ Empty = (Message*)malloc(sizeof(Message));
 
 	Dummy = (Client*)malloc(sizeof(Client));
 
-	Dummy.FD=-1;
+	Dummy->FD=-1;
 
-	strcpy(Dummy.Name,"EMPTY");
+	strcpy(Dummy->Name,"EMPTY");
 
-	Dummy.ListeningPort=0;
+	Dummy->ListeningPort=0;
 
-	Dummy.MessagesReceived=0;
+	Dummy->MessagesReceived=0;
 
-	Dummy.MessagesSent=0;
+	Dummy->MessagesSent=0;
 
-	Dummy.LoggedIn=0;
+	Dummy->LoggedIn=0;
 
-	strcpy(Dummy.IPaddress,"69");
+	strcpy(Dummy->IPaddress,"69");
 
-	strcpy(Empty.SourceIP,"69");
+	strcpy(Empty->SourceIP,"69");
 
-	strcpy(EmptyLog.DestIP,"69");
+	strcpy(EmptyLog->DestIP,"69");
 
 	for(int i=0;i<5;i++){
 
-		ListOfBacklogs[i]=EmptyLog;
+		ListOfBacklogs[i]=&EmptyLog;
 
 	}
 
 	for (int i=0; i<5;i++){
 
-		List[i]=Dummy;
+		List[i]=&Dummy;
 
 	}
 
