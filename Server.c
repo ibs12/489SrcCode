@@ -602,7 +602,7 @@ EmptyLog = (Backlog*)malloc(sizeof(Backlog));
 
 /*Message Empty;*/
 
-Empty = (message*)malloc(sizeof(Message));
+Empty = (Message*)malloc(sizeof(Message));
 
 
 
