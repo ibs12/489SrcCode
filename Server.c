@@ -1212,7 +1212,7 @@ void server_loop() {
 
 											}
 
-											printf("FUCK THE MOUSEETJISJFDIOJ")'
+											printf("FUCK THE MOUSEETJISJFDIOJ");
 
 										}
 
