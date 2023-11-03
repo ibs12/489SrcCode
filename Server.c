@@ -50,19 +50,7 @@ int PORT = 8080;
 
 char buffer[256];
 
-Clients Dummy;
 
-Dummy.FD=-1;
-
-
-
-Clients List[5];
-
-Backlog ListOfBacklogs[5];
-
-Message Empty;
-
-Empty.SourceIP="69";
 
 typedef struct Client {
 
@@ -98,14 +86,6 @@ typedef struct Client {
 
 
 
-Clients List[5];
-
-for (int i=0; i<5;i++){
-
-	List[i]=Dummy;
-
-}
-
 typedef struct Message{
 
 	char SourceIP[30];
@@ -129,16 +109,6 @@ typedef struct Backlog {
 	int NumOfMessages;
 
 };
-
-
-
-
-
-for(int i=0;i<5;i++){
-
-	ListOfBacklogs[i]=Empty;
-
-}
 
 
 
@@ -558,9 +528,33 @@ int Create_Server(int PortNO){
 
 // Initialize the server
 
+Clients List[5];
 
+Backlog ListOfBacklogs[5];
 
 int initialize_server(int port) {
+
+	Clients Dummy;
+
+	Dummy.FD=-1;
+
+	Message Empty;
+
+	Empty.SourceIP="69";
+
+	for(int i=0;i<5;i++){
+
+		ListOfBacklogs[i]=Empty;
+
+	}
+
+	for (int i=0; i<5;i++){
+
+		List[i]=Dummy;
+
+	}
+
+
 
 
 
