@@ -486,13 +486,43 @@ void process_client_commands() {
 
 							}
 
+							else{
+
+
+
+							cse4589_print_and_log("[%s:ERROR]\n",Input);
+
+							cse4589_print_and_log("[%s:END]\n",Input);
+
+							fflush(stdout);
+
+						}
+
+					}
+
+					else{
+
+
+
+							cse4589_print_and_log("[%s:ERROR]\n",Input);
+
+							cse4589_print_and_log("[%s:END]\n",Input);
+
+							fflush(stdout);
+
+						}
+
+					}
+
 						}
 
 						
 
 						else if (LoggedIn==1){
 
-					
+							printf("INPUT:*%s*\n",Input);
+
+							fflush(stdout);
 
 							if (strcmp("REFRESH",Input)==0){
 
@@ -540,9 +570,7 @@ void process_client_commands() {
 
 							}
 
-						}
-
-						else{
+							else{
 
 
 
@@ -555,6 +583,8 @@ void process_client_commands() {
 						}
 
 					}
+
+						}
 
 				//END OF READING FROM STDIN
 
