@@ -206,7 +206,7 @@ void close_connection(int client_fd) {
 
 
 
-void login_to_server(const char* server_ip, int server_port) {
+void login_to_server(const char* server_ip, int server_port,char *MessageToServer) {
 
 
 
@@ -286,7 +286,7 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		int j=send(ClientFD,MESSAGE,strlen(MESSAGE),0);	
+		int j=send(ClientFD,MessageToServer,strlen(MessageToServer),0);	
 
 
 
@@ -305,6 +305,8 @@ void process_client_commands() {
 
 
 	while(1) {
+
+		printf("HAHA");
 
 		FD_ZERO(&watch_list);
 
@@ -593,6 +595,12 @@ void process_client_commands() {
 						cse4589_print_and_log("%s\n",DataReceived);
 
 					}
+
+					else{
+
+						process_client_commands();
+
+						}
 
 					}
 
