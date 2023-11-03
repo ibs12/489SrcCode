@@ -608,7 +608,7 @@ Empty* = (Message*)malloc(sizeof(Message));
 
 /*Client Dummy;*/
 
-	Dummy* = (Client*)malloc(sizeof(Client));
+	*Dummy = (Client*)malloc(sizeof(Client));
 
 	Dummy.FD=-1;
 
