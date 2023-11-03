@@ -182,7 +182,7 @@ void ClearBacklog(char* DestIP,char* Message){
 
 		if (strcmp(CurrentClient.DestIP,DestIP)==0){
 
-			CurrentClient.NumOfMessages==0;
+			CurrentClient.NumOfMessages=0;
 
 		}
 
@@ -208,7 +208,7 @@ void LogClientOut(int socket){
 
 		if (List[i].FD == socket) {
 
-			List[i].LoggedIn==0;
+			List[i].LoggedIn=0;
 
 			List[i].FD=-1;
 
@@ -244,7 +244,7 @@ void remove_connection(int socket) {
 
 
 
-	    	List[i].FD == 0;
+	    	List[i].FD = 0;
 
 
 
