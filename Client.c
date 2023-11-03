@@ -532,13 +532,13 @@ void process_client_commands() {
 
 
 
-							else if (strcmp(Command,"SEND")==0){
+							else if (strcmp(Input,"SEND")==0){
 
 								int LengthOfMessageSent=send(ClientFD,Input,strlen(Input),0);
 
 							}
 
-							else if (strcmp(Command,"LOGOUT")==0){
+							else if (strcmp(Input,"LOGOUT")==0){
 
 								send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
 
