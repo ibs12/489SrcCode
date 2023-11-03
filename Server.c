@@ -1150,15 +1150,15 @@ void server_loop() {
 
 								  		if (strcmp(Arg1,ClientIP)==0){
 
-								  			printf("LOOP1/n");
+								  			printf("ClientIP and ARG1 are equal/n");
 
 								  			 if(CFD!=-1){
 
-								  			 	printf("Loop2\n");
+								  			 	printf("Client FD is not -1\n");
 
-								  			 if(CFD!=sock_index){
+								  			 	if(CFD!=sock_index){
 
-														printf("Client exists!\n");
+														printf("Client exists!, FD is not equal to the Socket Index\n");
 
 														fflush(stdout);
 
@@ -1184,25 +1184,25 @@ void server_loop() {
 
 														}
 
-								  			else{
+														else{
 
-								  				printf("BALLS\n");
+															printf("Client is not logged in\n");
 
-								  				AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);
+															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);
 
-								  				//buffer message
+															//buffer message
 
-								  			}
+														}
 
-								  			fflush(stdout);
+														fflush(stdout);
 
-								  			break;
+														break;
 
-										}
+													}
 
-										}
+												}
 
-										}
+											}
 
 										}
 
