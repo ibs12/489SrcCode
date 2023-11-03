@@ -336,7 +336,7 @@ void process_client_commands() {
 
 		FD_SET(2,&watch_list);
 
-		if(ClientFD!=0){
+		if(ClientFD!=-1){
 
 			FD_SET(ClientFD,&watch_list);
 
