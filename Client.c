@@ -58,7 +58,7 @@ int LoggedIn=0;
 
 
 
-int ClientFD;
+int ClientFD=-1;
 
 fd_set watch_list;
 
@@ -342,7 +342,7 @@ void process_client_commands() {
 
 		fflush(stdout);
 
-		int selret = select(6, &watch_list, NULL, NULL, NULL);
+		int selret = select(10, &watch_list, NULL, NULL, NULL);
 
 		if(selret < 0){
 
@@ -363,6 +363,8 @@ void process_client_commands() {
 				if (FD_ISSET(i, &watch_list)) {
 
             			printf("File descriptor %d is set in the set.\n", i);
+
+            			fflush(stdout);
 
         }
 
