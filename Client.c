@@ -222,6 +222,8 @@ void login_to_server(const char* server_ip, int server_port) {
 
 		cse4589_print_and_log("[LOGIN:END1]\n");
 
+		ClientFD=-1;
+
 		return;
 
 	}
@@ -234,7 +236,7 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-	else if (inet_pton(AF_INET, server_ip, &serv_addr.sin_addr) <= 0) {
+	if (inet_pton(AF_INET, server_ip, &serv_addr.sin_addr) <= 0) {
 
 
 
@@ -242,13 +244,15 @@ void login_to_server(const char* server_ip, int server_port) {
 
 		cse4589_print_and_log("[LOGIN:END2]\n");
 
+		ClientFD=-1;
+
 		close(ClientFD);
 
 		return;
 
 	}
 
-	else if (connect(ClientFD, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1) {
+	if (connect(ClientFD, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1) {
 
 
 
@@ -256,7 +260,7 @@ void login_to_server(const char* server_ip, int server_port) {
 
 		cse4589_print_and_log("[LOGIN:END3]\n");
 
-
+		ClientFD=-1;
 
 		close(ClientFD);
 
