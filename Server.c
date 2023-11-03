@@ -1148,7 +1148,13 @@ void server_loop() {
 
 								  		printf("ARG1:%s\nClientIP:%s\nCurrentClient.FD:%d\n",Arg1,ClientIP,CFD);
 
-								  		if ((strcmp(Arg1,ClientIP)==0) &&(CFD!=-1)){
+								  		if (strcmp(Arg1,ClientIP)==0){
+
+								  			printf("LOOP1/n");
+
+								  			 if(CFD!=-1)){
+
+								  			 	printf("Loop2\n");
 
 								  			 if(CFD!=sock_index){
 
@@ -1196,9 +1202,11 @@ void server_loop() {
 
 										}
 
-									printf("FUCK ME");
+										}
 
-									}
+										}
+
+									printf("FUCK ME");
 
 									if (Exists==0){
 
