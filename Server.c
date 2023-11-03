@@ -82,7 +82,7 @@ typedef struct Client {
 
 	int LoggedIn;
 
-} Clients;
+} Client;
 
 
 
@@ -110,7 +110,7 @@ typedef struct Backlog {
 
 
 
-Clients List[5];
+Client List[5];
 
 struct Backlog ListOfBacklogs[5];
 
@@ -118,7 +118,7 @@ struct Backlog EmptyLog;
 
 struct Message Empty;
 
-struct Clients Dummy;
+struct Client Dummy;
 
 
 
@@ -372,7 +372,7 @@ char* MessageCreator(char* Message,char* Command,char* SourceIP,char* DestIP, in
 
 }
 
-char* ReturnMessage(const Clients LIST[]){
+char* ReturnMessage(const Client LIST[]){
 
 
 
@@ -436,11 +436,11 @@ int compareClients(const void *a, const void *b) {
 
 
 
-    const Clients *clientA = (const Clients *)a;
+    const Client *clientA = (const Client *)a;
 
 
 
-    const Clients *clientB = (const Clients *)b;
+    const Client *clientB = (const Client *)b;
 
 
 
@@ -456,7 +456,7 @@ int AddClient(char ip[], char Name[], int LP, int FD) {
 
 
 
-	Clients ClientToAdd;
+	Client ClientToAdd;
 
 
 
@@ -1018,7 +1018,7 @@ void server_loop() {
 
 
 
-						qsort(List, 5, sizeof(Clients), compareClients);
+						qsort(List, 5, sizeof(Client), compareClients);
 
 
 
@@ -1120,7 +1120,7 @@ void server_loop() {
 
 									for (int i = 0; i < 5; i++) {
 
-										struct Clients currentClient = List[i];
+										struct Client currentClient = List[i];
 
 								  		char *ClientIP;
 
