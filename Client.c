@@ -314,7 +314,7 @@ void login_to_server(const char* server_ip, int server_port) {
 
 /*		cse4589_print_and_log("%s", DataR);*/
 
-/*/*		FD_SET(ClientFD, &watch_list);*/*/
+/*		FD_SET(ClientFD, &watch_list);*/
 
 		process_client_commands();
 
@@ -600,7 +600,7 @@ void process_client_commands() {
 
 						}
 
-					if (LoggedIn==1)){
+					if (LoggedIn==1){
 
 					
 
@@ -800,7 +800,7 @@ void process_client_commands() {
 
 				//END OF READING FROM STDIN
 
-				if ((LoggedIn==1)(&&sock_index!=0)){
+				if ((LoggedIn==1)&&(sock_index!=0)){
 
 					char *DataReceived= (char*) malloc(256*sizeof(char));
 
