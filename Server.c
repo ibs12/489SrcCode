@@ -354,15 +354,15 @@ char* MessageCreator(char* Message,char* Command,char* SourceIP,char* DestIP, in
 
 		sprintf(ReturnM,"[%s:SUCCESS]\n",&Command);
 
-		if (((((strcmp(&Command,"LOGIN")==0)||(strcmp(&Command,"SEND")==0))||(strcmp(&Command,"BLOCK")==0))||(strcmp(&Command,"UNBLOCK")))||				(strcmp(Command,"BROADCAST"))){
+		if (((((strcmp(Command,"LOGIN")==0)||(strcmp(Command,"SEND")==0))||(strcmp(Command,"BLOCK")==0))||(strcmp(Command,"UNBLOCK")))||				(strcmp(Command,"BROADCAST"))){
 
-			sprintf(ReturnM+strlen(ReturnM),"[%s:END]\n",&Command);
+			sprintf(ReturnM+strlen(ReturnM),"[%s:END]\n",Command);
 
 		}
 
 		else if (strcmp(&Command,"RECEIVED")==0){
 
-			sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[%s:END]\n", &SourceIP,&Message);
+			sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[%s:END]\n", SourceIP,Message);
 
 		}
 
@@ -374,7 +374,7 @@ char* MessageCreator(char* Message,char* Command,char* SourceIP,char* DestIP, in
 
 	printf("ELSE");
 
-		sprintf(ReturnM,"[%s:ERROR]\n[%s:END]\n",&Command,&Command);
+		sprintf(ReturnM,"[%s:ERROR]\n[%s:END]\n",Command,Command);
 
 	}	
 
