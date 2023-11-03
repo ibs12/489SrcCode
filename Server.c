@@ -1054,6 +1054,8 @@ void server_loop() {
 
 					else{
 
+						int SOCKET=sock_index;
+
 						char *DataReceived= (char*) malloc(sizeof(char)*1023);
 
 						
@@ -1064,7 +1066,7 @@ void server_loop() {
 
 							remove_connection(sock_index);
 
-
+							printf("HOSUE");
 
 						}
 
@@ -1150,13 +1152,13 @@ void server_loop() {
 
 								  		if (strcmp(Arg1,ClientIP)==0){
 
-								  			printf("ClientIP and ARG1 are equal/n");
+								  			printf("ClientIP and ARG1 are equal\n");
 
 								  			 if(CFD!=-1){
 
 								  			 	printf("Client FD is not -1\n");
 
-								  			 	if(CFD!=sock_index){
+								  			 	if(CFD!=SOCKET){
 
 														printf("Client exists!, FD is not equal to the Socket Index\n");
 
