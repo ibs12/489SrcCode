@@ -460,7 +460,7 @@ void process_client_commands() {
 
 						}
 
-						if (LoggedIn==0){
+						else if (LoggedIn==0){
 
 							if ((strcmp(login,"LOGIN")==0)){
 
@@ -486,75 +486,75 @@ void process_client_commands() {
 
 							}
 
-						if (LoggedIn==1){
+						}
+
+						
+
+						else if (LoggedIn==1){
 
 					
 
-						if (strcmp("REFRESH",Input)==0){
+							if (strcmp("REFRESH",Input)==0){
 
-							int j=send(ClientFD,Input,strlen(Input),0);
+								int j=send(ClientFD,Input,strlen(Input),0);
 
 
 
-							free(Input);
+								free(Input);
+
+							}
+
+							else if (strcmp(Input,"LIST")==0){
+
+								int j=send(ClientFD,Input,strlen(Input),0);
+
+
+
+								free(Input);
+
+
+
+							}
+
+
+
+							else if (strcmp(Command,"SEND")==0){
+
+								int LengthOfMessageSent=send(ClientFD,Input,strlen(Input),0);
+
+							}
+
+							else if (strcmp(Command,"LOGOUT")==0){
+
+								send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
+
+								close_connection(ClientFD);
+
+								FD_CLR(ClientFD,&watch_list);
+
+								ClientFD=-1;
+
+								LoggedIn=0;
+
+								printf("strcmp LOGOUT ACHIEVED");
+
+							}
 
 						}
 
-						else if (strcmp(Input,"LIST")==0){
-
-							int j=send(ClientFD,Input,strlen(Input),0);
+						else{
 
 
 
-							free(Input);
+							cse4589_print_and_log("[%s:ERROR]\n",Input);
 
+							cse4589_print_and_log("[%s:END]\n",Input);
 
+							fflush(stdout);
 
 						}
 
-
-
 					}
-
-				}
-
-				if (strcmp(Command,"SEND")==0){
-
-						int LengthOfMessageSent=send(ClientFD,Input,strlen(Input),0);
-
-					}
-
-				if (strcmp(Command,"LOGOUT")==0){
-
-						send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
-
-						close_connection(ClientFD);
-
-						FD_CLR(ClientFD,&watch_list);
-
-						ClientFD=-1;
-
-						LoggedIn=0;
-
-						printf("strcmp LOGOUT ACHIEVED");
-
-					}
-
-				else{
-
-
-
-					cse4589_print_and_log("[%s:ERROR]\n",Input);
-
-					cse4589_print_and_log("[%s:END]\n",Input);
-
-					fflush(stdout);
-
-					}
-
-				}
-
-				}
 
 				//END OF READING FROM STDIN
 
@@ -611,3 +611,5 @@ void process_client_commands() {
 		}
 
 	}
+
+}
