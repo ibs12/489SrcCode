@@ -50,9 +50,19 @@ int PORT = 8080;
 
 char buffer[256];
 
+Clients Dummy;
+
+Dummy.FD=-1;
 
 
 
+Clients List[5];
+
+Backlog ListOfBacklogs[5];
+
+Message Empty;
+
+Empty.SourceIP="69";
 
 typedef struct Client {
 
@@ -86,9 +96,7 @@ typedef struct Client {
 
 } Clients;
 
-struct Clients Dummy;
 
-Dummy.FD=-1;
 
 Clients List[5];
 
@@ -124,12 +132,6 @@ typedef struct Backlog {
 
 
 
-Backlogs ListOfBacklogs[5];
-
-struct Message Empty;
-
-Empty.SourceIP="69";
-
 
 
 for(int i=0;i<5;i++){
@@ -142,7 +144,7 @@ for(int i=0;i<5;i++){
 
 void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
 
-	struct Message NewMessage;
+	Message NewMessage;
 
 	strcpy(NewMessage.SourceIP,SourceIP);
 
@@ -152,7 +154,7 @@ void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
 
 	for(int i=0; i<5; i++){
 
-		struct Backlog ClientInList=ListOfBacklogs[i];
+		Backlog ClientInList=ListOfBacklogs[i];
 
 		if (ClientInList.DestIP==DestIP){
 
@@ -196,7 +198,7 @@ void ClearBacklog(char* DestIP,char* Message){
 
 	for(int i=0; i<5; i++){
 
-		struct Backlog CurrentClient=ListOfBacklogs[i];
+		Backlog CurrentClient=ListOfBacklogs[i];
 
 		if (CurrentClient.DestIP==IP){
 
