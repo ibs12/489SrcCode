@@ -108,17 +108,29 @@ typedef struct Backlog {
 
 }Backlog;
 
+Client* List = (Client*)malloc(5 * sizeof(Client));
+
+Backlog* ListOfBacklogs = (Backlog*)malloc(5 * sizeof(Backlog));
 
 
-Client List[5]=malloc(5*sizeof(Client));
 
-Backlog ListOfBacklogs[5]=malloc(5*sizeof(Backlog));
+Backlog EmptyLog;
 
-Backlog EmptyLog=malloc(sizeof(Backlog));
+EmptyLog = (Backlog*)malloc(sizeof(Backlog));
 
-Message Empty=malloc(sizeof(Message));
 
-Client Dummy=malloc(sizeof(Client));
+
+Message Empty;
+
+Empty = (Message*)malloc(sizeof(Message));
+
+
+
+Client Dummy;
+
+Dummy = (Client*)malloc(sizeof(Client));
+
+
 
 
 
