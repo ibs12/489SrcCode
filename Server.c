@@ -1072,13 +1072,13 @@ void server_loop() {
 
 							
 
-							if (strcmp(NewData,"LOGOUT")==0){
+							if (strcmp(DataReceived,"LOGOUT")==0){
 
 								LogClientOut(sock_index);
 
 							}
 
-							else if ((strcmp(NewData,"REFRESH")==0) || (strcmp(NewData,"LIST")==0)){
+							else if ((strcmp(DataReceived,"REFRESH")==0) || (strcmp(DataReceived,"LIST")==0)){
 
 
 
