@@ -728,6 +728,8 @@ void process_client_commands() {
 
 					ParseServerMessage(&ServerCommand,DataReceived);
 
+					printf("CLIENT COMMAND IS *%s*\n",ClientCommand);
+
 					if (strcmp(ClientCommand,"LOGOUT")==0){
 
 						send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
