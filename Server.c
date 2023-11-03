@@ -1128,7 +1128,7 @@ void server_loop() {
 
 									for (int i = 0; i < 5; i++) {
 
-										struct Client currentClient = List[i];
+										Client currentClient = List[i];
 
 											printf("MOUSE1\n");
 
@@ -1146,7 +1146,7 @@ void server_loop() {
 
 								  		int CFD=currentClient.FD;
 
-								  		printf("ARG1:%s\nClientIP:%s\nCurrentClient.FD:%s\n",Arg1,ClientIP,CFD);
+								  		printf("ARG1:%s\nClientIP:%s\nCurrentClient.FD:%d\n",Arg1,ClientIP,CFD);
 
 								  		if (((strcmp(Arg1,ClientIP)==0) && (CFD!=sock_index))&& (CFD!=-1)){
 
