@@ -108,15 +108,15 @@ typedef struct Backlog {
 
 }Backlog;
 
-Client* List;
 
-Backlog* ListOfBacklogs;
+
+Client List[5];
+
+Backlog ListOfBacklogs[5];
 
 
 
 Backlog EmptyLog;
-
-EmptyLog;
 
 
 
