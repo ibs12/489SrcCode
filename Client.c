@@ -508,6 +508,8 @@ void process_client_commands() {
 
 							fflush(stdout);
 
+							printf("COMMAND IS *%s*\n",Command);
+
 							if (strcmp("REFRESH",Input)==0){
 
 								int j=send(ClientFD,Input,strlen(Input),0);
@@ -529,8 +531,6 @@ void process_client_commands() {
 
 
 							}
-
-							printf("COMMAND IS *%s*\n",Command);
 
 							else if (strcmp(Command,"SEND")==0){
 
