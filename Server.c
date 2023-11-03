@@ -1164,7 +1164,7 @@ void server_loop() {
 
 								  			 if(List[i].FD!=-1){
 
-								  			 	if(List[i].FD!=&SOCKET){
+								  			 	if(List[i].FD!=(&SOCKET)){
 
 														printf("Client FD is not -1\n");
 
