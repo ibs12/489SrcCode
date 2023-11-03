@@ -722,11 +722,7 @@ void process_client_commands() {
 
 					cse4589_print_and_log("Arg2 is %s\n",Arg2);
 
-					fflush(stdout);
-
-					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
-
-					ParseServerMessage(&ServerCommand,DataReceived);
+					
 
 					printf("CLIENT COMMAND IS *%s*\n",ClientCommand);
 
@@ -745,6 +741,10 @@ void process_client_commands() {
 						printf("strcmp LOGOUT ACHIEVED");
 
 					}
+
+					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
+
+					ParseServerMessage(&ServerCommand,DataReceived);
 
 					if (strcmp(ServerCommand,"RELAYED")==0){
 
