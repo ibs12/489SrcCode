@@ -1172,7 +1172,7 @@ void server_loop() {
 
 														char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
-														strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,1));
+/*														strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,1));*/
 
 														int MSLen=strlen(MessageToSender);
 
@@ -1184,7 +1184,7 @@ void server_loop() {
 
 															char* MessageToDest=(char*) malloc(1024*sizeof(char));
 
-															strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));
+/*															strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));*/
 
 															int MDLen=strlen(MessageToDest);
 
