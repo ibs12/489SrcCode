@@ -176,7 +176,7 @@ void ClearBacklog(char* DestIP,char* Message){
 
 		struct Backlog CurrentClient=ListOfBacklogs[i];
 
-		if (strcmp(CurrentClient.DestIP,IP)==0){
+		if (strcmp(CurrentClient.DestIP,DestIP)==0){
 
 			CurrentClient.NumOfMessages==0;
 
