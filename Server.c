@@ -176,7 +176,7 @@ void ClearBacklog(char* DestIP,char* Message){
 
 		struct Backlog CurrentClient=ListOfBacklogs[i];
 
-		if (strcmp(CurrentClient.DestI,IP)==0){
+		if (strcmp(CurrentClient.DestIP,IP)==0){
 
 			CurrentClient.NumOfMessages==0;
 
@@ -1138,7 +1138,7 @@ void server_loop() {
 
 								  			else{
 
-								  				AddToBacklog((GetIPAddress(sock_index),ClientIP,Arg2));
+								  				AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);
 
 								  				//buffer message
 
