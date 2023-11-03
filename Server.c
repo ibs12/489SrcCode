@@ -1120,13 +1120,15 @@ void server_loop() {
 
 										struct Client currentClient = List[i];
 
-								  		char *ClientIP= currentClient.IPaddress;
+								  		char *ClientIP;
+
+								  		strcpy(ClientIP,currentClient.IPaddress);
 
 								  		printf("LIST CLIENT IP IS *%s* and RECEIVED IP IS *%s*\n",ClientIP,Arg1);
 
 								  		fflush(stdout);
 
-								  		if ((strcmp(Arg1,ClientIP)==0 && currentClient.FD!=sock_index)&&currentClient.FD!=-1){
+								  		if (((strcmp(Arg1,ClientIP)==0) && (currentClient.FD!=sock_index))&& (currentClient.FD!=-1)){
 
 								  			printf("Client exists!\n");
 
