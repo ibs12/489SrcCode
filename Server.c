@@ -346,13 +346,11 @@ void Parse1(char** Command,char** FirstArgPointer, char** SecondArgPointer, char
 
 char* MessageCreator(char* Message,char* Command,char* SourceIP,char* DestIP, int success){
 
-	char *ReturnM = malloc(1024);
+	char *ReturnM = malloc(300*sizeof(char));
 
 	if (success==1){
 
 		sprintf(ReturnM,"[%s:SUCCESS]\n",Command);
-
-		
 
 		if (((((strcmp(Command,"LOGIN")==0)||(strcmp(Command,"SEND")==0))||(strcmp(Command,"BLOCK")==0))||(strcmp(Command,"UNBLOCK")))||				(strcmp(Command,"BROADCAST"))){
 
@@ -371,6 +369,8 @@ char* MessageCreator(char* Message,char* Command,char* SourceIP,char* DestIP, in
 		}
 
 	else{
+
+	printf("ELSE");
 
 		sprintf(ReturnM,"[%s:ERROR]\n[%s:END]\n",Command,Command);
 
@@ -1082,6 +1082,8 @@ void server_loop() {
 
 						int *SOCKET = &sock_index;
 
+						int Sock=&SOCKET;
+
 						char *DataReceived= (char*) malloc(sizeof(char)*1023);
 
 						
@@ -1164,7 +1166,9 @@ void server_loop() {
 
 								  			 if(List[i].FD!=-1){
 
-								  			 	if(List[i].FD!=SOCKET){
+								  			 	if(List[i].FD!=Sock){
+
+								  			 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,Sock);
 
 														printf("Client FD is not -1\n");
 
