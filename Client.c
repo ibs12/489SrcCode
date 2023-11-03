@@ -234,7 +234,7 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-	if (inet_pton(AF_INET, server_ip, &serv_addr.sin_addr) <= 0) {
+	else if (inet_pton(AF_INET, server_ip, &serv_addr.sin_addr) <= 0) {
 
 
 
@@ -248,7 +248,7 @@ void login_to_server(const char* server_ip, int server_port) {
 
 	}
 
-	if (connect(ClientFD, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1) {
+	else if (connect(ClientFD, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1) {
 
 
 
