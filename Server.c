@@ -92,7 +92,7 @@ typedef struct Message{
 
 		char Message[256];
 
-	};
+	}Message;
 
 typedef struct Backlog {
 
@@ -106,19 +106,19 @@ typedef struct Backlog {
 
 	int NumOfMessages;
 
-};
+}Backlog;
 
 Clients List[5];
 
-Backlog ListOfBacklogs[5];
+struct Backlog ListOfBacklogs[5];
 
-Message Empty;
+struct Message Empty;
 
-Clients Dummy;
+struct Clients Dummy;
 
 void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
 
-	Message NewMessage;
+	struct Message NewMessage;
 
 	strcpy(NewMessage.SourceIP,SourceIP);
 
@@ -128,7 +128,7 @@ void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
 
 	for(int i=0; i<5; i++){
 
-		Backlog ClientInList=ListOfBacklogs[i];
+		struct Backlog ClientInList=ListOfBacklogs[i];
 
 		if (strcmp(ClientInList.DestIP,DestIP)==0){
 
@@ -144,7 +144,7 @@ void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
 
 	if (exists==0){
 
-		Backlog NewBacklog;
+		struct Backlog NewBacklog;
 
 		strcpy(NewBacklog.DestIP,DestIP);
 
@@ -172,7 +172,7 @@ void ClearBacklog(char* DestIP,char* Message){
 
 	for(int i=0; i<5; i++){
 
-		Backlog CurrentClient=ListOfBacklogs[i];
+		struct Backlog CurrentClient=ListOfBacklogs[i];
 
 		if (CurrentClient.DestIP==IP){
 
