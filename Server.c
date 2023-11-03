@@ -630,13 +630,13 @@ Empty = (Message*)malloc(sizeof(Message));
 
 	for(int i=0;i<5;i++){
 
-		ListOfBacklogs[i]=&EmptyLog;
+		ListOfBacklogs[i]=*EmptyLog;
 
 	}
 
 	for (int i=0; i<5;i++){
 
-		List[i]=&Dummy;
+		List[i]=*Dummy;
 
 	}
 
