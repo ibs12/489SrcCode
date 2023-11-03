@@ -584,6 +584,8 @@ void process_client_commands() {
 
 					printf("Server Message is *%s*\n",DataReceived);
 
+					fflush(stdout);
+
 					if (strcmp(ServerCommand,"RELAYED")==0){
 
 						cse4589_print_and_log("RELAYED\n");
