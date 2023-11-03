@@ -522,7 +522,7 @@ void process_client_commands() {
 
 					}
 
-				if (strcmp(ClientCommand,"LOGOUT")==0){
+				if (strcmp(Command,"LOGOUT")==0){
 
 						send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
 
@@ -578,7 +578,7 @@ void process_client_commands() {
 
 					cse4589_print_and_log("Arg2 is %s\n",Arg2);
 
-					ParseServerMessage(ServerCommand,DataReceived);
+					ParseServerMessage(&ServerCommand,DataReceived);
 
 					printf("ServerCommand is  *%s*\n",ServerCommand);
 
@@ -601,7 +601,3 @@ void process_client_commands() {
 		}
 
 	}
-
-
-
-}
