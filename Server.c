@@ -1176,6 +1176,8 @@ void server_loop() {
 
 														if (currentClient.LoggedIn==1){
 
+															printf("LOGEIJIOEG");
+
 															char* MessageToDest=(char*) malloc(1024*sizeof(char));
 
 															strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));
@@ -1202,11 +1204,7 @@ void server_loop() {
 
 													}
 
-													else{
-
 													printf("MOUSE");
-
-													}
 
 												}
 
