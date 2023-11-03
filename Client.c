@@ -576,11 +576,11 @@ void process_client_commands() {
 
 							fflush(stdout);
 
+							}
+
 						}
 
 					}
-
-						}
 
 				//END OF READING FROM STDIN
 
@@ -597,8 +597,6 @@ void process_client_commands() {
 					char *ServerCommand=(char*) malloc(256*sizeof(char));
 
 					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
-
-/*					Parse(&ClientCommand,&Arg1,&Arg2,Input);*/
 
 					cse4589_print_and_log("ClientCommand is %s\n",ClientCommand);
 
