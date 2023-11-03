@@ -1146,7 +1146,7 @@ void server_loop() {
 
 								  		int CFD=currentClient.FD;
 
-								  		printf("ARG1:%s\nClientIP:%s\nCurrentClient.FD:%s\n",ARG1,ClientIP,currentClient.FD);
+								  		printf("ARG1:%s\nClientIP:%s\nCurrentClient.FD:%s\n",Arg1,ClientIP,currentClient.FD);
 
 								  		if (((strcmp(Arg1,ClientIP)==0) && (CFD!=sock_index))&& (CFD!=-1)){
 
