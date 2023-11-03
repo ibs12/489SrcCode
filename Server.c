@@ -86,17 +86,15 @@ typedef struct Client {
 
 
 
-
-
-typedef struct Backlog {
-
-	typedef struct Message{
+typedef struct Message{
 
 		char SourceIP[30];
 
 		char Message[256];
 
-	}
+	};
+
+typedef struct Backlog {
 
 	char DestIP[30];
 
