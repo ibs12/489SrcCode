@@ -512,10 +512,6 @@ void process_client_commands() {
 
 						}
 
-					}
-
-						}
-
 						
 
 						else if (LoggedIn==1){
