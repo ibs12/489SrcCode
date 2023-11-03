@@ -114,7 +114,7 @@ struct Backlog ListOfBacklogs[5];
 
 struct Message Empty;
 
-struct Clients Dummy;
+struct Client Dummy;
 
 void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
 
@@ -134,7 +134,7 @@ void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
 
 			exists=1;
 
-			ClientInList.MessageList[CurrentClient.NumberOfStrings]=NewMessage;
+			ClientInList.MessageList[CurrentClient.NumOfMessages]=NewMessage;
 
 			ClientInList.NumberOfStrings+=1;		
 
@@ -176,7 +176,7 @@ void ClearBacklog(char* DestIP,char* Message){
 
 		if (CurrentClient.DestIP==IP){
 
-			CurrentClient.NumberOfStrings==0;
+			CurrentClient.NumOfMessages==0;
 
 		}
 
@@ -348,7 +348,7 @@ char* ReturnMessage(const Clients LIST[]){
 
 
 
-			sprintf(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, port_num);
+			sprintf(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, LIST[i].ListeningPort);
 
 
 
@@ -1134,7 +1134,7 @@ void server_loop() {
 
 								  			else{
 
-								  				AddToBacklog(GetIPAddress(sock_index),Arg2);
+								  				AddToBacklog((GetIPAddress(sock_index),ClientIP,Arg2);
 
 								  				//buffer message
 
