@@ -108,6 +108,8 @@ typedef struct Backlog {
 
 }Backlog;
 
+
+
 Clients List[5];
 
 struct Backlog ListOfBacklogs[5];
@@ -117,6 +119,8 @@ struct Backlog EmptyLog;
 struct Message Empty;
 
 struct Client Dummy;
+
+
 
 void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
 
@@ -188,6 +192,8 @@ void ClearBacklog(char* DestIP,char* Message){
 
 }
 
+
+
 void LogClientOut(int socket){
 
 	close(socket);
@@ -211,6 +217,8 @@ void LogClientOut(int socket){
 }
 
 }
+
+
 
 void remove_connection(int socket) {
 
@@ -240,7 +248,7 @@ void remove_connection(int socket) {
 
 
 
-	}	
+		}	
 
 
 
@@ -263,6 +271,8 @@ char* GetIPAddress(int client_fd) {
     return NULL; // Client with the given FD not found
 
 }
+
+
 
 void Parse1(char** Command,char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
 
@@ -326,6 +336,42 @@ void Parse1(char** Command,char** FirstArgPointer, char** SecondArgPointer, char
 
 }
 
+char* MessageCreator(char* Message,char* Command,char* SourceIP,char* DestIP, int success){
+
+	char *ReturnM = malloc(1024);
+
+	if (success==1){
+
+		sprintf(ReturnM,"[%s:SUCCESS]\n",Command);
+
+		
+
+		if (((((strcmp(Command,"LOGIN")==0)||(strcmp(Command,"SEND")==0))||(strcmp(Command,"BLOCK")==0))||(strcmp(Command,"UNBLOCK")))||				(strcmp(Command,"BROADCAST"))){
+
+			sprintf(ReturnM+strlen(ReturnM),"[%s:END]\n",Command);
+
+		}
+
+		else if (strcmp(Command,"RECEIVED")==0){
+
+			sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[%s:END]\n", IP,Message);
+
+		}
+
+			
+
+		}
+
+	else{
+
+		sprintf(ReturnM,"[%s:ERROR]\n[%s:END]\n",Command,Command);
+
+	}	
+
+	
+
+}
+
 char* ReturnMessage(const Clients LIST[]){
 
 
@@ -362,7 +408,7 @@ char* ReturnMessage(const Clients LIST[]){
 
 
 
-}
+	}
 
 	return	ReturnM;
 
@@ -539,6 +585,8 @@ int Create_Server(int PortNO){
 int initialize_server(int port) {
 
 	Dummy.FD=-1;
+
+	strcpy(Dummy.IPaddress,"69");
 
 	strcpy(Empty.SourceIP,"69");
 
@@ -884,7 +932,7 @@ void server_loop() {
 
 					
 
-
+					//new client trying to login
 
 					else if(sock_index == server_socket){
 
@@ -946,10 +994,6 @@ void server_loop() {
 
 
 
-						
-
-
-
 						char *DataR = (char*) malloc(sizeof(char)*256);
 
 
@@ -962,29 +1006,11 @@ void server_loop() {
 
 
 
-					
-
-
-
 							DataR[bytes_received] = '\0';
 
 
 
-					
-
-
-
 						}
-
-
-
-
-
-
-
-						
-
-
 
 						AddClient(client_ip,client_hostname,atoi(DataR),fdaccept);
 
@@ -1016,15 +1042,13 @@ void server_loop() {
 
 
 
-					else{	
+					else{
 
-					
-
-						char *NewData= (char*) malloc(sizeof(char)*256);
+						char *DataReceived= (char*) malloc(sizeof(char)*1023);
 
 						
 
-						if(recv(sock_index, NewData, 256, 0) <= 0){
+						if(recv(sock_index, DataReceived, 256, 0) <= 0){
 
 
 
@@ -1038,29 +1062,15 @@ void server_loop() {
 
 						else {
 
-							char *DataR = (char*) malloc(sizeof(char)*256);
-
 							
 
-							//Process incoming data from existing clients here ...
-
-
-
-							if (strlen(NewData) > 0) {
-
-
-
-								DataR[strlen(NewData)-1] = '\0';
-
-
-
-							}
-
-							printf("RECEIVED DATA FROM CLIENT:%s\n",NewData);
+							printf("RECEIVED DATA FROM CLIENT:%s\n",DataReceived);
 
 							
 
 							fflush(stdout);
+
+							
 
 							if (strcmp(NewData,"LOGOUT")==0){
 
@@ -1104,8 +1114,6 @@ void server_loop() {
 
 								printf("COMMAND IS %s\n",Command);
 
-								
-
 								if (strcmp(Command,"SEND")==0){
 
 									for (int i = 0; i < 5; i++) {
@@ -1118,7 +1126,7 @@ void server_loop() {
 
 								  		fflush(stdout);
 
-								  		if ((strcmp(Arg1,ClientIP)==0 && currentClient.FD!=sock_index)&&currentClient.ListeningPort!=0){
+								  		if ((strcmp(Arg1,ClientIP)==0 && currentClient.FD!=sock_index)&&currentClient.FD!=-1){
 
 								  			printf("Client exists!\n");
 
@@ -1126,13 +1134,23 @@ void server_loop() {
 
 								  			Exists=1;
 
-								  			send(sock_index,"1",1,0);
+								  			char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
-								  			char* MessageFromServerToClient=MessageForRelayed(GetIPAddress(sock_index),Arg2);
+								  			strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,1));
+
+								  			int MSLen=strlen(MessageToSender);
+
+								  			send(sock_index,MessageToSender,MSLen,0);
 
 								  			if (currentClient.LoggedIn==1){
 
-								  				send(currentClient.FD,MessageFromServerToClient,strlen(MessageFromServerToClient),0);
+								  				char* MessageToDest=(char*) malloc(1024*sizeof(char));
+
+								  				strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));
+
+								  				int MDLen=strlen(MessageToDest);
+
+								  				send(currentClient.FD,MessageToDest,MDLen,0);
 
 								  			}
 
@@ -1144,8 +1162,6 @@ void server_loop() {
 
 								  			}
 
-								  			printf("Message sent to %d. The message is %s.\n",currentClient.FD,MessageFromServerToClient);
-
 								  			fflush(stdout);
 
 								  			break;
@@ -1154,9 +1170,15 @@ void server_loop() {
 
 									}
 
-									if (Exists==0){	
+									if (Exists==0){
 
-										send(sock_index,"12",2,0);
+												char* MessageToSender=(char*) malloc(1024*sizeof(char));
+
+								  			strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,0));
+
+								  			int MSLen=strlen(MessageToSender);
+
+								  			send(sock_index,MessageToSender,MSLen,0);
 
 									}
 
@@ -1191,6 +1213,4 @@ void server_loop() {
 }
 
 }
-
-
 
