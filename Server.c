@@ -1156,15 +1156,13 @@ void server_loop() {
 
 								  		strcpy(ClientIP,currentClient.IPaddress);
 
-						
-
-								  		int CFD=1;
+					
 
 								  		if (strcmp(Arg1,ClientIP)==0){
 
 								  			 if(List[i].FD!=-1){
 
-								  			 	if(CFD!=sock_index){
+								  			 	if(List[i].FD!=sock_index){
 
 														printf("Client FD is not -1\n");
 
