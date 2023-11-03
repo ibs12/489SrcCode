@@ -218,9 +218,9 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		cse4589_print_and_log("[LOGIN:ERROR]\n");
+		cse4589_print_and_log("[LOGIN:ERROR1]\n");
 
-		cse4589_print_and_log("[LOGIN:END]\n");
+		cse4589_print_and_log("[LOGIN:END1]\n");
 
 		return;
 
@@ -238,9 +238,9 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		cse4589_print_and_log("[LOGIN:ERROR]\n");
+		cse4589_print_and_log("[LOGIN:ERROR2]\n");
 
-		cse4589_print_and_log("[LOGIN:END]\n");
+		cse4589_print_and_log("[LOGIN:END2]\n");
 
 		close(ClientFD);
 
@@ -252,9 +252,9 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		cse4589_print_and_log("[LOGIN:ERROR]\n");
+		cse4589_print_and_log("[LOGIN:ERROR3]\n");
 
-		cse4589_print_and_log("[LOGIN:END]\n");
+		cse4589_print_and_log("[LOGIN:END3]\n");
 
 
 
