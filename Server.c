@@ -1158,9 +1158,9 @@ void server_loop() {
 
 								  			 	printf("Client FD is not -1\n");
 
-								  			 	if(CFD==100){
+/*								  			 	if(CFD==100){*/
 
-														printf("Client FD is not -1\n");
+/*														printf("Client FD is not -1\n");*/
 
 /*														fflush(stdout);*/
 
@@ -1202,7 +1202,7 @@ void server_loop() {
 
 /*														break;*/
 
-													}
+/*													}*/
 
 													printf("MOUSE");
 
