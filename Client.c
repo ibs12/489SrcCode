@@ -710,8 +710,6 @@ void process_client_commands() {
 
 					char *ServerCommand=(char*) malloc(256*sizeof(char));
 
-					
-
 					Parse(&ClientCommand,&Arg1,&Arg2,msg);
 
 					cse4589_print_and_log("ClientCommand is %s\n",ClientCommand);
@@ -726,7 +724,7 @@ void process_client_commands() {
 
 						send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
 
-						close_connection(client_fd);
+						close_connection(ClientFD);
 
 						FD_CLR(ClientFD,&watch_list);
 
