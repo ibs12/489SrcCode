@@ -354,7 +354,7 @@ char* MessageCreator(char* Message,char* Command,char* SourceIP,char* DestIP, in
 
 		else if (strcmp(Command,"RECEIVED")==0){
 
-			sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[%s:END]\n", IP,Message);
+			sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[%s:END]\n", SourceIP,Message);
 
 		}
 
