@@ -496,19 +496,7 @@ void process_client_commands() {
 
 							fflush(stdout);
 
-						}
-
-					}
-
-					else{
-
-
-
-							cse4589_print_and_log("[%s:ERROR]\n",Input);
-
-							cse4589_print_and_log("[%s:END]\n",Input);
-
-							fflush(stdout);
+							}
 
 						}
 
