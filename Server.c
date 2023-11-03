@@ -86,45 +86,81 @@ typedef struct Client {
 
 } Clients;
 
+struct Clients Dummy;
+
+Dummy.FD=-1;
+
+Clients List[5];
+
+for (int i=0; i<5;i++){
+
+	List[i]=Dummy;
+
+}
+
+typedef struct Message{
+
+	char SourceIP[30];
+
+	char Message[256];
+
+}
+
 
 
 typedef struct Backlog {
 
-	char IPaddress[30];
+	char DestIP[30];
 
 	
 
-	char* string_list[100];
+	Message MessageList[100];
 
 	
 
-	int NumberOfStrings;
+	int NumOfMessages;
 
-} Backlogs;
+};
 
 
 
 Backlogs ListOfBacklogs[5];
 
+struct Message Empty;
+
+Empty.SourceIP="69";
 
 
-void AddToBacklog(char* IP,char* Message){
+
+for(int i=0;i<5;i++){
+
+	ListOfBacklogs[i]=Empty;
+
+}
+
+
+
+void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
+
+	struct Message NewMessage;
+
+	strcpy(NewMessage.SourceIP,SourceIP);
+
+	strcpy(NewMessage.Message, Message);
 
 	int exists=0;
 
 	for(int i=0; i<5; i++){
 
-		struct Backlog CurrentClient=ListOfBacklogs[i];
+		struct Backlog ClientInList=ListOfBacklogs[i];
 
-		if (CurrentClient.IPaddress==IP){
+		if (ClientInList.DestIP==DestIP){
 
 			exists=1;
 
-			strcpy(CurrentClient.string_list[CurrentClient.NumberOfStrings], Message);
+			ClientInList.MessageList[CurrentClient.NumberOfStrings]=NewMessage;
 
-			printf("%s\n",CurrentClient.string_list[CurrentClient.NumberOfStrings]);
-
-			CurrentClient.NumberOfStrings+=1;		
+			ClientInList.NumberOfStrings+=1;		
 
 		}
 
@@ -134,15 +170,15 @@ void AddToBacklog(char* IP,char* Message){
 
 		struct Backlog NewBacklog;
 
-		strcpy(NewBacklog.IPaddress,IP);
+		strcpy(NewBacklog.DestIP,DestIP);
 
-		NewBacklog.NumberOfStrings=1;
+		NewBacklog.MessageList[0]=NewMessage;
+
+		NewBacklog.NumOfMessages=1;
 
 		for(int i=0; i<5; i++){
 
-			//Might be unexpected values//
-
-			if (ListOfBacklogs[i].IPaddress==0){
+			if (strcmp(ListOfBacklogs[i].DestIP,"69")==0){
 
 				ListOfBacklogs[i]=NewBacklog;
 
@@ -156,37 +192,23 @@ void AddToBacklog(char* IP,char* Message){
 
 
 
-void ClearBacklog(char* IP,char* Message){
+void ClearBacklog(char* DestIP,char* Message){
 
 	for(int i=0; i<5; i++){
 
 		struct Backlog CurrentClient=ListOfBacklogs[i];
 
-		if (CurrentClient.IPaddress==IP){
+		if (CurrentClient.DestIP==IP){
 
-			char* EmptyList[100];
-
-			
-
-			for (int j = 0; j < 100; j++) {
-
-                		CurrentClient.string_list[j] = ""; // Assign an empty string
-
-            }
-
-			CurrentClient.NumberOfStrings==0;		
+			CurrentClient.NumberOfStrings==0;
 
 		}
 
-	}
-
 		
 
+	}
+
 }
-
-Clients List[5];
-
-
 
 void LogClientOut(int socket){
 
@@ -203,6 +225,8 @@ void LogClientOut(int socket){
 		if (List[i].FD == socket) {
 
 			List[i].LoggedIn==0;
+
+			List[i].FD=-1;
 
 	}
 
@@ -340,11 +364,11 @@ char* ReturnMessage(const Clients LIST[]){
 
 
 
-		int port_num= List[i].ListeningPort;
+		int FD= List[i].FD;
 
 
 
-		if (port_num!=0){
+		if (FD!=-1){
 
 
 
@@ -446,7 +470,7 @@ int AddClient(char ip[], char Name[], int LP, int FD) {
 
 
 
-		if (N == 0){
+		if (N == -1){
 
 
 
@@ -1046,7 +1070,7 @@ void server_loop() {
 
 							}
 
-							if ((strcmp(NewData,"REFRESH")==0) || (strcmp(NewData,"LIST")==0)){
+							else if ((strcmp(NewData,"REFRESH")==0) || (strcmp(NewData,"LIST")==0)){
 
 
 
