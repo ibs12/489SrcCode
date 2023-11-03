@@ -328,9 +328,15 @@ void process_client_commands() {
 
 	while(1) {
 
+		FD_ZERO(&watch_list);
+
 		FD_SET(0,&watch_list);
 
-		FD_SET(ClientFD,&watch_list);
+		if(ClientFD!=0){
+
+			FD_SET(ClientFD,&watch_list);
+
+		}
 
 		printf("TOP OF LOOP\n");
 
@@ -720,7 +726,13 @@ void process_client_commands() {
 
 						send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
 
+						close_connection(client_fd);
 
+						FD_CLR(ClientFD,&watch_list);
+
+						ClientFD=-1;
+
+						LoggedIn=0;
 
 						printf("Log OUT");
 
@@ -732,7 +744,7 @@ void process_client_commands() {
 
 					ParseServerMessage(&ServerCommand,DataReceived);
 
-					if (strcmp(ServerCommand,"RELAYED")==0){
+					else if (strcmp(ServerCommand,"RELAYED")==0){
 
 						cse4589_print_and_log("RELAYED\n");
 
@@ -740,7 +752,7 @@ void process_client_commands() {
 
 					}
 
-					if (strcmp(ClientCommand,"SEND")==0){
+					else if (strcmp(ClientCommand,"SEND")==0){
 
 						int LengthOfMessageSent=send(ClientFD,msg,strlen(msg),0);
 
