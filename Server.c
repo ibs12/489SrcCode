@@ -1158,9 +1158,9 @@ void server_loop() {
 
 								  			 	printf("Client FD is not -1\n");
 
-								  			 	if(CFD!=SOCKET){
+								  			 	if(CFD!=-1){
 
-														printf("Client exists!, FD is not equal to the Socket Index\n");
+														printf("Client FD is not -1\n");
 
 														fflush(stdout);
 
