@@ -218,9 +218,9 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		cse4589_print_and_log("[LOGIN:ERROR1]\n");
+		cse4589_print_and_log("[LOGIN:ERROR]\n");
 
-		cse4589_print_and_log("[LOGIN:END1]\n");
+		cse4589_print_and_log("[LOGIN:END]\n");
 
 		ClientFD=-1;
 
@@ -240,9 +240,9 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		cse4589_print_and_log("[LOGIN:ERROR2]\n");
+		cse4589_print_and_log("[LOGIN:ERROR]\n");
 
-		cse4589_print_and_log("[LOGIN:END2]\n");
+		cse4589_print_and_log("[LOGIN:END]\n");
 
 		ClientFD=-1;
 
@@ -256,9 +256,9 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		cse4589_print_and_log("[LOGIN:ERROR3]\n");
+		cse4589_print_and_log("[LOGIN:ERROR]\n");
 
-		cse4589_print_and_log("[LOGIN:END3]\n");
+		cse4589_print_and_log("[LOGIN:END]\n");
 
 		ClientFD=-1;
 
@@ -290,31 +290,31 @@ void login_to_server(const char* server_ip, int server_port) {
 
 
 
-		char *DataR = (char*) malloc(sizeof(char)*1024);
+/*		char *DataR = (char*) malloc(sizeof(char)*1024);*/
 
 
 
-		int bytes_received = recv(ClientFD, DataR, 1023,0);	
+/*		int bytes_received = recv(ClientFD, DataR, 1023,0);	*/
 
 
 
-		while(bytes_received<=0){
+/*		while(bytes_received<=0){*/
 
 
 
-			int bytes_received = recv(ClientFD, DataR, 1023,0);	
+/*			int bytes_received = recv(ClientFD, DataR, 1023,0);	*/
 
 
 
-		}
+/*		}*/
 
-		DataR[bytes_received] = '\0';
+/*		DataR[bytes_received] = '\0';*/
 
 
 
-		cse4589_print_and_log("%s", DataR);
+/*		cse4589_print_and_log("%s", DataR);*/
 
-		FD_SET(ClientFD, &watch_list);
+/*/*		FD_SET(ClientFD, &watch_list);*/*/
 
 		process_client_commands();
 
@@ -384,13 +384,17 @@ void process_client_commands() {
 
 
 
+
+
+
+
+
+
+
+
 				if (sock_index == 0){
 
-					printf("SOCK INDEX==0\n");
-
-					fflush(stdout);
-
-					char *msg = (char*) malloc(sizeof(char)*256);
+					char *Input = (char*) malloc(sizeof(char)*256);
 
 
 
@@ -398,17 +402,29 @@ void process_client_commands() {
 
 					
 
-						
+					char *Command= (char*) malloc(sizeof(char)*256);
 
-					fgets(msg, 256, stdin);
+					
+
+					char *Arg1 = (char*) malloc(sizeof(char)*256);
+
+					
+
+					char *Arg2 = (char*) malloc(sizeof(char)*256);
+
+					
+
+					fgets(Input, 256, stdin);
+
+					
+
+					Parse(Command,Arg1,Arg2,Input);
+
+					Input[strlen(Input)-1]= '\0';
 
 
 
-					msg[strlen(msg)-1]= '\0';
-
-
-
-					strncpy(login,msg,5);
+					strncpy(login,Input,5);
 
 					
 
@@ -418,7 +434,7 @@ void process_client_commands() {
 
 
 
-					if (strcmp(msg, "AUTHOR") == 0) {
+					if (strcmp(Input, "AUTHOR") == 0) {
 
 
 
@@ -430,7 +446,7 @@ void process_client_commands() {
 
 
 
-					else if (strcmp(msg, "IP") == 0) {
+					else if (strcmp(Input, "IP") == 0) {
 
 
 
@@ -442,7 +458,7 @@ void process_client_commands() {
 
 
 
-					else if (strcmp(msg,"PORT")==0){
+					else if (strcmp(Input,"PORT")==0){
 
 
 
@@ -454,7 +470,7 @@ void process_client_commands() {
 
 
 
-					else if (strcmp(msg,"EXIT")==0){
+					else if (strcmp(Input,"EXIT")==0){
 
 
 
@@ -476,237 +492,313 @@ void process_client_commands() {
 
 					}
 
+					if (LoggedIn==0){
 
+						else if ((strcmp(login,"LOGIN")==0)){
 
-					else if ((strcmp(msg,"REFRESH")==0)&& (LoggedIn==1)){
+						
 
-
-
-						int j=send(ClientFD,msg,strlen(msg),0);
-
-
-
-						char *DataR = (char*) malloc(sizeof(char)*1024);
+/*							char *Client_Port = (char*) malloc(30*sizeof(char));*/
 
 
 
-						int bytes_received = recv(ClientFD, DataR, 1023,0);	
+/*							char *Client_IP = (char*) malloc(30*sizeof(char));*/
 
 
 
-						while(bytes_received<=0){
+/*							int count=0;*/
 
 
 
-							int bytes_received = recv(ClientFD, DataR, strlen(DataR),0);	
+/*							int iterator=0;*/
+
+
+
+/*							int iterator2=0;*/
+
+
+
+/*							for (int i=0; i<strlen(msg); i++){*/
+
+
+
+/*								char Character[1];*/
+
+
+
+/*								strncpy(Character,&msg[i],1);*/
+
+
+
+/*								Character[1]='\0';*/
+
+
+
+/*								if(count==1){*/
+
+
+
+/*									Client_IP[iterator2]=*Character;*/
+
+
+
+/*									iterator2 ++;*/
+
+
+
+/*								}*/
+
+
+
+/*								if(count==2){*/
+
+
+
+/*									Client_Port[iterator]=*Character;*/
+
+
+
+/*									iterator ++;*/
+
+
+
+/*								}*/
+
+
+
+/*								if (strcmp(Character," ")==0){*/
+
+
+
+/*									count++;*/
+
+
+
+/*								}*/
+
+/*							}*/
+
+							Arg1[strlen(Arg1)-1]= '\0';
+
+
+
+							int IPlen= strlen(Arg1);
+
+
+
+							int PORTN= atoi(Arg2);
+
+
+
+							login_to_server(Arg1,PORTN);
+
+
+
+							free(Input);
 
 
 
 						}
 
+					if (LoggedIn==1)){
 
+						if (strcmp("REFRESH",Input)==0){
 
-						DataR[bytes_received] = '\0';
+							int j=send(ClientFD,Input,strlen(msg),0);
 
+	/*						char *DataR = (char*) malloc(sizeof(char)*1024);*/
 
 
-						cse4589_print_and_log("[REFRESH:SUCCESS]\n");
 
+	/*						*/
 
+	/*						DataR[bytes_received] = '\0';*/
 
-						cse4589_print_and_log("%s", DataR);
 
 
+	/*						cse4589_print_and_log("[REFRESH:SUCCESS]\n");*/
 
-						cse4589_print_and_log("[REFRESH:END]\n");
 
 
+	/*						cse4589_print_and_log("%s", DataR);*/
 
-						free(msg);
 
 
-
-					}
-
-
-
-					else if ((strcmp(msg,"LIST")==0) && (LoggedIn==1)){
-
-						int j=send(ClientFD,msg,strlen(msg),0);
-
-
-
-						char *DataR = (char*) malloc(sizeof(char)*1024);
-
-
-
-						int bytes_received = recv(ClientFD, DataR, 1023,0);	
-
-
-
-						while(bytes_received<=0){
-
-
-
-							int bytes_received = recv(ClientFD, DataR, strlen(DataR),0);	
-
-
-
-						}
-
-
-
-						DataR[bytes_received] = '\0';
-
-
-
-						cse4589_print_and_log("[LIST:SUCCESS]\n");
-
-
-
-						cse4589_print_and_log("%s", DataR);
-
-
-
-						cse4589_print_and_log("[LIST:END]\n");
-
-
-
-						free(msg);
-
-
-
-					}
-
-
-
-					else if ((strcmp(login,"LOGIN")==0)){
-
-						if (LoggedIn==0){
-
-							char *Client_Port = (char*) malloc(30*sizeof(char));
-
-
-
-							char *Client_IP = (char*) malloc(30*sizeof(char));
-
-
-
-							int count=0;
-
-
-
-							int iterator=0;
-
-
-
-							int iterator2=0;
-
-
-
-							for (int i=0; i<strlen(msg); i++){
-
-
-
-								char Character[1];
-
-
-
-								strncpy(Character,&msg[i],1);
-
-
-
-								Character[1]='\0';
-
-
-
-								if(count==1){
-
-
-
-									Client_IP[iterator2]=*Character;
-
-
-
-									iterator2 ++;
-
-
-
-								}
-
-
-
-								if(count==2){
-
-
-
-									Client_Port[iterator]=*Character;
-
-
-
-									iterator ++;
-
-
-
-								}
-
-
-
-								if (strcmp(Character," ")==0){
-
-
-
-									count++;
-
-
-
-								}
-
-							}
-
-							Client_IP[strlen(Client_IP)-1]= '\0';
-
-
-
-							int IPlen= strlen(Client_IP);
-
-
-
-							int Portlen= strlen(Client_Port);
-
-
-
-							int PORTN= atoi(Client_Port);
-
-
-
-							login_to_server(Client_IP,PORTN);
+	/*						cse4589_print_and_log("[REFRESH:END]\n");*/
 
 
 
 							free(msg);
 
+						}
+
+						else if (strcmp(msg,"LIST")==0){
+
+							int j=send(ClientFD,Input,strlen(msg),0);
 
 
-							}
 
-						else{
+	/*						char *DataR = (char*) malloc(sizeof(char)*1024);*/
 
-							
 
-							cse4589_print_and_log("[LOGIN:ERROR]\n");
 
-							cse4589_print_and_log("[LOGIN:END]\n");
+	/*						int bytes_received = recv(ClientFD, DataR, 1023,0);	*/
+
+
+
+	/*						while(bytes_received<=0){*/
+
+
+
+	/*							int bytes_received = recv(ClientFD, DataR, strlen(DataR),0);	*/
+
+
+
+	/*						}*/
+
+
+
+	/*						DataR[bytes_received] = '\0';*/
+
+
+
+	/*						cse4589_print_and_log("[LIST:SUCCESS]\n");*/
+
+
+
+	/*						cse4589_print_and_log("%s", DataR);*/
+
+
+
+	/*						cse4589_print_and_log("[LIST:END]\n");*/
+
+
+
+							free(Input);
+
+
 
 						}
+
+/*						else if ((strcmp(login,"LOGIN")==0)){*/
+
+/*						*/
+
+/*							char *Client_Port = (char*) malloc(30*sizeof(char));*/
+
+
+
+/*							char *Client_IP = (char*) malloc(30*sizeof(char));*/
+
+
+
+/*							int count=0;*/
+
+
+
+/*							int iterator=0;*/
+
+
+
+/*							int iterator2=0;*/
+
+
+
+/*							for (int i=0; i<strlen(msg); i++){*/
+
+
+
+/*								char Character[1];*/
+
+
+
+/*								strncpy(Character,&msg[i],1);*/
+
+
+
+/*								Character[1]='\0';*/
+
+
+
+/*								if(count==1){*/
+
+
+
+/*									Client_IP[iterator2]=*Character;*/
+
+
+
+/*									iterator2 ++;*/
+
+
+
+/*								}*/
+
+
+
+/*								if(count==2){*/
+
+
+
+/*									Client_Port[iterator]=*Character;*/
+
+
+
+/*									iterator ++;*/
+
+
+
+/*								}*/
+
+
+
+/*								if (strcmp(Character," ")==0){*/
+
+
+
+/*									count++;*/
+
+
+
+/*								}*/
+
+/*							}*/
+
+/*							Client_IP[strlen(Client_IP)-1]= '\0';*/
+
+
+
+/*							int IPlen= strlen(Client_IP);*/
+
+
+
+/*							int Portlen= strlen(Client_Port);*/
+
+
+
+/*							int PORTN= atoi(Client_Port);*/
+
+
+
+/*							login_to_server(Client_IP,PORTN);*/
+
+
+
+/*							free(msg);*/
+
+
+
+/*						}*/
 
 
 
 					}
 
+				//END OF READING FROM STDIN
+
 				else if (LoggedIn==1){
 
-					
+					if (sock
 
 					char *DataReceived= (char*) malloc(256*sizeof(char));
 
@@ -746,9 +838,7 @@ void process_client_commands() {
 
 					}
 
-					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
-					ParseServerMessage(&ServerCommand,DataReceived);
 
 					if (strcmp(ServerCommand,"RELAYED")==0){
 
