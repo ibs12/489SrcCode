@@ -1078,7 +1078,7 @@ void server_loop() {
 
 					else{
 
-						int* SOCKET=malloc(sizeof int);
+						int *SOCKET=(int*)malloc(sizeof int);
 
 						SOCKET=sock_index;
 
