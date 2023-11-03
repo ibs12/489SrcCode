@@ -1166,15 +1166,9 @@ void server_loop() {
 
 								  		strcpy(ClientIP,currentClient.IPaddress);
 
-								  		printf("MOUSE3\n");
-
-								  		printf("LIST CLIENT IP IS *%s* and RECEIVED IP IS *%s*\n",ClientIP,Arg1);
-
 								  		fflush(stdout);
 
 								  		int CFD=currentClient.FD;
-
-								  		printf("ARG1:%s\nClientIP:%s\nCurrentClient.FD:%d\n",Arg1,ClientIP,CFD);
 
 								  		if (strcmp(Arg1,ClientIP)==0){
 
