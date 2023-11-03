@@ -1080,7 +1080,7 @@ void server_loop() {
 
 						int *SOCKET=(int*)malloc(sizeof (int));
 
-						SOCKET=sock_index;
+						&SOCKET=sock_index;
 
 						char *DataReceived= (char*) malloc(sizeof(char)*1023);
 
