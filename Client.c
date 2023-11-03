@@ -792,6 +792,8 @@ void process_client_commands() {
 
 				}
 
+				}
+
 				//END OF READING FROM STDIN
 
 				if ((LoggedIn==1)&&(sock_index!=0)){
@@ -928,4 +930,4 @@ void process_client_commands() {
 
 
 
-}}
+}
