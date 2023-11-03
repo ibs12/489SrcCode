@@ -586,7 +586,15 @@ int initialize_server(int port) {
 
 	Dummy.FD=-1;
 
-	
+	strcpy(Dummy.Name,"EMPTY");
+
+	Dummy.ListeningPort=0;
+
+	Dummy.MessagesReceived=0;
+
+	Dummy.MessagesSent=0;
+
+	Dummy.LoggedIn=0;
 
 	strcpy(Dummy.IPaddress,"69");
 
