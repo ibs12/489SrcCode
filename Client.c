@@ -332,8 +332,6 @@ void process_client_commands() {
 
 		FD_SET(0,&watch_list);
 
-		FD_SET(1,&watch_list);
-
 	
 
 		if(ClientFD!=-1){
@@ -352,7 +350,7 @@ void process_client_commands() {
 
        
 
-			printf("select failed.\n");
+			perror("select failed.\n");
 
 
 
