@@ -116,15 +116,15 @@ Backlog ListOfBacklogs[5];
 
 
 
-Backlog EmptyLog;
+Backlog* EmptyLog;
 
 
 
-Message Empty;
+Message* Empty;
 
 
 
-Client Dummy;
+Client* Dummy;
 
 
 
@@ -596,19 +596,19 @@ int initialize_server(int port) {
 
 /*Backlog EmptyLog;*/
 
-EmptyLog* = (Backlog*)malloc(sizeof(Backlog));
+EmptyLog = (Backlog*)malloc(sizeof(Backlog));
 
 
 
 /*Message Empty;*/
 
-Empty* = (Message*)malloc(sizeof(Message));
+Empty = (Message*)malloc(sizeof(Message));
 
 
 
 /*Client Dummy;*/
 
-	*Dummy = (Client*)malloc(sizeof(Client));
+	Dummy = (Client*)malloc(sizeof(Client));
 
 	Dummy.FD=-1;
 
