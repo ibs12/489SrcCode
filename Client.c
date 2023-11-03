@@ -850,6 +850,8 @@ void process_client_commands() {
 
 					}
 
+					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
+
 					if (strcmp(ClientCommand,"SEND")==0){
 
 						int LengthOfMessageSent=send(ClientFD,Input,strlen(Input),0);
@@ -902,7 +904,7 @@ void process_client_commands() {
 
 /*				char *ServerCommand=(char*) malloc(256*sizeof(char));	*/
 
-/*/*				Parse(&ClientCommand,&Arg1,&Arg2,msg);*/*/
+/*			Parse(&ClientCommand,&Arg1,&Arg2,msg);*/
 
 /*				int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);*/
 
