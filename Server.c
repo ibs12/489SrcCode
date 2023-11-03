@@ -1178,7 +1178,7 @@ void server_loop() {
 
 														char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
-														strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,1));
+														strcpy(MessageToSender,MessageCreator(&Command,&Command,&Command,&Command,1));
 
 														int MSLen=strlen(MessageToSender);
 
@@ -1234,7 +1234,7 @@ void server_loop() {
 
 												char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
-								  			strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,0));
+								  			strcpy(MessageToSender,MessageCreator(&Command,&Command,&Command,&Command,0));
 
 								  			int MSLen=strlen(MessageToSender);
 
