@@ -1152,7 +1152,7 @@ void server_loop() {
 
 								  			printf("LOOP1/n");
 
-								  			 if(CFD!=-1)){
+								  			 if(CFD!=-1){
 
 								  			 	printf("Loop2\n");
 
