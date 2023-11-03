@@ -112,13 +112,13 @@ typedef struct Backlog {
 
 Client List[5]=malloc(5*sizeof(Client));
 
-struct Backlog ListOfBacklogs[5]=malloc(5*sizeof(Backlog));
+Backlog ListOfBacklogs[5]=malloc(5*sizeof(Backlog));
 
-struct Backlog EmptyLog=malloc(sizeof(Backlog));
+Backlog EmptyLog=malloc(sizeof(Backlog));
 
-struct Message Empty=malloc(sizeof(Message));
+Message Empty=malloc(sizeof(Message));
 
-struct Client Dummy=malloc(sizeof(Client));
+Client Dummy=malloc(sizeof(Client));
 
 
 
@@ -1158,51 +1158,51 @@ void server_loop() {
 
 								  			 	printf("Client FD is not -1\n");
 
-/*								  			 	if(CFD==100){*/
+								  			 	if(CFD!=sock_index){
 
-/*														printf("Client FD is not -1\n");*/
+														printf("Client FD is not -1\n");
 
-/*														fflush(stdout);*/
+														fflush(stdout);
 
-/*														Exists=1;*/
+														Exists=1;
 
-/*														char* MessageToSender=(char*) malloc(1024*sizeof(char));*/
+														char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
-/*														strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,1));*/
+														strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,1));
 
-/*														int MSLen=strlen(MessageToSender);*/
+														int MSLen=strlen(MessageToSender);
 
-/*														send(sock_index,MessageToSender,MSLen,0);*/
+														send(sock_index,MessageToSender,MSLen,0);
 
-/*														if (currentClient.LoggedIn==1){*/
+														if (currentClient.LoggedIn==1){
 
-/*															printf("LOGEIJIOEG");*/
+															printf("LOGEIJIOEG");
 
-/*															char* MessageToDest=(char*) malloc(1024*sizeof(char));*/
+															char* MessageToDest=(char*) malloc(1024*sizeof(char));
 
-/*															strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));*/
+															strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));
 
-/*															int MDLen=strlen(MessageToDest);*/
+															int MDLen=strlen(MessageToDest);
 
-/*															send(currentClient.FD,MessageToDest,MDLen,0);*/
+															send(currentClient.FD,MessageToDest,MDLen,0);
 
-/*														}*/
+														}
 
-/*														else{*/
+														else{
 
-/*															printf("Client is not logged in\n");*/
+															printf("Client is not logged in\n");
 
-/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
+															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);
 
-/*															//buffer message*/
+															//buffer message
 
-/*														}*/
+														}
 
-/*														fflush(stdout);*/
+														fflush(stdout);
 
-/*														break;*/
+														break;
 
-/*													}*/
+													}
 
 													printf("MOUSE");
 
