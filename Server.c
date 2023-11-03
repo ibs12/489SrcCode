@@ -958,8 +958,6 @@ void server_loop() {
 
 
 
-						fflush(stdout);
-
 
 
 					}
@@ -1060,7 +1058,7 @@ void server_loop() {
 
 
 
-						fflush(stdout);
+				
 
 
 
@@ -1106,7 +1104,7 @@ void server_loop() {
 
 							
 
-							fflush(stdout);
+				
 
 							
 
@@ -1128,8 +1126,6 @@ void server_loop() {
 
 
 
-								fflush(stdout);
-
 
 
 							}
@@ -1148,8 +1144,6 @@ void server_loop() {
 
 								Parse1(&Command,&Arg1,&Arg2,DataReceived);
 
-								Arg1[strlen(Arg1)-1]='\0';
-
 								printf("COMMAND IS %s\n",Command);
 
 								if (strcmp(Command,"SEND")==0){
@@ -1158,31 +1152,21 @@ void server_loop() {
 
 										Client currentClient = List[i];
 
-											printf("MOUSE1\n");
-
 								  		char *ClientIP=malloc(256*sizeof(char));
-
-								  		printf("MOUSE2\n");
 
 								  		strcpy(ClientIP,currentClient.IPaddress);
 
-								  		fflush(stdout);
+						
 
 								  		int CFD=currentClient.FD;
 
 								  		if (strcmp(Arg1,ClientIP)==0){
 
-								  			printf("ClientIP and ARG1 are equal\n");
-
 								  			 if(CFD!=-1){
-
-								  			 	printf("Client FD is not -1\n");
 
 								  			 	if(CFD!=sock_index){
 
 														printf("Client FD is not -1\n");
-
-														fflush(stdout);
 
 														Exists=1;
 
@@ -1216,7 +1200,7 @@ void server_loop() {
 
 														}
 
-														fflush(stdout);
+									
 
 														break;
 
