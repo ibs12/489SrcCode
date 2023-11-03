@@ -1146,8 +1146,6 @@ void server_loop() {
 
 								Arg1[strlen(Arg1)-1]='\0';
 
-								printf("COMMAND IS %s\n",Command);
-
 								if (strcmp(Command,"SEND")==0){
 
 									for (int i = 0; i < 5; i++) {
@@ -1160,7 +1158,7 @@ void server_loop() {
 
 						
 
-								  		int CFD=currentClient.FD;
+								  		int CFD=1;
 
 								  		if (strcmp(Arg1,ClientIP)==0){
 
