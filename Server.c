@@ -1190,6 +1190,8 @@ void server_loop() {
 
 									if (Exists==0){
 
+												printf("GO FUCK YOURSELF");
+
 												char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
 								  			strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,0));
