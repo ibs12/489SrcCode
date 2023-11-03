@@ -1144,7 +1144,11 @@ void server_loop() {
 
 								  		fflush(stdout);
 
-								  		if (((strcmp(Arg1,ClientIP)==0) && (currentClient.FD!=sock_index))&& (currentClient.FD!=-1)){
+								  		int CFD=currentClient.FD;
+
+								  		printf("ARG1:%s\nClientIP:%s\nCurrentClient.FD:%s\n",ARG1,ClientIP,currentClient.FD);
+
+								  		if (((strcmp(Arg1,ClientIP)==0) && (CFD!=sock_index))&& (CFD!=-1)){
 
 								  			printf("Client exists!\n");
 
@@ -1174,6 +1178,8 @@ void server_loop() {
 
 								  			else{
 
+								  				print
+
 								  				AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);
 
 								  				//buffer message
@@ -1185,6 +1191,8 @@ void server_loop() {
 								  			break;
 
 										}
+
+									printf("FUCK ME");
 
 									}
 
