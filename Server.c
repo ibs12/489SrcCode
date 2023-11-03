@@ -110,15 +110,15 @@ typedef struct Backlog {
 
 
 
-Client List[5];
+Client List[5]=malloc(5*sizeof(Client));
 
-struct Backlog ListOfBacklogs[5];
+struct Backlog ListOfBacklogs[5]=malloc(5*sizeof(Backlog));
 
-struct Backlog EmptyLog;
+struct Backlog EmptyLog=malloc(sizeof(Backlog));
 
-struct Message Empty;
+struct Message Empty=malloc(sizeof(Message));
 
-struct Client Dummy;
+struct Client Dummy=malloc(sizeof(Client));
 
 
 
