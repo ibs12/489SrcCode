@@ -1130,9 +1130,15 @@ void server_loop() {
 
 										struct Client currentClient = List[i];
 
-								  		char *ClientIP;
+											printf("MOUSE1\n");
+
+								  		char *ClientIP=malloc(256*sizeof(char));
+
+								  		printf("MOUSE2\n");
 
 								  		strcpy(ClientIP,currentClient.IPaddress);
+
+								  		printf("MOUSE3\n");
 
 								  		printf("LIST CLIENT IP IS *%s* and RECEIVED IP IS *%s*\n",ClientIP,Arg1);
 
