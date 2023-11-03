@@ -1162,7 +1162,7 @@ void server_loop() {
 
 								  		if (strcmp(Arg1,ClientIP)==0){
 
-								  			 if(CFD!=-1){
+								  			 if(List[i].FD!=-1){
 
 								  			 	if(CFD!=sock_index){
 
