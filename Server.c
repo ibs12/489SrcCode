@@ -100,7 +100,7 @@ typedef struct Backlog {
 
 	
 
-	Message MessageList[100];
+	Message MessageList[5];
 
 	
 
@@ -1213,8 +1213,6 @@ void server_loop() {
 															printf("Client is not logged in\n");
 
 															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);
-
-															//buffer message
 
 														}
 
