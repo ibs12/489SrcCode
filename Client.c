@@ -530,9 +530,9 @@ void process_client_commands() {
 
 							}
 
+							printf("COMMAND IS *%s*\n",Command);
 
-
-							else if (strcmp(Input,"SEND")==0){
+							else if (strcmp(Command,"SEND")==0){
 
 								int LengthOfMessageSent=send(ClientFD,Input,strlen(Input),0);
 
