@@ -348,6 +348,8 @@ char* MessageCreator(char* Message,char* Command,char* SourceIP,char* DestIP, in
 
 	printf("MESSAGE CREATOR CALLED\n");
 
+	printf("success=%d",success);
+
 	char *ReturnM = malloc(300*sizeof(char));
 
 	if (success==1){
