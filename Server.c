@@ -1170,25 +1170,25 @@ void server_loop() {
 
 														Exists=1;
 
-/*														char* MessageToSender=(char*) malloc(1024*sizeof(char));*/
+														char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
-/*														strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,1));*/
+														strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,1));
 
-/*														int MSLen=strlen(MessageToSender);*/
+														int MSLen=strlen(MessageToSender);
 
-														send(sock_index,"1",1,0);
+														send(sock_index,MessageToSender,MSLen,0);
 
 														if (currentClient.LoggedIn==1){
 
 															printf("LOGEIJIOEG");
 
-/*															char* MessageToDest=(char*) malloc(1024*sizeof(char));*/
+															char* MessageToDest=(char*) malloc(1024*sizeof(char));
 
-/*															strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));*/
+															strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));
 
-/*															int MDLen=strlen(MessageToDest);*/
+															int MDLen=strlen(MessageToDest);
 
-															send(currentClient.FD,"FUCK YOU",8,0);
+															send(currentClient.FD,MessageToDest,MDLen,0);
 
 														}
 
