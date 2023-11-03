@@ -594,27 +594,27 @@ int initialize_server(int port) {
 
 
 
-List = (Client*)malloc(5 * sizeof(Client));
+List = malloc(5 * sizeof(Client));
 
-ListOfBacklogs = (Backlog*)malloc(5 * sizeof(Backlog));
+ListOfBacklogs = malloc(5 * sizeof(Backlog));
 
 
 
 /*Backlog EmptyLog;*/
 
-EmptyLog = (Backlog*)malloc(sizeof(Backlog));
+EmptyLog = malloc(sizeof(Backlog));
 
 
 
 /*Message Empty;*/
 
-Empty = (Message*)malloc(sizeof(Message));
+Empty = malloc(sizeof(Message));
 
 
 
 /*Client Dummy;*/
 
-	Dummy = (Client*)malloc(sizeof(Client));
+	Dummy = malloc(sizeof(Client));
 
 	Dummy.FD=-1;
 
