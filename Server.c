@@ -1144,6 +1144,8 @@ void server_loop() {
 
 								Parse1(&Command,&Arg1,&Arg2,DataReceived);
 
+								Arg1[strlen(Arg1)-1]='\0';
+
 								printf("COMMAND IS %s\n",Command);
 
 								if (strcmp(Command,"SEND")==0){
@@ -1170,25 +1172,25 @@ void server_loop() {
 
 														Exists=1;
 
-														char* MessageToSender=(char*) malloc(1024*sizeof(char));
+/*														char* MessageToSender=(char*) malloc(1024*sizeof(char));*/
 
 /*														strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,1));*/
 
-														int MSLen=strlen(MessageToSender);
+/*														int MSLen=strlen(MessageToSender);*/
 
-														send(sock_index,MessageToSender,MSLen,0);
+														send(sock_index,"1",1,0);
 
 														if (currentClient.LoggedIn==1){
 
 															printf("LOGEIJIOEG");
 
-															char* MessageToDest=(char*) malloc(1024*sizeof(char));
+/*															char* MessageToDest=(char*) malloc(1024*sizeof(char));*/
 
 /*															strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));*/
 
-															int MDLen=strlen(MessageToDest);
+/*															int MDLen=strlen(MessageToDest);*/
 
-															send(currentClient.FD,MessageToDest,MDLen,0);
+															send(currentClient.FD,"FUCK YOU",8,0);
 
 														}
 
@@ -1196,7 +1198,9 @@ void server_loop() {
 
 															printf("Client is not logged in\n");
 
-															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);
+															send(currentClient.FD,"12",2,0);
+
+/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
 
 														}
 
