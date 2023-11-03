@@ -1148,33 +1148,35 @@ void server_loop() {
 
 								  		printf("ARG1:%s\nClientIP:%s\nCurrentClient.FD:%d\n",Arg1,ClientIP,CFD);
 
-								  		if (((strcmp(Arg1,ClientIP)==0) && (CFD!=sock_index))&& (CFD!=-1)){
+								  		if ((strcmp(Arg1,ClientIP)==0) &&(CFD!=-1)){
 
-								  			printf("Client exists!\n");
+								  			 if(CFD!=sock_index){
 
-								  			fflush(stdout);
+														printf("Client exists!\n");
 
-								  			Exists=1;
+														fflush(stdout);
 
-								  			char* MessageToSender=(char*) malloc(1024*sizeof(char));
+														Exists=1;
 
-								  			strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,1));
+														char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
-								  			int MSLen=strlen(MessageToSender);
+														strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,1));
 
-								  			send(sock_index,MessageToSender,MSLen,0);
+														int MSLen=strlen(MessageToSender);
 
-								  			if (currentClient.LoggedIn==1){
+														send(sock_index,MessageToSender,MSLen,0);
 
-								  				char* MessageToDest=(char*) malloc(1024*sizeof(char));
+														if (currentClient.LoggedIn==1){
 
-								  				strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));
+															char* MessageToDest=(char*) malloc(1024*sizeof(char));
 
-								  				int MDLen=strlen(MessageToDest);
+															strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));
 
-								  				send(currentClient.FD,MessageToDest,MDLen,0);
+															int MDLen=strlen(MessageToDest);
 
-								  			}
+															send(currentClient.FD,MessageToDest,MDLen,0);
+
+														}
 
 								  			else{
 
@@ -1189,6 +1191,8 @@ void server_loop() {
 								  			fflush(stdout);
 
 								  			break;
+
+										}
 
 										}
 
