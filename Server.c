@@ -118,7 +118,7 @@ struct Backlog EmptyLog;
 
 struct Message Empty;
 
-struct Client Dummy;
+struct Clients Dummy;
 
 
 
@@ -585,6 +585,8 @@ int Create_Server(int PortNO){
 int initialize_server(int port) {
 
 	Dummy.FD=-1;
+
+	
 
 	strcpy(Dummy.IPaddress,"69");
 
@@ -1118,7 +1120,7 @@ void server_loop() {
 
 									for (int i = 0; i < 5; i++) {
 
-										struct Client currentClient = List[i];
+										struct Clients currentClient = List[i];
 
 								  		char *ClientIP;
 
