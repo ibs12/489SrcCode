@@ -86,17 +86,17 @@ typedef struct Client {
 
 
 
-typedef struct Message{
-
-	char SourceIP[30];
-
-	char Message[256];
-
-}
-
 
 
 typedef struct Backlog {
+
+	typedef struct Message{
+
+		char SourceIP[30];
+
+		char Message[256];
+
+	}
 
 	char DestIP[30];
 
@@ -132,7 +132,7 @@ void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
 
 		Backlog ClientInList=ListOfBacklogs[i];
 
-		if (ClientInList.DestIP==DestIP){
+		if (strcmp(ClientInList.DestIP,DestIP)==0){
 
 			exists=1;
 
@@ -540,7 +540,7 @@ int initialize_server(int port) {
 
 	Dummy.FD=-1;
 
-	Empty.SourceIP="69";
+	strcpy(Empty.SourceIP,"69");
 
 	for(int i=0;i<5;i++){
 
