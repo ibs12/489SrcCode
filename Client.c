@@ -418,7 +418,7 @@ void process_client_commands() {
 
 					
 
-					Parse(Command,Arg1,Arg2,Input);
+					Parse(&Command,&Arg1,&Arg2,Input);
 
 					Input[strlen(Input)-1]= '\0';
 
@@ -494,7 +494,7 @@ void process_client_commands() {
 
 					if (LoggedIn==0){
 
-						else if ((strcmp(login,"LOGIN")==0)){
+						if ((strcmp(login,"LOGIN")==0)){
 
 						
 
@@ -602,9 +602,11 @@ void process_client_commands() {
 
 					if (LoggedIn==1)){
 
+					
+
 						if (strcmp("REFRESH",Input)==0){
 
-							int j=send(ClientFD,Input,strlen(msg),0);
+							int j=send(ClientFD,Input,strlen(Input),0);
 
 	/*						char *DataR = (char*) malloc(sizeof(char)*1024);*/
 
@@ -628,13 +630,13 @@ void process_client_commands() {
 
 
 
-							free(msg);
+							free(Input);
 
 						}
 
-						else if (strcmp(msg,"LIST")==0){
+						else if (strcmp(Input,"LIST")==0){
 
-							int j=send(ClientFD,Input,strlen(msg),0);
+							int j=send(ClientFD,Input,strlen(Input),0);
 
 
 
@@ -679,6 +681,8 @@ void process_client_commands() {
 
 
 						}
+
+						
 
 /*						else if ((strcmp(login,"LOGIN")==0)){*/
 
@@ -796,9 +800,7 @@ void process_client_commands() {
 
 				//END OF READING FROM STDIN
 
-				else if (LoggedIn==1){
-
-					if (sock
+				if ((LoggedIn==1)(&&sock_index!=0)){
 
 					char *DataReceived= (char*) malloc(256*sizeof(char));
 
@@ -810,7 +812,7 @@ void process_client_commands() {
 
 					char *ServerCommand=(char*) malloc(256*sizeof(char));
 
-					Parse(&ClientCommand,&Arg1,&Arg2,msg);
+					Parse(&ClientCommand,&Arg1,&Arg2,Input);
 
 					cse4589_print_and_log("ClientCommand is %s\n",ClientCommand);
 
@@ -850,7 +852,7 @@ void process_client_commands() {
 
 					if (strcmp(ClientCommand,"SEND")==0){
 
-						int LengthOfMessageSent=send(ClientFD,msg,strlen(msg),0);
+						int LengthOfMessageSent=send(ClientFD,Input,strlen(Input),0);
 
 						if (LengthOfMessageReceived==1){
 
@@ -874,9 +876,9 @@ void process_client_commands() {
 
 
 
-					cse4589_print_and_log("[%s:ERROR]\n",msg);
+					cse4589_print_and_log("[%s:ERROR]\n",Input);
 
-					cse4589_print_and_log("[%s:END]\n",msg);
+					cse4589_print_and_log("[%s:END]\n",Input);
 
 					fflush(stdout);
 
@@ -888,39 +890,39 @@ void process_client_commands() {
 
 			//socket index is server//
 
-			else if (sock_index==ClientFD){
+/*			else if (sock_index==ClientFD){*/
 
-				char *DataReceived= (char*) malloc(1023*sizeof(char));
+/*				char *DataReceived= (char*) malloc(1023*sizeof(char));*/
 
-				char *ClientCommand= (char*) malloc(256*sizeof(char));
+/*				char *ClientCommand= (char*) malloc(256*sizeof(char));*/
 
-				char *Arg1= (char*) malloc(256*sizeof(char));
+/*				char *Arg1= (char*) malloc(256*sizeof(char));*/
 
-				char *Arg2 = (char*) malloc(256*sizeof(char));
+/*				char *Arg2 = (char*) malloc(256*sizeof(char));*/
 
-				char *ServerCommand=(char*) malloc(256*sizeof(char));	
+/*				char *ServerCommand=(char*) malloc(256*sizeof(char));	*/
 
-/*				Parse(&ClientCommand,&Arg1,&Arg2,msg);*/
+/*/*				Parse(&ClientCommand,&Arg1,&Arg2,msg);*/*/
 
-				int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
+/*				int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);*/
 
-				ParseServerMessage(&ServerCommand,DataReceived);
+/*				ParseServerMessage(&ServerCommand,DataReceived);*/
 
-				if(strcmp(ServerCommand,"RELAYED")==0){
+/*				if(strcmp(ServerCommand,"RELAYED")==0){*/
 
-					cse4589_print_and_log("[%s:SUCCESS]\n","RECEIVED");
+/*					cse4589_print_and_log("[%s:SUCCESS]\n","RECEIVED");*/
 
-					cse4589_print_and_log("%s",DataReceived);
+/*					cse4589_print_and_log("%s",DataReceived);*/
 
-					cse4589_print_and_log("[%s:END]\n","RECEIVED");
+/*					cse4589_print_and_log("[%s:END]\n","RECEIVED");*/
 
-				}
+/*				}*/
 
-				fflush(stdout);
+/*				fflush(stdout);*/
 
-		
+/*		*/
 
-			}
+/*			}*/
 
 			}
 
@@ -932,4 +934,4 @@ void process_client_commands() {
 
 
 
-}
+}}
