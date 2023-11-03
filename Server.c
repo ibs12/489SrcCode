@@ -1200,6 +1200,12 @@ void server_loop() {
 
 													}
 
+													else{
+
+													printf("MOUSE");
+
+													}
+
 												}
 
 											}
