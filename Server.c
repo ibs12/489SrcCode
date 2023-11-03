@@ -108,6 +108,24 @@ typedef struct Backlog {
 
 }Backlog;
 
+Client* List;
+
+Backlog* ListOfBacklogs;
+
+
+
+Backlog EmptyLog;
+
+EmptyLog;
+
+
+
+Message Empty;
+
+
+
+Client Dummy;
+
 
 
 
@@ -574,25 +592,27 @@ int Create_Server(int PortNO){
 
 int initialize_server(int port) {
 
-	Client* List = (Client*)malloc(5 * sizeof(Client));
-
-	Backlog* ListOfBacklogs = (Backlog*)malloc(5 * sizeof(Backlog));
 
 
+List = (Client*)malloc(5 * sizeof(Client));
 
-	Backlog EmptyLog;
-
-	EmptyLog = (Backlog*)malloc(sizeof(Backlog));
+ListOfBacklogs = (Backlog*)malloc(5 * sizeof(Backlog));
 
 
 
-	Message Empty;
+/*Backlog EmptyLog;*/
 
-	Empty = (Message*)malloc(sizeof(Message));
+EmptyLog = (Backlog*)malloc(sizeof(Backlog));
 
 
 
-	Client Dummy;
+/*Message Empty;*/
+
+Empty = (Message*)malloc(sizeof(Message));
+
+
+
+/*Client Dummy;*/
 
 	Dummy = (Client*)malloc(sizeof(Client));
 
