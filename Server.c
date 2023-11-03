@@ -110,7 +110,13 @@ typedef struct Backlog {
 
 };
 
+Clients List[5];
 
+Backlog ListOfBacklogs[5];
+
+Message Empty;
+
+Clients Dummy;
 
 void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
 
@@ -140,7 +146,7 @@ void AddToBacklog(char* SourceIP,char* DestIP,char* Message){
 
 	if (exists==0){
 
-		struct Backlog NewBacklog;
+		Backlog NewBacklog;
 
 		strcpy(NewBacklog.DestIP,DestIP);
 
@@ -528,17 +534,11 @@ int Create_Server(int PortNO){
 
 // Initialize the server
 
-Clients List[5];
 
-Backlog ListOfBacklogs[5];
 
 int initialize_server(int port) {
 
-	Clients Dummy;
-
 	Dummy.FD=-1;
-
-	Message Empty;
 
 	Empty.SourceIP="69";
 
