@@ -792,6 +792,28 @@ void process_client_commands() {
 
 				}
 
+				if (strcmp(Command,"SEND")==0){
+
+						int LengthOfMessageSent=send(ClientFD,Input,strlen(Input),0);
+
+/*						if (LengthOfMessageReceived==1){*/
+
+/*							cse4589_print_and_log("[%s:SUCCESS]\n","SEND");*/
+
+/*							cse4589_print_and_log("[%s:END]\n","SEND");*/
+
+/*						}*/
+
+/*						else if (LengthOfMessageReceived==2){*/
+
+/*							cse4589_print_and_log("[%s:ERROR]\n","SEND");*/
+
+/*							cse4589_print_and_log("[%s:END]\n","SEND");*/
+
+/*						}*/
+
+					}
+
 				else{
 
 
@@ -822,7 +844,7 @@ void process_client_commands() {
 
 					char *ServerCommand=(char*) malloc(256*sizeof(char));
 
-					Parse(&ClientCommand,&Arg1,&Arg2,Input);
+/*					Parse(&ClientCommand,&Arg1,&Arg2,Input);*/
 
 					cse4589_print_and_log("ClientCommand is %s\n",ClientCommand);
 
@@ -862,27 +884,27 @@ void process_client_commands() {
 
 					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
-					if (strcmp(ClientCommand,"SEND")==0){
+/*					if (strcmp(ClientCommand,"SEND")==0){*/
 
-						int LengthOfMessageSent=send(ClientFD,Input,strlen(Input),0);
+/*						int LengthOfMessageSent=send(ClientFD,Input,strlen(Input),0);*/
 
-						if (LengthOfMessageReceived==1){
+/*						if (LengthOfMessageReceived==1){*/
 
-							cse4589_print_and_log("[%s:SUCCESS]\n","SEND");
+/*							cse4589_print_and_log("[%s:SUCCESS]\n","SEND");*/
 
-							cse4589_print_and_log("[%s:END]\n","SEND");
+/*							cse4589_print_and_log("[%s:END]\n","SEND");*/
 
-						}
+/*						}*/
 
-						else if (LengthOfMessageReceived==2){
+/*						else if (LengthOfMessageReceived==2){*/
 
-							cse4589_print_and_log("[%s:ERROR]\n","SEND");
+/*							cse4589_print_and_log("[%s:ERROR]\n","SEND");*/
 
-							cse4589_print_and_log("[%s:END]\n","SEND");
+/*							cse4589_print_and_log("[%s:END]\n","SEND");*/
 
-						}
+/*						}*/
 
-					}
+/*					}*/
 
 			}
 
