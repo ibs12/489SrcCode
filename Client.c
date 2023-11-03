@@ -720,6 +720,10 @@ void process_client_commands() {
 
 					fflush(stdout);
 
+					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
+
+					ParseServerMessage(&ServerCommand,DataReceived);
+
 					if (strcmp(ClientCommand,"LOGOUT")==0){
 
 						send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
@@ -738,11 +742,7 @@ void process_client_commands() {
 
 					}
 
-					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
-
-					ParseServerMessage(&ServerCommand,DataReceived);
-
-					else if (strcmp(ServerCommand,"RELAYED")==0){
+					if (strcmp(ServerCommand,"RELAYED")==0){
 
 						cse4589_print_and_log("RELAYED\n");
 
@@ -750,7 +750,7 @@ void process_client_commands() {
 
 					}
 
-					else if (strcmp(ClientCommand,"SEND")==0){
+					if (strcmp(ClientCommand,"SEND")==0){
 
 						int LengthOfMessageSent=send(ClientFD,msg,strlen(msg),0);
 
@@ -816,16 +816,22 @@ void process_client_commands() {
 
 					cse4589_print_and_log("[%s:END]\n","RECEIVED");
 
-					}
+				}
 
 				fflush(stdout);
 
 		
 
-				}
+			}
+
+			}
+
+		}
 
 		}
 
 	}
 
-}}}
+
+
+}
