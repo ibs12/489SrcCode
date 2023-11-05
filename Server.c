@@ -586,7 +586,7 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 		if (((strcmp(CurrentClient.IPaddress,ClientToBlock)==0)&&(strcmp(CurrentClient.IPaddress,SourceIP)!=0))&&(CurrentClient.LoggedIn==1)){
 
-			printf("IP IS VALID]n");
+			printf("IP IS VALID\n");
 
 			//Means IP exists, IP is logged in, and IP is not equal to the Blocker IPaddress
 
@@ -614,11 +614,19 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 					if (BlockerID>-1){
 
+						printf("BLOCKER ID>-1\n");
+
 						Client Blocker=List[BlockerID];
+
+						printf("BLOCKER MADE\n");
 
 						int numBlocked=Blocker.NumberOfBlocked;
 
+						printf("NumBLOCKED MADE \n");
+
 						strcpy(List[BlockerID].BlockList[numBlocked],ClientToBlock);
+
+						printf("KSDJFISDFJ\n");
 
 						List[BlockerID].NumberOfBlocked+=1;
 
