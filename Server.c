@@ -116,7 +116,7 @@
 
 	}Backlog;
 
-
+	char* EmptyString[];
 
 	Client List[5];
 
@@ -626,7 +626,7 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 						printf("NumBLOCKED MADE \n");
 
-						printf("List[BlockerID] is *%s\n*",List[BlockerID]);
+						printf("List[BlockerID].BlockList is *%s\n*",List[BlockerID]);
 
 						fflush(stdout);
 
@@ -975,6 +975,12 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 		Dummy->MessagesSent=0;
 
 		Dummy->LoggedIn=0;
+
+		for(int i=0;i<5;i++){
+
+			strcpy(Dummy.BlockList[i],"");
+
+		}
 
 		strcpy(Dummy->IPaddress,"69");
 
