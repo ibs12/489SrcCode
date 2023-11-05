@@ -1164,7 +1164,7 @@ void remove_connection(int socket) {
 
 												if (strcmp(Arg1,ClientIP)==0){
 
-													 if(List[i].FD!=-1){
+													 if(List[i].LoggedIn==1){
 
 													 	if(List[i].FD!=Sock){
 
