@@ -542,7 +542,7 @@ int GetClientByIP(char* IP){
 
 	char* ListIP=malloc(30*sizeof(char));
 
-	for (int i=0;i++;i<5){
+	for (int i=0;i<5; i++){
 
 		printf("About to access list[i].IPaddress\n");
 
