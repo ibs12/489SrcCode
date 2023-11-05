@@ -792,7 +792,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 								if(strcmp(currentClient.BlockList[i],SenderIP)==0){
 
-									print("SEND FUNCTION, CLIENT IS BLOCKED");
+									printf("SEND FUNCTION, CLIENT IS BLOCKED");
 
 									
 
