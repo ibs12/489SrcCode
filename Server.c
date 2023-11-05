@@ -546,6 +546,8 @@ int GetClientByIP(char* IP){
 
 		int ListIndex=i;
 
+		printf("List[i].IPaddress is *%s*\n",List[i].IPaddress);
+
 		strcpy(ListIP,List[i].IPaddress);
 
 		if (strcmp(ListIP,IP)==0){
