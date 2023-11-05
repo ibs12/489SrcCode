@@ -394,13 +394,13 @@ void remove_connection(int socket) {
 
 		for(int i=0; i<5; i++){
 
-
+			int LoggedIn=List[i].LoggedIn;s
 
 			int FD= List[i].FD;
 
 
 
-			if (FD!=-1){
+			if (LoggedIn==1){
 
 
 
@@ -640,7 +640,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 							else{
 
-								printf("Client is not logged in\n");
+								printf("Client is not logged inSEND\n");
 
 								send(currentClient.FD,"12",2,0);
 
@@ -694,7 +694,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 			strcpy(ClientIP,currentClient.IPaddress);
 
-		 	if(List[i].FD!=sock_index){
+		 	if((List[i].FD!=sock_index)&& (List[i].FD!=-2)){
 
 		 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,sock_index);
 
@@ -716,13 +716,11 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 				else{
 
-					printf("Client is not logged in\n");
+					printf("Client is not logged inBROADCAST\n");
 
 /*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
 
 				}
-
-				break;
 
 			}
 
@@ -782,7 +780,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 		Dummy = (Client*)malloc(sizeof(Client));
 
-		Dummy->FD=-1;
+		Dummy->FD=-2;
 
 		strcpy(Dummy->Name,"EMPTY");
 
