@@ -622,23 +622,13 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 						int numBlocked=Blocker.NumberOfBlocked;
 
-						printf("BLOCKER ID IS *%d* AND NUMBEROFBLOCKED IS *%d*\n",BlockerID,numBlocked);
-
-						printf("NumBLOCKED MADE \n");
-
-						printf("List[BlockerID].BlockList is *%s\n*",List[BlockerID]);
-
 						fflush(stdout);
-
-/*						printf("List[BlockerID].BlockList[numBlocked] is *%s*\n",List[BlockerID].BlockList[numBlocked]);*/
 
 						strcpy(Blocker.BlockList[numBlocked],ClientToBlock);
 
 						printf("KSDJFISDFJ\n");
 
 						List[BlockerID].NumberOfBlocked+=1;
-
-					//Block the client
 
 					return 1;
 
@@ -796,7 +786,15 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 							for (int i=0;i<NumberDestHasBlocked;i++){
 
+								printf("NUMBER DEST HAS BLOCKED IS%s\n");
+
+								printf("currentClient.BlockList[i] is *%s*\n",currentClient.BlockList[i]);
+
 								if(strcmp(currentClient.BlockList[i],SenderIP)==0){
+
+									print("SEND FUNCTION, CLIENT IS BLOCKED");
+
+									
 
 									blocked=1;
 
