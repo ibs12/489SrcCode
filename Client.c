@@ -564,15 +564,11 @@ void process_client_commands() {
 
 					printf("ServerCommand is  *%s*\n",ServerCommand);
 
-					printf("Server Message is *\n%s*\n",DataReceived);
+					printf("Server Message is *\n%s*\n\n\n\n",DataReceived);
 
 					fflush(stdout);
 
-					if (strcmp(ServerCommand,"RELAYED")==0){
-
-						cse4589_print_and_log("%s",DataReceived);
-
-					}
+					cse4589_print_and_log("%s",DataReceived);
 
 					else{
 
