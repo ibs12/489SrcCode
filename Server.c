@@ -236,7 +236,7 @@
 
 	char* GetIPAddress(int client_fd) {
 
-		printf("GET IP ADDRESS CALLED");
+		printf("GET IP ADDRESS CALLED\n");
 
 		char* Ip=malloc(100*sizeof(char));
 
@@ -368,7 +368,7 @@ void remove_connection(int socket) {
 
 			else if (strcmp(Command,"RELAYED")==0){
 
-				printf("RELAYED");
+				printf("RELAYED\");
 
 				sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[RELAYED:END]\n", SourceIP,Message);
 
@@ -562,7 +562,7 @@ int GetClientByIP(char* IP){
 
 }
 
-	printf("GET CLIENT FAILED");
+	printf("GET CLIENT FAILED\n");
 
 	return -1;
 
@@ -792,7 +792,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 								if(strcmp(currentClient.BlockList[i],SenderIP)==0){
 
-									printf("SEND FUNCTION, CLIENT IS BLOCKED");
+									printf("SEND FUNCTION, CLIENT IS BLOCKED\n");
 
 									
 
@@ -1452,7 +1452,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 								remove_connection(sock_index);
 
-								printf("HOSUE");
+								printf("HOSUE\n");
 
 							}
 
@@ -1528,7 +1528,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 										int status=BlockClient(SenderIP,Arg1,sock_index,BlockSock);
 
-										printf("TRYING TO BLOCK Arg1:*%s*");
+										printf("TRYING TO BLOCK. Arg1:is *%s*",Arg1);
 
 									}
 
