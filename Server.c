@@ -788,11 +788,15 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 							int blocked=0;
 
+							int DestID=GetClientByIP[Arg1];
+
+							printf("Dest List ID is *%s* with an IP of *%s*\n",DestID,Arg1);
+
 							for (int j=0;j<NumberDestHasBlocked;j++){
 
 								printf("NUMBER DEST HAS BLOCKED IS%d\n",NumberDestHasBlocked);
 
-								printf("currentClient.BlockList[i] is *%s*\n",List[ClientIP].BlockList[j]);
+								printf("currentClient.BlockList[%d] is *%s*\n",j,List[DestID].BlockList[j]);
 
 								if(strcmp(currentClient.BlockList[i],SenderIP)==0){
 
