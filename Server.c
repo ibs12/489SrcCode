@@ -760,11 +760,11 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 							int NumberDestHasBlocked=currentClient.NumberOfBlocked;
 
-							blocked=0;
+							int blocked=0;
 
 							for (int i=0;i<NumberDestHasBlocked;i++){
 
-								if(strcmp(currentClient.BlockList[i],SourceIP)==0){
+								if(strcmp(currentClient.BlockList[i],SenderIP)==0){
 
 									blocked=1;
 
@@ -1472,11 +1472,11 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 									Arg1[strlen(Arg1)-1]='\0';
 
-									
+									strcpy(SenderIP,GetIPAddress(sock_index));
 
 									if (strcmp(Command,"SEND")==0){
 
-									SendMessage(Command,Arg1,Arg2,SenderIP,DataReceived,sock_index);
+										SendMessage(Command,Arg1,Arg2,SenderIP,DataReceived,sock_index);
 
 									}
 
