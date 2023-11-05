@@ -84,7 +84,7 @@
 
 		
 
-		char* BlockList[5];
+		char* BlockList[5][30];
 
 		
 
@@ -978,7 +978,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 		for(int i=0;i<5;i++){
 
-			strcpy(Dummy.BlockList[i],"");
+			strcpy(Dummy->BlockList[i],"");
 
 		}
 
