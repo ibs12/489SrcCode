@@ -518,6 +518,12 @@ void process_client_commands() {
 
 							}
 
+							else if (strcmp(Command,"BROADCAST")==0){
+
+								int LengthOfMessageSent=send(ClientFD,Input,strlen(Input),0);
+
+							}
+
 							else if (strcmp(Input,"LOGOUT")==0){
 
 								cse4589_print_and_log("[%s:SUCCESS]\n",Input);
