@@ -676,6 +676,92 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 }
 
+
+
+void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataReceived, int sock_index){
+
+	int Exists=0;
+
+		Parse1(&Command,&Arg1,&Arg2,DataReceived);
+
+		Arg1[strlen(Arg1)-1]='\0';
+
+		for (int i = 0; i < 5; i++) {
+
+			Client currentClient = List[i];
+
+			char *ClientIP=malloc(256*sizeof(char));
+
+			strcpy(ClientIP,currentClient.IPaddress);
+
+			if (strcmp(Arg1,ClientIP)==0){
+
+				 	if(List[i].FD!=sock_index){
+
+				 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,sock_index);
+
+						printf("Client FD is not -1\n");
+
+						Exists=1;
+
+						if (currentClient.LoggedIn==1){
+
+							char* MessageToDest=(char*) malloc(1024*sizeof(char));
+
+							strcpy(MessageToDest,MessageCreator(Arg2,"RELAYED",GetIPAddress(sock_index),Arg1,1));
+
+							int MDLen=strlen(MessageToDest);
+
+							send(currentClient.FD,MessageToDest,MDLen,0);
+
+						}
+
+						else{
+
+							printf("Client is not logged in\n");
+
+/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
+
+						}
+
+						break;
+
+					}
+
+			}
+
+			}
+
+			if (Exists==0){
+
+						printf("No Clietns currently logged in\n");
+
+						char* MessageToSender=(char*)malloc(1024*sizeof(char));
+
+						strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,0));
+
+						int MSLen=strlen(MessageToSender);
+
+						send(sock_index,MessageToSender,MSLen,0);
+
+			}
+
+			else{
+
+				char* MessageToSender=(char*) malloc(1024*sizeof(char));
+
+				strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
+
+				int MSLen=strlen(MessageToSender);
+
+				send(sock_index,MessageToSender,MSLen,0);
+
+			}
+
+
+
+}
+
 	// Initialize the server
 
 
@@ -1335,6 +1421,8 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 							}
 
 							else if (strcmp(Command,"BROADCAST")==0){
+
+								BroadcastMessage(Command,Arg1,Arg2,SenderIP,DataReceived,sock_index);
 
 							}
 
