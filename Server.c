@@ -790,7 +790,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 							int DestID=GetClientByIP(Arg1);
 
-							printf("Dest List ID is *%s* with an IP of *%s*\n",DestID,Arg1);
+							printf("Dest List ID is *%d* with an IP of *%s*\n",DestID,Arg1);
 
 							for (int j=0;j<NumberDestHasBlocked;j++){
 
@@ -1536,7 +1536,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 										int status=BlockClient(SenderIP,Arg1,sock_index,BlockSock);
 
-										printf("TRYING TO BLOCK. Arg1:is *%s*",Arg1);
+										printf("Block Client Status Received*%s*",Arg1);
 
 									}
 
