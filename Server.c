@@ -538,7 +538,7 @@ void remove_connection(int socket) {
 
 int GetClientByIP(char* IP){
 
-	printf("GET CLIENT BY IP CALLED");
+	printf("GET CLIENT BY IP CALLED with IP address of *%s*\n",IP);
 
 	char* ListIP=malloc(30*sizeof(char));
 
