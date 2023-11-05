@@ -350,7 +350,7 @@ void remove_connection(int socket) {
 
 			sprintf(ReturnM,"[%s:SUCCESS]\n",Command);
 
-			if (((((strcmp(Command,"LOGIN")==0)||(strcmp(Command,"SEND")==0))||(strcmp(Command,"BLOCK")==0))||(strcmp(Command,"UNBLOCK")))||				(strcmp(Command,"BROADCAST"))){
+			if (((((strcmp(Command,"LOGIN")==0)||(strcmp(Command,"SEND")==0))||(strcmp(Command,"BLOCK")==0))||(strcmp(Command,"UNBLOCK")==0))||				(strcmp(Command,"BROADCAST")==0)){
 
 				sprintf(ReturnM+strlen(ReturnM),"[%s:END]\n",Command);
 
@@ -358,7 +358,7 @@ void remove_connection(int socket) {
 
 			else if (strcmp(Command,"RELAYED")==0){
 
-			
+				printf("RELAYED");
 
 				sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[%s:END]\n", SourceIP,Message);
 
