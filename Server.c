@@ -264,9 +264,9 @@ void remove_connection(int socket) {
 
 
 
-			if (List[i]. == socket) {
+			if (List[i].IPaddress == Ip) {
 
-				List[i]=Dummy;
+				List[i]=*Dummy;
 
 			}	
 
