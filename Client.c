@@ -520,6 +520,10 @@ void process_client_commands() {
 
 							else if (strcmp(Input,"LOGOUT")==0){
 
+								cse4589_print_and_log("[%s:SUCCESS]\n",Input);
+
+								cse4589_print_and_log("[%s:END]\n",Input);
+
 								send(ClientFD,"LOGOUT",strlen("LOGOUT"),0);
 
 								close_connection(ClientFD);
