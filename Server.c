@@ -570,7 +570,7 @@ int GetClientByIP(char* IP){
 
 int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
-	print("BLOCK CLIENT CALLED\n");
+	printf("BLOCK CLIENT CALLED\n");
 
 	int success=0;
 
