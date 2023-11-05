@@ -236,6 +236,8 @@
 
 	char* GetIPAddress(int client_fd) {
 
+		printf("GET IP ADDRESS CALLED");
+
 		char* Ip=malloc(100*sizeof(char));
 
 		  for (int i = 0; i < 5; i++) {
@@ -536,6 +538,8 @@ void remove_connection(int socket) {
 
 int GetClientByIP(char* IP){
 
+	printf("GET CLIENT BY IP CALLED");
+
 	char* ListIP=malloc(30*sizeof(char));
 
 	for (int i=0;i++;i<5){
@@ -566,6 +570,8 @@ int GetClientByIP(char* IP){
 
 int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
+	print("BLOCK CLIENT CALLED\n");
+
 	int success=0;
 
 	for(int i=0;i<5;i++){
@@ -576,11 +582,15 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 		if (((strcmp(CurrentClient.IPaddress,ClientToBlock)==0)&&(strcmp(CurrentClient.IPaddress,SourceIP)!=0))&&(CurrentClient.LoggedIn==1)){
 
+			printf("IP IS VALID");
+
 			//Means IP exists, IP is logged in, and IP is not equal to the Blocker IPaddress
 
 		//checking if already blocked
 
 			for (int j=0; j<5;j++){
+
+				printf("CHECKING TO SEE IF CLIENT IS ALREADY BLOCKED");
 
 				char* BlockedClientIP=malloc(30*sizeof(char));
 
@@ -593,6 +603,8 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 				}
 
 				else{
+
+					printf("TRYING TO BLOCK CLIENT");
 
 					int BlockerID=GetClientByIP(SourceIP);
 
