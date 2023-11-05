@@ -624,7 +624,7 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 						fflush(stdout);
 
-						strcpy(List[BlockerID]->BlockList[numBlocked],ClientToBlock);
+						strcpy(List[BlockerID].BlockList[numBlocked],ClientToBlock);
 
 						printf("KSDJFISDFJ\n");
 
