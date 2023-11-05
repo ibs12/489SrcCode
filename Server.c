@@ -354,7 +354,7 @@ char* MessageCreator(char* Message,char* Command,char* SourceIP,char* DestIP, in
 
 	if (success==1){
 
-		sprintf(ReturnM,"[%s:SUCCESS]\n",&Command);
+		sprintf(ReturnM,"[%s:SUCCESS]\n",Command);
 
 		if (((((strcmp(Command,"LOGIN")==0)||(strcmp(Command,"SEND")==0))||(strcmp(Command,"BLOCK")==0))||(strcmp(Command,"UNBLOCK")))||				(strcmp(Command,"BROADCAST"))){
 
@@ -362,7 +362,7 @@ char* MessageCreator(char* Message,char* Command,char* SourceIP,char* DestIP, in
 
 		}
 
-		else if (strcmp(&Command,"RECEIVED")==0){
+		else if (strcmp(Command,"RECEIVED")==0){
 
 			sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[%s:END]\n", SourceIP,Message);
 
@@ -380,7 +380,7 @@ char* MessageCreator(char* Message,char* Command,char* SourceIP,char* DestIP, in
 
 	}	
 
-	
+	return MessageCreator;
 
 }
 
@@ -1216,15 +1216,15 @@ void server_loop() {
 
 													}
 
-													printf("MOUSE");
+]
 
 												}
 
-												printf("FUCKING MOUSE MOUSE");
+					
 
 											}
 
-											printf("FUCK THE MOUSEETJISJFDIOJ");
+					
 
 										}
 
@@ -1234,7 +1234,7 @@ void server_loop() {
 
 												printf("GO FUCK YOURSELF");
 
-												char* MessageToSender=(char*) malloc(1024*sizeof(char));
+												char* MessageToSender=(char*)malloc(1024*sizeof(char));
 
 								  			strcpy(MessageToSender,MessageCreator(Command,Arg1,Arg2,SenderIP,0));
 
