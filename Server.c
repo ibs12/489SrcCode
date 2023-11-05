@@ -586,6 +586,94 @@ void remove_connection(int socket) {
 
 
 
+
+
+
+
+void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataReceived, int sock_index){
+
+	int Exists=0;
+
+	Parse1(&Command,&Arg1,&Arg2,DataReceived);
+
+	Arg1[strlen(Arg1)-1]='\0';
+
+	if (strcmp(Command,"SEND")==0){
+
+		for (int i = 0; i < 5; i++) {
+
+			Client currentClient = List[i];
+
+				char *ClientIP=malloc(256*sizeof(char));
+
+				strcpy(ClientIP,currentClient.IPaddress);
+
+				if (strcmp(Arg1,ClientIP)==0){
+
+					 	if(List[i].FD!=Sock){
+
+					 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,Sock);
+
+							printf("Client FD is not -1\n");
+
+							Exists=1;
+
+							char* MessageToSender=(char*) malloc(1024*sizeof(char));
+
+							strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
+
+							int MSLen=strlen(MessageToSender);
+
+							send(sock_index,MessageToSender,MSLen,0);
+
+							if (currentClient.LoggedIn==1){
+
+								char* MessageToDest=(char*) malloc(1024*sizeof(char));
+
+								strcpy(MessageToDest,MessageCreator(Arg2,"RELAYED",GetIPAddress(sock_index),Arg1,1));
+
+								int MDLen=strlen(MessageToDest);
+
+								send(currentClient.FD,MessageToDest,MDLen,0);
+
+							}
+
+							else{
+
+								printf("Client is not logged in\n");
+
+								send(currentClient.FD,"12",2,0);
+
+	/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
+
+							}
+
+							break;
+
+						}
+
+				}
+
+			}
+
+		printf("FUCK ME\n");
+
+		if (Exists==0){
+
+					printf("GO FUCK YOURSELF\n");
+
+					char* MessageToSender=(char*)malloc(1024*sizeof(char));
+
+					strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,0));
+
+					int MSLen=strlen(MessageToSender);
+
+					send(sock_index,MessageToSender,MSLen,0);
+
+		}
+
+}
+
 	// Initialize the server
 
 
@@ -1150,101 +1238,105 @@ void remove_connection(int socket) {
 
 									Arg1[strlen(Arg1)-1]='\0';
 
+									
+
 									if (strcmp(Command,"SEND")==0){
 
-										for (int i = 0; i < 5; i++) {
+									SendMessage(Command,Arg1,Arg2,SenderIP,DataReceived,sock_index);
 
-											Client currentClient = List[i];
+/*										for (int i = 0; i < 5; i++) {*/
 
-												char *ClientIP=malloc(256*sizeof(char));
+/*											Client currentClient = List[i];*/
 
-												strcpy(ClientIP,currentClient.IPaddress);
+/*												char *ClientIP=malloc(256*sizeof(char));*/
 
-						
+/*												strcpy(ClientIP,currentClient.IPaddress);*/
 
-												if (strcmp(Arg1,ClientIP)==0){
+/*						*/
 
-													 if(List[i].LoggedIn==1){
+/*												if (strcmp(Arg1,ClientIP)==0){*/
 
-													 	if(List[i].FD!=Sock){
+/*													 	if(List[i].FD!=Sock){*/
 
-													 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,Sock);
+/*													 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,Sock);*/
 
-															printf("Client FD is not -1\n");
+/*															printf("Client FD is not -1\n");*/
 
-															Exists=1;
+/*															Exists=1;*/
 
-															char* MessageToSender=(char*) malloc(1024*sizeof(char));
+/*															char* MessageToSender=(char*) malloc(1024*sizeof(char));*/
 
-															strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
+/*															strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));*/
 
-															int MSLen=strlen(MessageToSender);
+/*															int MSLen=strlen(MessageToSender);*/
 
-															send(sock_index,MessageToSender,MSLen,0);
+/*															send(sock_index,MessageToSender,MSLen,0);*/
 
-															if (currentClient.LoggedIn==1){
+/*															if (currentClient.LoggedIn==1){*/
 
-																char* MessageToDest=(char*) malloc(1024*sizeof(char));
+/*																char* MessageToDest=(char*) malloc(1024*sizeof(char));*/
 
-																strcpy(MessageToDest,MessageCreator(Arg2,"RELAYED",GetIPAddress(sock_index),Arg1,1));
+/*																strcpy(MessageToDest,MessageCreator(Arg2,"RELAYED",GetIPAddress(sock_index),Arg1,1));*/
 
-																int MDLen=strlen(MessageToDest);
+/*																int MDLen=strlen(MessageToDest);*/
 
-																send(currentClient.FD,MessageToDest,MDLen,0);
+/*																send(currentClient.FD,MessageToDest,MDLen,0);*/
 
-															}
+/*															}*/
 
-															else{
+/*															else{*/
 
-																printf("Client is not logged in\n");
+/*																printf("Client is not logged in\n");*/
 
-																send(currentClient.FD,"12",2,0);
+/*																send(currentClient.FD,"12",2,0);*/
 
-	/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
+/*	/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/*/
 
-															}
+/*															}*/
 
-										
+/*										*/
 
-															break;
+/*															break;*/
 
-														}
-
-
-
-													}
-
-						
-
-												}
-
-						
-
-											}
-
-										printf("FUCK ME\n");
-
-										if (Exists==0){
-
-													printf("GO FUCK YOURSELF\n");
-
-													char* MessageToSender=(char*)malloc(1024*sizeof(char));
-
-													strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,0));
-
-													int MSLen=strlen(MessageToSender);
-
-													send(sock_index,MessageToSender,MSLen,0);
-
-										}
+/*														}*/
 
 
 
-								}
+/*						*/
+
+/*												}*/
+
+/*						*/
+
+/*											}*/
+
+/*										printf("FUCK ME\n");*/
+
+/*										if (Exists==0){*/
+
+/*													printf("GO FUCK YOURSELF\n");*/
+
+/*													char* MessageToSender=(char*)malloc(1024*sizeof(char));*/
+
+/*													strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,0));*/
+
+/*													int MSLen=strlen(MessageToSender);*/
+
+/*													send(sock_index,MessageToSender,MSLen,0);*/
+
+/*										}*/
+
+
+
+/*								}*/
 
 							}
 
+							else if (strcmp(Command,"BROADCAST")==0){
 
+							}
+
+							
 
 				
 
