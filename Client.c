@@ -114,8 +114,6 @@ void Parse(char** Command,char** FirstArgPointer, char** SecondArgPointer, char*
 
 	int j=strlen(Actualmsg);
 
-	printf("Length of Command is %d\n",j);
-
 	for (int i=0; i<strlen(Actualmsg); i++){
 
 		char Character[1];
@@ -338,20 +336,6 @@ void process_client_commands() {
 
 		if(selret >= 0){
 
-			printf("SELRET IS %d\n",selret);
-
-			for (int i=0; i<10; i++){
-
-				if (FD_ISSET(i, &watch_list)) {
-
-            			printf("File descriptor %d is set in the set.\n", i);
-
-            			fflush(stdout);
-
-        			}
-
-    			}
-
 			for(int sock_index=0; sock_index<=5; sock_index+=1){
 
 
@@ -504,11 +488,7 @@ void process_client_commands() {
 
 						else if (LoggedIn==1){
 
-							printf("INPUT:*%s*\n",Input);
-
 							fflush(stdout);
-
-							printf("COMMAND IS *%s*\n",Command);
 
 							if (strcmp("REFRESH",Input)==0){
 
@@ -576,21 +556,9 @@ void process_client_commands() {
 
 					char *DataReceived= (char*) malloc(256*sizeof(char));
 
-					char *ClientCommand= (char*) malloc(256*sizeof(char));
-
-					char *Arg1= (char*) malloc(256*sizeof(char));
-
-					char *Arg2 = (char*) malloc(256*sizeof(char));
-
 					char *ServerCommand=(char*) malloc(256*sizeof(char));
 
 					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
-
-					cse4589_print_and_log("ClientCommand is %s\n",ClientCommand);
-
-					cse4589_print_and_log("Arg1 is %s\n",Arg1);
-
-					cse4589_print_and_log("Arg2 is %s\n",Arg2);
 
 					ParseServerMessage(&ServerCommand,DataReceived);
 
@@ -602,9 +570,7 @@ void process_client_commands() {
 
 					if (strcmp(ServerCommand,"RELAYED")==0){
 
-						cse4589_print_and_log("RELAYED\n");
-
-						cse4589_print_and_log("%s\n",DataReceived);
+						cse4589_print_and_log("%s",DataReceived);
 
 					}
 
