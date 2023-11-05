@@ -116,7 +116,7 @@
 
 	}Backlog;
 
-	char* EmptyString[];
+	char* EmptyString[30];
 
 	Client List[5];
 
@@ -630,9 +630,9 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 						fflush(stdout);
 
-						printf("List[BlockerID].BlockList[numBlocked] is *%s*\n",List[BlockerID].BlockList[numBlocked]);
+						printf("List[BlockerID].BlockList[numBlocked] is *%s*\n",List[BlockerID]->BlockList[numBlocked]);
 
-						strcpy(List[BlockerID].BlockList[numBlocked],ClientToBlock);
+						strcpy(List[BlockerID]->BlockList[numBlocked],ClientToBlock);
 
 						printf("KSDJFISDFJ\n");
 
@@ -978,7 +978,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 		for(int i=0;i<5;i++){
 
-			strcpy(Dummy.BlockList[i],"");
+			strcpy(Dummy->BlockList[i],"");
 
 		}
 
