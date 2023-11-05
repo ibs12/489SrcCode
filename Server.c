@@ -622,7 +622,7 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 						int numBlocked=Blocker.NumberOfBlocked;
 
-						printf("BLOCKER ID IS *%d* AND NUMBEROFBLOCKED IS *%d*\n",BlockerID,numBlocked)
+						printf("BLOCKER ID IS *%d* AND NUMBEROFBLOCKED IS *%d*\n",BlockerID,numBlocked);
 
 						printf("NumBLOCKED MADE \n");
 
