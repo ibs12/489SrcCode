@@ -512,6 +512,14 @@ void remove_connection(int socket) {
 
 			}
 
+			if (N==-1){
+
+				List[i].ListeningPort==LP;
+
+				List[i].LoggedIn==1;
+
+			}
+
 
 
 	}
