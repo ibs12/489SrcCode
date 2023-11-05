@@ -542,7 +542,7 @@ void process_client_commands() {
 
 							}
 
-							else if (strcmp(Command,BLOCK)==0){
+							else if (strcmp(Command,"BLOCK")==0){
 
 								int j=send(ClientFD,Input,strlen(Input),0);
 
