@@ -546,7 +546,7 @@ int GetClientByIP(char* IP){
 
 		if (strcmp(ListIP,IP)==0){
 
-			print("GET CLIENT SUCCEEDED");
+			printf("GET CLIENT SUCCEEDED");
 
 			return ListIndex;
 
@@ -554,7 +554,7 @@ int GetClientByIP(char* IP){
 
 }
 
-	print("GET CLIENT FAILED");
+	printf("GET CLIENT FAILED");
 
 	return -1;
 
