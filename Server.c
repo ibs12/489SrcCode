@@ -788,7 +788,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 							int blocked=0;
 
-							int DestID=GetClientByIP[Arg1];
+							int DestID=GetClientByIP(Arg1);
 
 							printf("Dest List ID is *%s* with an IP of *%s*\n",DestID,Arg1);
 
