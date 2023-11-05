@@ -530,8 +530,6 @@ void process_client_commands() {
 
 								LoggedIn=0;
 
-								printf("strcmp LOGOUT ACHIEVED");
-
 							}
 
 							else{
@@ -561,10 +559,6 @@ void process_client_commands() {
 					int LengthOfMessageReceived= recv(ClientFD, DataReceived, 1023,0);
 
 					ParseServerMessage(&ServerCommand,DataReceived);
-
-					printf("ServerCommand is  *%s*\n",ServerCommand);
-
-					printf("Server Message is *\n%s*\n\n\n\n",DataReceived);
 
 					fflush(stdout);
 
