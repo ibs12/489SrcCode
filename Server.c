@@ -788,7 +788,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 								printf("NUMBER DEST HAS BLOCKED IS%d\n",NumberDestHasBlocked);
 
-								printf("currentClient.BlockList[i] is *%s*\n",List.BlockList[j]);
+								printf("currentClient.BlockList[i] is *%s*\n",List->BlockList[j]);
 
 								if(strcmp(currentClient.BlockList[i],SenderIP)==0){
 
