@@ -596,7 +596,7 @@ void process_client_commands() {
 
 					printf("ServerCommand is  *%s*\n",ServerCommand);
 
-					printf("Server Message is *%s*\n",DataReceived);
+					printf("Server Message is *\n%s*\n",DataReceived);
 
 					fflush(stdout);
 
