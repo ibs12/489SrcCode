@@ -624,7 +624,7 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 						fflush(stdout);
 
-						printf("CLIENT TO BLOCK IS%s\n",ClientToBlock)
+						printf("CLIENT TO BLOCK IS%s\n",ClientToBlock);
 
 						strcpy(List[BlockerID].BlockList[numBlocked],ClientToBlock);
 
