@@ -552,7 +552,9 @@ int GetClientByIP(char* IP){
 
 		if (strcmp(ListIP,IP)==0){
 
-			printf("GET CLIENT SUCCEEDED");
+			printf("GET CLIENT SUCCEEDED\n");
+
+			free(ListIP);
 
 			return i;
 
