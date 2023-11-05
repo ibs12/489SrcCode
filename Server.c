@@ -598,7 +598,7 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 				char* BlockedClientIP=malloc(30*sizeof(char));
 
-				strcpy(BlockedClientIP,List[GetClientByIP(SourceSock)].BlockList[j];
+				strcpy(BlockedClientIP,List[GetClientByIP(SourceSock)].BlockList[j]);
 
 				if (strcmp(BlockedClientIP,DestIP)==0){
 
@@ -680,7 +680,7 @@ int UnBlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 				char* BlockedClientIP=malloc(30*sizeof(char));
 
-				strcpy(BlockedClientIP,List[GetClientByIP(SourceIP)].BlockList[j];
+				strcpy(BlockedClientIP,List[GetClientByIP(SourceIP)].BlockList[j]);
 
 				if (strcmp(BlockedClientIP,DestIP)==0){
 
@@ -1626,21 +1626,21 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 											if(status==1){
 
-												strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
+												strcpy(MessageToSender1,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
 
-												int MSLen=strlen(MessageToSender);
+												int MSLen=strlen(MessageToSender1);
 
-												send(sock_index,MessageToSender,MSLen,0);
+												send(sock_index,MessageToSender1,MSLen,0);
 
 											}
 
 											else{
 
-												strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
+												strcpy(MessageToSender1,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
 
-												int MSLen=strlen(MessageToSender);
+												int MSLen=strlen(MessageToSender1);
 
-												send(sock_index,MessageToSender,MSLen,0);
+												send(sock_index,MessageToSender1,MSLen,0);
 
 											}
 
@@ -1648,11 +1648,11 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 										else{
 
-											strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
+											strcpy(MessageToSender1,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
 
-											int MSLen=strlen(MessageToSender);
+											int MSLen=strlen(MessageToSender1);
 
-											send(sock_index,MessageToSender,MSLen,0);
+											send(sock_index,MessageToSender1,MSLen,0);
 
 										}
 
@@ -1674,21 +1674,21 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 											if(status==1){
 
-												strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
+												strcpy(MessageToSender2,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
 
-												int MSLen=strlen(MessageToSender);
+												int MSLen=strlen(MessageToSender2);
 
-												send(sock_index,MessageToSender,MSLen,0);
+												send(sock_index,MessageToSender2,MSLen,0);
 
 											}
 
 											else{
 
-												strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
+												strcpy(MessageToSender2,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
 
-												int MSLen=strlen(MessageToSender);
+												int MSLen=strlen(MessageToSender2);
 
-												send(sock_index,MessageToSender,MSLen,0);
+												send(sock_index,MessageToSender2,MSLen,0);
 
 											}
 
@@ -1696,11 +1696,11 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 										else{
 
-											strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
+											strcpy(MessageToSender2,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
 
-											int MSLen=strlen(MessageToSender);
+											int MSLen=strlen(MessageToSender2);
 
-											send(sock_index,MessageToSender,MSLen,0);
+											send(sock_index,MessageToSender2,MSLen,0);
 
 										}
 
