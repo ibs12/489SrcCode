@@ -598,7 +598,7 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 				char* BlockedClientIP=malloc(30*sizeof(char));
 
-				strcpy(BlockedClientIP,List[GetClientByIP(SourceSock)].BlockList[j]);
+				strcpy(BlockedClientIP,List[GetClientByIP(SourceIP)].BlockList[j]);
 
 				if (strcmp(BlockedClientIP,DestIP)==0){
 
@@ -1670,7 +1670,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 											int UnBlockSock=List[UnBlockedID].FD;
 
-											int status=UnBlockClient(SenderIP,Arg1,sock_index,BlockSock);
+											int status=UnBlockClient(SenderIP,Arg1,sock_index,UnBlockSock);
 
 											if(status==1){
 
