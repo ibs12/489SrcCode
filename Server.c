@@ -360,7 +360,7 @@ void remove_connection(int socket) {
 
 				printf("RELAYED");
 
-				sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[%s:END]\n", SourceIP,Message);
+				sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[RELAYED:END]\n", SourceIP,Message);
 
 			}
 
