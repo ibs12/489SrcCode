@@ -394,9 +394,7 @@ void remove_connection(int socket) {
 
 		for(int i=0; i<5; i++){
 
-			int LoggedIn=List[i].LoggedIn;s
-
-			int FD= List[i].FD;
+			int LoggedIn=List[i].LoggedIn;
 
 
 
