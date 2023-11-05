@@ -694,39 +694,35 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 			strcpy(ClientIP,currentClient.IPaddress);
 
-			if (strcmp(Arg1,ClientIP)==0){
+		 	if(List[i].FD!=sock_index){
 
-				 	if(List[i].FD!=sock_index){
+		 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,sock_index);
 
-				 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,sock_index);
+				printf("Client FD is not -1\n");
 
-						printf("Client FD is not -1\n");
+				Exists=1;
 
-						Exists=1;
+				if (currentClient.LoggedIn==1){
 
-						if (currentClient.LoggedIn==1){
+					char* MessageToDest=(char*) malloc(1024*sizeof(char));
 
-							char* MessageToDest=(char*) malloc(1024*sizeof(char));
+					strcpy(MessageToDest,MessageCreator(Arg1,"RELAYED",GetIPAddress(sock_index),ClientIP,1));
 
-							strcpy(MessageToDest,MessageCreator(Arg2,"RELAYED",GetIPAddress(sock_index),Arg1,1));
+					int MDLen=strlen(MessageToDest);
 
-							int MDLen=strlen(MessageToDest);
+					send(currentClient.FD,MessageToDest,MDLen,0);
 
-							send(currentClient.FD,MessageToDest,MDLen,0);
+				}
 
-						}
+				else{
 
-						else{
-
-							printf("Client is not logged in\n");
+					printf("Client is not logged in\n");
 
 /*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
 
-						}
+				}
 
-						break;
-
-					}
+				break;
 
 			}
 
