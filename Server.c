@@ -1176,7 +1176,7 @@ void remove_connection(int socket) {
 
 															char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
-															strcpy(MessageToSender,MessageCreator(Command,Arg1,Arg2,SenderIP,1));
+															strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
 
 															int MSLen=strlen(MessageToSender);
 
