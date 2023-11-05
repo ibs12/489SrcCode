@@ -786,9 +786,9 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 							for (int i=0;i<NumberDestHasBlocked;i++){
 
-								printf("NUMBER DEST HAS BLOCKED IS%s\n");
+								printf("NUMBER DEST HAS BLOCKED IS%d\n",NumberDestHasBlocked);
 
-								printf("currentClient.BlockList[i] is *%d*\n",currentClient.BlockList[i]);
+								printf("currentClient.BlockList[i] is *%s*\n",currentClient.BlockList[i]);
 
 								if(strcmp(currentClient.BlockList[i],SenderIP)==0){
 
