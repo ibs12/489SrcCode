@@ -532,6 +532,8 @@ void remove_connection(int socket) {
 
 	}
 
+	}
+
 int GetClientByIP(char* IP){
 
 	char* ListIP=malloc(30*sizeof(char));
@@ -618,7 +620,9 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 }
 
-	return 0;
+}
+
+return 0;
 
 }
 
@@ -1482,7 +1486,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 									}
 
-									else if (strcmp(Command,"BLOCK")==0{
+									else if (strcmp(Command,"BLOCK")==0){
 
 										int BlockedID=GetClientByIP(Arg1);
 
