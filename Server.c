@@ -610,9 +610,9 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 				if (strcmp(Arg1,ClientIP)==0){
 
-					 	if(List[i].FD!=Sock){
+					 	if(List[i].FD!=sock_index){
 
-					 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,Sock);
+					 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,sock);
 
 							printf("Client FD is not -1\n");
 
@@ -1290,7 +1290,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 /*																send(currentClient.FD,"12",2,0);*/
 
-/*	/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/*/
+/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
 
 /*															}*/
 
