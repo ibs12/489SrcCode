@@ -368,7 +368,7 @@ void remove_connection(int socket) {
 
 			else if (strcmp(Command,"RELAYED")==0){
 
-				printf("RELAYED\");
+				printf("RELAYED\n");
 
 				sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[RELAYED:END]\n", SourceIP,Message);
 
