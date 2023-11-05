@@ -598,6 +598,8 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 				char* BlockedClientIP=malloc(30*sizeof(char));
 
+				strcpy(BlockedClientIP,List[SourceSock].BlockList[j];
+
 				if (strcmp(BlockedClientIP,DestIP)==0){
 
 					//client already blocked
@@ -652,7 +654,85 @@ return 0;
 
 }
 
+int UnBlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
+	printf("UNBLOCK CLIENT CALLED\n");
+
+	int success=0;
+
+	for(int i=0;i<5;i++){
+
+		Client CurrentClient=List[i];
+
+		char* ClientToBlock=GetIPAddress(DestSock);
+
+		if (((strcmp(CurrentClient.IPaddress,ClientToBlock)==0)&&(strcmp(CurrentClient.IPaddress,SourceIP)!=0))&&(CurrentClient.LoggedIn==1)){
+
+			printf("IP IS VALID\n");
+
+			//Means IP exists, IP is logged in, and IP is not equal to the Blocker IPaddress
+
+		//checking if already blocked
+
+			for (int j=0; j<5;j++){
+
+				printf("CHECKING TO SEE IF CLIENT IS UNBLOCKED\n");
+
+				char* BlockedClientIP=malloc(30*sizeof(char));
+
+				strcpy(BlockedClientIP,List[SourceSock].BlockList[j];
+
+				if (strcmp(BlockedClientIP,DestIP)==0){
+
+					printf("TRYING TO UnBLOCK CLIENT\n");
+
+					int BlockerID=GetClientByIP(SourceIP);
+
+					if (BlockerID>-1){
+
+						printf("BLOCKER ID>-1\n");
+
+						Client Blocker=List[BlockerID];
+
+						printf("BLOCKER MADE\n");
+
+						int numBlocked=Blocker.NumberOfBlocked;
+
+						fflush(stdout);
+
+						printf("CLIENT TO UNBLOCK IS%s\n",ClientToBlock);
+
+						strcpy(List[BlockerID].BlockList[j],"");
+
+						printf("List[BlockerID].BlockList[numBlocked] is %s\n",List[BlockerID].BlockList[numBlocked]);
+
+						printf("KSDJFISDFJ\n");
+
+						//Client Unblocked
+
+					return 1;
+
+				}
+
+				else{
+
+				//Client Already not blocked
+
+					return 0;
+
+	}
+
+	
+
+}
+
+}
+
+}
+
+return 0;
+
+}
 
 
 
@@ -1532,17 +1612,99 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 									else if (strcmp(Command,"BLOCK")==0){
 
+										char* MessageToSender1=(char*) malloc(1024*sizeof(char));
+
 										int BlockedID=GetClientByIP(Arg1);
 
-										int BlockSock=List[BlockedID].FD;
+										if(BlockedID>=0){
 
-										int status=BlockClient(SenderIP,Arg1,sock_index,BlockSock);
+											int BlockSock=List[BlockedID].FD;
+
+											int status=BlockClient(SenderIP,Arg1,sock_index,BlockSock);
+
+											if(status==1){
+
+												strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
+
+												int MSLen=strlen(MessageToSender);
+
+												send(sock_index,MessageToSender,MSLen,0);
+
+											}
+
+											else{
+
+												strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
+
+												int MSLen=strlen(MessageToSender);
+
+												send(sock_index,MessageToSender,MSLen,0);
+
+											}
+
+											}
+
+										else{
+
+											strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
+
+											int MSLen=strlen(MessageToSender);
+
+											send(sock_index,MessageToSender,MSLen,0);
+
+										}
 
 										printf("Block Client Status Received*%s*",Arg1);
 
 									}
 
-							
+							else if(strcmp(Command,"UNBLOCK")==0{
+
+								char* MessageToSender2=(char*) malloc(1024*sizeof(char));
+
+										int UnBlockedID=GetClientByIP(Arg1);
+
+										if(UnBlockedID>=0){
+
+											int UnBlockSock=List[UnBlockedID].FD;
+
+											int status=UnBlockClient(SenderIP,Arg1,sock_index,BlockSock);
+
+											if(status==1){
+
+												strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
+
+												int MSLen=strlen(MessageToSender);
+
+												send(sock_index,MessageToSender,MSLen,0);
+
+											}
+
+											else{
+
+												strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
+
+												int MSLen=strlen(MessageToSender);
+
+												send(sock_index,MessageToSender,MSLen,0);
+
+											}
+
+											}
+
+										else{
+
+											strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,0));
+
+											int MSLen=strlen(MessageToSender);
+
+											send(sock_index,MessageToSender,MSLen,0);
+
+										}
+
+										printf("Block Client Status Received*%s*",Arg1);
+
+							}
 
 				
 
