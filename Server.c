@@ -780,15 +780,15 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 							send(sock_index,MessageToSender,MSLen,0);
 
-							int NumberDestHasBlocked=currentClientNumberOfBlocked;
+							int NumberDestHasBlocked=List[i].NumberOfBlocked;
 
 							int blocked=0;
 
-							for (int i=0;i<NumberDestHasBlocked;i++){
+							for (int j=0;j<NumberDestHasBlocked;j++){
 
 								printf("NUMBER DEST HAS BLOCKED IS%d\n",NumberDestHasBlocked);
 
-								printf("currentClient.BlockList[i] is *%s*\n",currentClient.BlockList[i]);
+								printf("currentClient.BlockList[i] is *%s*\n",List.BlockList[j]);
 
 								if(strcmp(currentClient.BlockList[i],SenderIP)==0){
 
