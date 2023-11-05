@@ -342,7 +342,7 @@ void remove_connection(int socket) {
 
 		printf("MESSAGE CREATOR CALLED\n");
 
-		printf("success=%d",success);
+		printf("success=%d\n",success);
 
 		char *ReturnM = malloc(300*sizeof(char));
 
@@ -356,7 +356,9 @@ void remove_connection(int socket) {
 
 			}
 
-			else if (strcmp(Command,"RECEIVED")==0){
+			else if (strcmp(Command,"RELAYED")==0){
+
+			
 
 				sprintf(ReturnM+strlen(ReturnM),"msg from:%s\n[msg]:%s\n[%s:END]\n", SourceIP,Message);
 
@@ -368,7 +370,7 @@ void remove_connection(int socket) {
 
 		else{
 
-		printf("ELSE");
+		printf("ELSE\n");
 
 			sprintf(ReturnM,"[%s:ERROR]\n[%s:END]\n",Command,Command);
 
@@ -1182,11 +1184,9 @@ void remove_connection(int socket) {
 
 															if (currentClient.LoggedIn==1){
 
-																printf("LOGEIJIOEG");
-
 																char* MessageToDest=(char*) malloc(1024*sizeof(char));
 
-																strcpy(MessageToDest,MessageCreator(Arg2,"RECEIVED",GetIPAddress(sock_index),Arg1,1));
+																strcpy(MessageToDest,MessageCreator(Arg2,"RELAYED",GetIPAddress(sock_index),Arg1,1));
 
 																int MDLen=strlen(MessageToDest);
 
@@ -1222,11 +1222,11 @@ void remove_connection(int socket) {
 
 											}
 
-										printf("FUCK ME");
+										printf("FUCK ME\n");
 
 										if (Exists==0){
 
-													printf("GO FUCK YOURSELF");
+													printf("GO FUCK YOURSELF\n");
 
 													char* MessageToSender=(char*)malloc(1024*sizeof(char));
 
