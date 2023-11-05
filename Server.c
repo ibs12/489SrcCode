@@ -500,7 +500,7 @@ void remove_connection(int socket) {
 
 
 
-			if (N == -1){
+			if (N == -2){
 
 
 
