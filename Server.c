@@ -206,13 +206,9 @@
 
 		close(socket);
 
-
-
 		FD_CLR(socket, &master_list);
 
 		for (int i = 0; i < 5; i++) {
-
-
 
 			if (List[i].FD == socket) {
 
@@ -228,49 +224,19 @@
 
 
 
-	void remove_connection(int socket) {
 
-
-
-		close(socket);
-
-
-
-		FD_CLR(socket, &master_list);
-
-
-
-		for (int i = 0; i < 5; i++) {
-
-
-
-			if (List[i].FD == socket) {
-
-
-
-			  	List[i].ListeningPort = 0; 
-
-
-
-			  	List[i].FD = 0;
-
-
-
-			}	
-
-
-
-		}
-
-	}
 
 	char* GetIPAddress(int client_fd) {
+
+		char* Ip=malloc(100*sizeof(char));
 
 		  for (int i = 0; i < 5; i++) {
 
 		      if (List[i].FD == client_fd) {
 
-		          return List[i].IPaddress;
+		      		strcpy(Ip,List[i].IPaddress);
+
+		          return Ip;
 
 		      }
 
@@ -280,7 +246,35 @@
 
 	}
 
+void remove_connection(int socket) {
 
+
+
+		close(socket);
+
+		char* Ip=GetIPAddress(socket);
+
+		
+
+		FD_CLR(socket, &master_list);
+
+
+
+		for (int i = 0; i < 5; i++) {
+
+
+
+			if (List[i]. == socket) {
+
+				List[i]=Dummy;
+
+			}	
+
+
+
+		}
+
+	}
 
 	void Parse1(char** Command,char** FirstArgPointer, char** SecondArgPointer, char* Actualmsg){
 
@@ -1236,7 +1230,7 @@
 
 													char* MessageToSender=(char*)malloc(1024*sizeof(char));
 
-													strcpy(MessageToSender,MessageCreator(Command,Arg1,Arg2,SenderIP,0));
+													strcpy(MessageToSender,MessageCreator(Command,Command,Command,Command,0));
 
 													int MSLen=strlen(MessageToSender);
 
