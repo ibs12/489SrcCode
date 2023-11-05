@@ -612,7 +612,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 					 	if(List[i].FD!=sock_index){
 
-					 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,sock);
+					 		printf("List[i].FD is *%d* and Socket is *%d*\n",List[i].FD,sock_index);
 
 							printf("Client FD is not -1\n");
 
@@ -671,6 +671,8 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 					send(sock_index,MessageToSender,MSLen,0);
 
 		}
+
+}
 
 }
 
