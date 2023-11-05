@@ -544,8 +544,6 @@ int GetClientByIP(char* IP){
 
 	for (int i=0;i++;i<5){
 
-		int ListIndex=i;
-
 		printf("About to access list[i].IPaddress\n");
 
 		printf("List[i].IPaddress is *%s*\n",List[i].IPaddress);
@@ -556,7 +554,7 @@ int GetClientByIP(char* IP){
 
 			printf("GET CLIENT SUCCEEDED");
 
-			return ListIndex;
+			return i;
 
 	}
 
