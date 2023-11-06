@@ -980,6 +980,8 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 				int DestID=GetClientByIP(Arg1);
 
+				int NumberDestHasBlocked=List[i].NumberOfBlocked;
+
 				for (int j=0;j<NumberDestHasBlocked;j++){
 
 								printf("NUMBER DEST HAS BLOCKED IS%d\n",NumberDestHasBlocked);
