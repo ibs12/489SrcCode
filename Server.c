@@ -1572,13 +1572,11 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 											send(fdaccept,MessageToDest,MDLen,0);
 
-										}
-
-									ListOfBacklogs[i].NumOfMessages=0;
-
-									
+										}								
 
 									}
+
+									ListOfBacklogs[i].NumOfMessages=0;
 
 								}
 
