@@ -432,6 +432,8 @@ void remove_connection(int socket) {
 
 			printf("%c\n",ReturnM[j]);
 
+			}
+
 		return	ReturnM;
 
 
