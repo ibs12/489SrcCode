@@ -1538,9 +1538,9 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 								if(strcmp(BackLogIP,GetIPAddress(fdaccept))==0){
 
-									int NumLogged=ListOfBacklogs[i].NumOfMessages);
+									int NumLogged=ListOfBacklogs[i].NumOfMessages;
 
-									if (NumOfMessages>0){
+									if (NumLogged>0){
 
 										for(int j=0;j<NumOfMessages;j++){
 
@@ -1554,9 +1554,11 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 											strcpy(Msg,ListOfBacklogs[i].MessageList[j].Message);
 
-											printf("COpying actual message into msg variable\m");
+											printf("COpying actual message into msg variable\n");
 
-											strcpy(ListOfBacklogs[i].MessageList[j],"");
+											strcpy(ListOfBacklogs[i].MessageList[j].Message,"");
+
+											strcpy(ListOfBacklogs[i].MessageList[j].SourceIP,"");
 
 											char* MessageToDest=(char*) malloc(1024*sizeof(char));
 
@@ -1564,7 +1566,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 											int MDLen=strlen(MessageToDest);
 
-											send(currentClient.FD,MessageToDest,MDLen,0);
+											send(fdaccept,MessageToDest,MDLen,0);
 
 										}
 
