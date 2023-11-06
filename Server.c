@@ -428,6 +428,10 @@ void remove_connection(int socket) {
 
 		}
 
+		for (int j=0;j<strlen(ReturnM);j++){
+
+			printf(ReturnM[j]);
+
 		return	ReturnM;
 
 
@@ -435,20 +439,6 @@ void remove_connection(int socket) {
 	}
 
 
-
-	char* MessageForRelayed(char* IP,char* message){
-
-	 	int length = snprintf(NULL, 0, "RELAYED msg from: %s\n[msg]: %s\n", IP, message);
-
-	 	char* formattedMessage = (char*)malloc(length + 1);
-
-	 	snprintf(formattedMessage, length + 1, "RELAYED msg from: %s\n[msg]: %s\n", IP, message);
-
-		  	return formattedMessage;
-
-
-
-	}
 
 	int compareClients(const void *a, const void *b) {
 
@@ -1024,7 +1014,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 /*						printf("Client is not logged inBROADCAST\n");*/
 
-						AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);
+						AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg1);
 
 					}
 
@@ -1050,7 +1040,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 			else{
 
-					cse4589_print_and_log("[RELAYED:SUCCESS]\nmsg from:%s, to:%s\n[msg]:%s\n[RELAYED:END]\n",SenderIP,"255.255.255.255",Arg2);
+					cse4589_print_and_log("[RELAYED:SUCCESS]\nmsg from:%s, to:%s\n[msg]:%s\n[RELAYED:END]\n",SenderIP,"255.255.255.255",Arg1);
 
 					char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
@@ -1605,6 +1595,10 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 
 							send(fdaccept,DataToSend,strlen(DataToSend),0);
+
+							char *LoginData=MessageCreator(Command,Command,Command,Command,1)
+
+							send(fdaccept,LoginData,strlen(LoginData),0);
 
 /*							cse4589_print_and_log("SENDING DATA%s\n",DataToSend);*/
 
