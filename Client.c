@@ -304,8 +304,6 @@ void process_client_commands() {
 
 	while(1) {
 
-		printf("HAHA");
-
 		FD_ZERO(&watch_list);
 
 		FD_SET(0,&watch_list);
@@ -318,7 +316,7 @@ void process_client_commands() {
 
 		}
 
-		printf("TOP OF LOOP\n");
+
 
 		fflush(stdout);
 
