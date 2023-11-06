@@ -1448,7 +1448,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 						else if(sock_index == server_socket){
 
-							printf("CLIENT LOGGIN IN");
+							printf("CLIENT LOGGIN IN\n");
 
 							caddr_len = sizeof(client_addr);
 
@@ -1555,8 +1555,6 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 
 						else{
-
-							
 
 							int *SOCKET = &sock_index;
 
