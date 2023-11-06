@@ -156,6 +156,8 @@
 
 				exists=1;
 
+				printf("Changing ClientInList.MessageList[ClientInList.NumOfMessages]=NewMessage;\n");
+
 				ClientInList.MessageList[ClientInList.NumOfMessages]=NewMessage;
 
 				ClientInList.NumOfMessages+=1;		
@@ -179,6 +181,8 @@
 				if (strcmp(ListOfBacklogs[i].DestIP,"69")==0){
 
 					ListOfBacklogs[i]=NewBacklog;
+
+					break;
 
 					}
 
@@ -1548,7 +1552,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 											char* Msg=malloc(256*sizeof(char));
 
-											strcpy(Msg,ListOfBacklogs[i].MessageList[j].SourceIP);
+											strcpy(SourceIP,ListOfBacklogs[i].MessageList[j].SourceIP);
 
 											printf("COPYING SOURCE IP OF BACKLOG[i].MESSAGELSIT\n");
 
