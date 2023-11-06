@@ -268,9 +268,9 @@ void login_to_server(const char* server_ip, int server_port) {
 
 	else{
 
-		cse4589_print_and_log("[LOGIN:SUCCESS]\n");
+/*		cse4589_print_and_log("[LOGIN:SUCCESS]\n");*/
 
-		cse4589_print_and_log("[LOGIN:END]\n");
+/*		cse4589_print_and_log("[LOGIN:END]\n");*/
 
 		LoggedIn=1;
 
@@ -316,7 +316,7 @@ void process_client_commands() {
 
 		}
 
-
+		printf("TOP OF LOOP\n");
 
 		fflush(stdout);
 
