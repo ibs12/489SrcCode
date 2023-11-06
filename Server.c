@@ -976,7 +976,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 				Exists=1;
 
-				blocked=0;
+				int blocked=0;
 
 				for (int j=0;j<NumberDestHasBlocked;j++){
 
@@ -1686,7 +1686,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 									}
 
-							else if(strcmp(Command,"UNBLOCK"W)==0){
+							else if(strcmp(Command,"UNBLOCK")==0){
 
 								char* MessageToSender2=(char*) malloc(1024*sizeof(char));
 
