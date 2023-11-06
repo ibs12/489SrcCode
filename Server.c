@@ -576,8 +576,6 @@ int BlockClient(char* SourceIP,char *DestIP,int SourceSock,int DestSock){
 
 	printf("BLOCK CLIENT CALLED\n");
 
-	int success=0;
-
 	for(int i=0;i<5;i++){
 
 		Client CurrentClient=List[i];
@@ -954,6 +952,8 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataReceived, int sock_index){
 
+	int success=0;
+
 	int Exists=0;
 
 		Parse1(&Command,&Arg1,&Arg2,DataReceived);
@@ -976,25 +976,51 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 				Exists=1;
 
-				if (currentClient.LoggedIn==1){
+				blocked=0;
 
-					char* MessageToDest=(char*) malloc(1024*sizeof(char));
+				for (int j=0;j<NumberDestHasBlocked;j++){
 
-					strcpy(MessageToDest,MessageCreator(Arg1,"RELAYED",GetIPAddress(sock_index),ClientIP,1));
+								printf("NUMBER DEST HAS BLOCKED IS%d\n",NumberDestHasBlocked);
 
-					int MDLen=strlen(MessageToDest);
+								printf("currentClient.BlockList[%d] is *%s*\n",j,List[DestID].BlockList[j]);
 
-					send(currentClient.FD,MessageToDest,MDLen,0);
+								printf("SENDER IP IS *%s*\n",SenderIP);
 
-				}
+								if(strcmp(List[DestID].BlockList[j],SenderIP)==0){
 
-				else{
+									printf("SEND FUNCTION, CLIENT IS BLOCKED\n");
 
-					printf("Client is not logged inBROADCAST\n");
+									
 
-/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
+									blocked=1;
 
-				}
+								}
+
+							}
+
+				if (blocked==0){
+
+					if (currentClient.LoggedIn==1){
+
+						success==1;
+
+						char* MessageToDest=(char*) malloc(1024*sizeof(char));
+
+						strcpy(MessageToDest,MessageCreator(Arg1,"RELAYED",GetIPAddress(sock_index),ClientIP,1));
+
+						int MDLen=strlen(MessageToDest);
+
+						send(currentClient.FD,MessageToDest,MDLen,0);
+
+					}
+
+					else{
+
+						printf("Client is not logged inBROADCAST\n");
+
+		/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
+
+					}
 
 			}
 
@@ -1016,13 +1042,13 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 			else{
 
-				char* MessageToSender=(char*) malloc(1024*sizeof(char));
+					char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
-				strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
+					strcpy(MessageToSender,MessageCreator(DataReceived,Command,GetIPAddress(sock_index),SenderIP,1));
 
-				int MSLen=strlen(MessageToSender);
+					int MSLen=strlen(MessageToSender);
 
-				send(sock_index,MessageToSender,MSLen,0);
+					send(sock_index,MessageToSender,MSLen,0);
 
 			}
 
@@ -1660,7 +1686,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 									}
 
-							else if(strcmp(Command,"UNBLOCK")==0){
+							else if(strcmp(Command,"UNBLOCK"W)==0){
 
 								char* MessageToSender2=(char*) malloc(1024*sizeof(char));
 
