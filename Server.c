@@ -1538,9 +1538,9 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 								if(strcmp(BackLogIP,GetIPAddress(fdaccept))==0){
 
-									int NumLogged=ListOfBacklogs[i].NumOfMessages;
+									int NumOfMessages=ListOfBacklogs[i].NumOfMessages;
 
-									if (NumLogged>0){
+									if (NumOfMessages>0){
 
 										for(int j=0;j<NumOfMessages;j++){
 
