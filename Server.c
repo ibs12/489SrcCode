@@ -430,7 +430,7 @@ void remove_connection(int socket) {
 
 		for (int j=0;j<strlen(ReturnM);j++){
 
-			printf(ReturnM[j]);
+			printf("%c\n"ReturnM[j]);
 
 		return	ReturnM;
 
@@ -1596,7 +1596,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 							send(fdaccept,DataToSend,strlen(DataToSend),0);
 
-							char *LoginData=MessageCreator(Command,Command,Command,Command,1)
+							char *LoginData=MessageCreator(Command,Command,Command,Command,1);
 
 							send(fdaccept,LoginData,strlen(LoginData),0);
 
