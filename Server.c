@@ -902,7 +902,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 									int MDLen=strlen(MessageToDest);
 
-									cse4589_print_and_log("msg from:%s, to:%s\n[msg]:%s\n",SenderIP,ClientIP, Arg1);
+									cse4589_print_and_log("[RELAYED:SUCCESS]\nmsg from:%s, to:%s\n[msg]:%s\n[RELAYED:END]\n",SenderIP,ClientIP, Arg1);
 
 									send(currentClient.FD,MessageToDest,MDLen,0);
 
@@ -1016,7 +1016,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 						send(currentClient.FD,MessageToDest,MDLen,0);
 
-						cse4589_print_and_log("msg from:%s, to:%s\n[msg]:%s\n",SenderIP,ClientIP, Arg1);
+						cse4589_print_and_log("[RELAYED:SUCCESS]\nmsg from:%s, to:%s\n[msg]:%s\n[RELAYED:END]\n",SenderIP,ClientIP, Arg1);
 
 					}
 
@@ -1562,6 +1562,8 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 											strcpy(Msg,ListOfBacklogs[i].MessageList[j].Message);
 
+											cse4589_print_and_log("[RELAYED:SUCCESS]\nmsg from:%s, to:%s\n[msg]:%s\n[RELAYED:END]\n",SourceIP,BackLogIP, Msg);
+
 /*											printf("COpying actual message into msg variable\n");*/
 
 											strcpy(ListOfBacklogs[i].MessageList[j].Message,"");
@@ -1602,7 +1604,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 							send(fdaccept,DataToSend,strlen(DataToSend),0);
 
-							cse4589_print_and_log("SENDING DATA%s\n",DataToSend);
+/*							cse4589_print_and_log("SENDING DATA%s\n",DataToSend);*/
 
 							//also send every message if there are messages
 
