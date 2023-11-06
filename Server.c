@@ -1602,6 +1602,8 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 							send(fdaccept,DataToSend,strlen(DataToSend),0);
 
+							cse4589_print_and_log("SENDING DATA%s\n",DataToSend);
+
 							//also send every message if there are messages
 
 
