@@ -902,6 +902,8 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 									int MDLen=strlen(MessageToDest);
 
+									printf("ARG1:%s\nARG2:%s\nDATARECEIVED:%s\n",Arg1,Arg2,DataReceived);
+
 									cse4589_print_and_log("[RELAYED:SUCCESS]\nmsg from:%s, to:%s\n[msg]:%s\n[RELAYED:END]\n",SenderIP,ClientIP, Arg1);
 
 									send(currentClient.FD,MessageToDest,MDLen,0);
