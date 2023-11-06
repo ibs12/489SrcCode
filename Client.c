@@ -316,10 +316,6 @@ void process_client_commands() {
 
 		}
 
-		printf("TOP OF LOOP\n");
-
-		fflush(stdout);
-
 		int selret = select(10, &watch_list, NULL, NULL, NULL);
 
 		if(selret < 0){
