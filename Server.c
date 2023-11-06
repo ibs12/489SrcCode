@@ -158,9 +158,9 @@
 
 				printf("Changing ClientInList.MessageList[ClientInList.NumOfMessages]=NewMessage;\n");
 
-				ClientInList.MessageList[ClientInList.NumOfMessages]=NewMessage;
+				ListOfBacklogs[i].MessageList[ClientInList.NumOfMessages]=NewMessage;
 
-				ClientInList.NumOfMessages+=1;		
+				ListOfBacklogs[i].NumOfMessages+=1;		
 
 			}
 
@@ -232,7 +232,7 @@
 
 	}
 
-	}
+}
 
 
 
