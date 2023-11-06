@@ -1004,7 +1004,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 						char* MessageToDest=(char*) malloc(1024*sizeof(char));
 
-						strcpy(MessageToDest,MessageCreator(Arg1,"RELAYED",GetIPAddress(sock_index),ClientIP,1));
+						strcpy(MessageToDest,MessageCreator(Arg1,"RECEIVED",GetIPAddress(sock_index),ClientIP,1));
 
 						int MDLen=strlen(MessageToDest);
 
