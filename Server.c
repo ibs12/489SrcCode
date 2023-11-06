@@ -910,9 +910,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 									printf("Client is not logged inSEND\n");
 
-									send(currentClient.FD,"12",2,0);
-
-		/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
+									AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);
 
 								}
 
@@ -1022,7 +1020,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 						printf("Client is not logged inBROADCAST\n");
 
-		/*															AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);*/
+						AddToBacklog(GetIPAddress(sock_index),ClientIP,Arg2);
 
 					}
 
