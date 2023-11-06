@@ -1540,6 +1540,10 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 								strcpy(BackLogIP,ListOfBacklogs[i].DestIP);
 
+								printf("BACKLOG IP IS%s\n",BackLogIP);
+
+								printf("CURRENT IP IS%s\n",GetIPAddress(fdaccept));
+
 								if(strcmp(BackLogIP,GetIPAddress(fdaccept))==0){
 
 									int NumOfMessages=ListOfBacklogs[i].NumOfMessages;
