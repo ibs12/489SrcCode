@@ -978,6 +978,8 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 				int blocked=0;
 
+				int DestID=GetClientByIP(Arg1);
+
 				for (int j=0;j<NumberDestHasBlocked;j++){
 
 								printf("NUMBER DEST HAS BLOCKED IS%d\n",NumberDestHasBlocked);
@@ -1026,6 +1028,8 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 			}
 
+			}
+
 			if (Exists==0){
 
 						printf("No Clietns currently logged in\n");
@@ -1051,8 +1055,6 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 					send(sock_index,MessageToSender,MSLen,0);
 
 			}
-
-
 
 }
 
