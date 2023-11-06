@@ -1018,8 +1018,6 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 						send(currentClient.FD,MessageToDest,MDLen,0);
 
-						cse4589_print_and_log("[RELAYED:SUCCESS]\nmsg from:%s, to:%s\n[msg]:%s\n[RELAYED:END]\n",SenderIP,ClientIP, Arg1);
-
 					}
 
 					else{
@@ -1051,6 +1049,8 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 			}
 
 			else{
+
+					cse4589_print_and_log("[RELAYED:SUCCESS]\nmsg from:%s, to:%s\n[msg]:%s\n[RELAYED:END]\n",SenderIP,"255.255.255.255",Arg2);
 
 					char* MessageToSender=(char*) malloc(1024*sizeof(char));
 
