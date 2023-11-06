@@ -1526,11 +1526,61 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 							AddClient(client_ip,client_hostname,atoi(DataR),fdaccept);
 
+							
 
+							//trying to send backclogged messages
+
+							for (int i=0;i<5;i++){
+
+								char* BackLogIP=malloc(30*sizeof(char));
+
+								strcpy(BackLogIP,ListOfBacklogs[i].DestIP);
+
+								if(strcmp(BackLogIP,GetIPAddress(fdaccept))==0){
+
+									int NumLogged=ListOfBacklogs[i].NumOfMessages);
+
+									if (NumOfMessages>0){
+
+										for(int j=0;j<NumOfMessages;j++){
+
+											char* SourceIP=malloc(30*sizeof(char));
+
+											char* Msg=malloc(256*sizeof(char));
+
+											strcpy(Msg,ListOfBacklogs[i].MessageList[j].SourceIP);
+
+											printf("COPYING SOURCE IP OF BACKLOG[i].MESSAGELSIT\n");
+
+											strcpy(Msg,ListOfBacklogs[i].MessageList[j].Message);
+
+											printf("COpying actual message into msg variable\m");
+
+											strcpy(ListOfBacklogs[i].MessageList[j],"");
+
+											char* MessageToDest=(char*) malloc(1024*sizeof(char));
+
+											strcpy(MessageToDest,MessageCreator(Msg,"RELAYED",SourceIP,BackLogIP,1));
+
+											int MDLen=strlen(MessageToDest);
+
+											send(currentClient.FD,MessageToDest,MDLen,0);
+
+										}
+
+									ListOfBacklogs[i].NumOfMessages=0;
+
+									
+
+									}
+
+								}
+
+							}
 
 							qsort(List, 5, sizeof(Client), compareClients);
 
-
+							
 
 							char *DataToSend= ReturnMessage(List);
 
