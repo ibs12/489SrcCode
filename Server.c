@@ -724,6 +724,8 @@ return 0;
 
 int BlockedMessage(char* IPaddress){
 
+		int exists=0;
+
 		Client LIST[5];
 
 		for (int i=0;i<5;i++){
@@ -743,8 +745,6 @@ int BlockedMessage(char* IPaddress){
 			return 1;
 
 		}
-
-		int exists=0;
 
 		else{
 
