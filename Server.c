@@ -1142,7 +1142,7 @@ char* statistics(const Client LIST[]) {
 
 		if (List[i].FD!=-2){
 
-			char* Logged;
+			char* Logged[];
 
 			if (List[i].LoggedIn==1){
 
