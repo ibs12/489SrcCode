@@ -1148,15 +1148,11 @@ char* statistics(const Client LIST[]) {
 
 				strcpy(Logged,"logged-in");
 
-				printf("LOGGED IN");
-
 			}
 
 			else{
 
 				strcpy(Logged,"logged-out");
-
-				printf("LOGGED OUT");
 
 			}
 
