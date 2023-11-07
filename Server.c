@@ -1508,29 +1508,9 @@ void statistics(const Client LIST[]) {
 
 							else if (strcmp(cmd,"STATISTICS")==0){
 
-							void display_statistics(const Client LIST[], int numClients) {
+								qsort(List, 5, sizeof(Client), compareClients);
 
-							cse4589_print_and_log("[STATISTICS:SUCCESS]\n");
-
-							for (int i = 0; i < numClients; i++) {
-
-							if (sortedList[i].FD != -2) {
-
-							cse4589_print_and_log("%-5d%-35s%-8d%-8d%-8s\n",
-
-							i + 1, sortedList[i].Name, sortedList[i].MessagesSent,
-
-							sortedList[i].MessagesReceived, sortedList[i].LoggedIn ? "logged-in" : "logged-out");
-
-							}
-
-							}
-
-
-
-							cse4589_print_and_log("[STATISTICS:END]\n");
-
-}
+								statistics(List);
 
 							}
 
