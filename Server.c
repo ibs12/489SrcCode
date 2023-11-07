@@ -1132,11 +1132,9 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 	// Initialize the server
 
-void statistics(const Client LIST[]) {
+char* statistics(const Client LIST[]) {
 
 	char *ReturnM = malloc(1024*sizeof(char));
-
-	sprintf(ReturnM,"[STATISTICS:SUCCESS]\n");
 
 	int id=1;
 
@@ -1166,7 +1164,7 @@ void statistics(const Client LIST[]) {
 
 /*				char* Hostname=malloc(50*sizeof(char));*/
 
-				sprintf(ReturnM+strlen(ReturnM),"%-5d%-35s%-8d%-8d%-8s\n%s\n", id,List[i].Name,List[i].MessagesSent,List[i].MessagesReceived,Logged,"[STATISTICS:END]");
+				sprintf(ReturnM+strlen(ReturnM),"%-5d%-35s%-8d%-8d%-8s\n%s\n", id,List[i].Name,List[i].MessagesSent,List[i].MessagesReceived,Logged);
 
 
 
@@ -1178,7 +1176,7 @@ void statistics(const Client LIST[]) {
 
 	}
 
-	cse4589_print_and_log(ReturnM);
+	return ReturnM;
 
 	}
 
@@ -1525,6 +1523,14 @@ void statistics(const Client LIST[]) {
 							else if (strcmp(cmd,"STATISTICS")==0){
 
 								qsort(List, 5, sizeof(Client), compareClients);
+
+								char *Data=statistics(List);
+
+								cse4589_print_and_log("[STATISTICS:SUCCESS]\n");
+
+								cse4589_print_and_log("%s", DataToSend);
+
+								cse4589_print_and_log("[STATISTICS:END]\n");
 
 								statistics(List);
 
