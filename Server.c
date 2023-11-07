@@ -1158,7 +1158,7 @@ void statistics(const Client LIST[]) {
 
 	}
 
-	sprintf(ReturnM+strlen(ReturnM)"[STATISTICS:END]");
+	sprintf(ReturnM+strlen(ReturnM),"[STATISTICS:END]");
 
 	cse4589_print_and_log(ReturnM);
 
