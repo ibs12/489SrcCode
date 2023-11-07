@@ -760,9 +760,31 @@ int BlockedMessage(char* IPaddress){
 
 		qsort(LIST, 5, sizeof(Client), compareClients);
 
+		
+
 		sprintf(ReturnM+strlen(ReturnM),"[BLOCKED:SUCCESS]\n");
 
-		sprintf(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, LIST[i].ListeningPort);
+		for(int i=0; i<5; i++){
+
+
+
+			if (LIST[i].FD!=-2){
+
+
+
+				sprintf(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, LIST[i].ListeningPort);
+
+
+
+				id+=1;
+
+
+
+		}
+
+
+
+		}
 
 		sprintf(ReturnM+strlen(ReturnM),"[BLOCKED:END]\n");
 
