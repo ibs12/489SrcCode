@@ -1150,15 +1150,13 @@ char* statistics(const Client LIST[]) {
 
 			}
 
-			Logged[strlen(Logged)]='\0';
-
 			else{
 
 				strcpy(Logged,"logged-out");
 
 			}
 
-			
+			Logged[strlen(Logged)]='\0';
 
 /*				char* Hostname=malloc(50*sizeof(char));*/
 
