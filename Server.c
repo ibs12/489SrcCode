@@ -808,36 +808,6 @@ int BlockedMessage(char* IPaddress){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	int Create_Server(int PortNO){
 
 
@@ -937,6 +907,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 							int blocked=0;
 
 							int DestID=GetClientByIP(Arg1);
+							int SenderID = GetClientByIP(SenderIP);
 
 /*							printf("Dest List ID is *%d* with an IP of *%s*\n",DestID,Arg1);*/
 
@@ -975,6 +946,9 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 									cse4589_print_and_log("[RELAYED:SUCCESS]\nmsg from:%s, to:%s\n[msg]:%s\n[RELAYED:END]\n",SenderIP,ClientIP, Arg2);
 
 									send(currentClient.FD,MessageToDest,MDLen,0);
+									List[DestID].MessagesReceived+=1;
+									List[SenderID].MessagesSent+=1;
+									
 
 								}
 
@@ -1000,7 +974,6 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 		if (Exists==0){
 
-/*					printf("GO FUCK YOURSELF\n");*/
 
 					char* MessageToSender=(char*)malloc(1024*sizeof(char));
 
@@ -1045,6 +1018,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 				int blocked=0;
 
 				int DestID=GetClientByIP(Arg1);
+				int SenderID=GetClientByIP(SenderIP);
 
 				int NumberDestHasBlocked=List[i].NumberOfBlocked;
 
@@ -1081,6 +1055,8 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 						int MDLen=strlen(MessageToDest);
 
 						send(currentClient.FD,MessageToDest,MDLen,0);
+						List[DestID].MessagesReceived+=1;
+						List[SenderID].MessagesSent+=1;
 
 					}
 
