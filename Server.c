@@ -1144,9 +1144,23 @@ void statistics(const Client LIST[]) {
 
 		if (List[i].FD!=-2){
 
+			char* Logged= malloc(30*sizeof(char));
+
+			if (List[i].LoggedIn==1){
+
+				strcpy(Logged,"logged-in");
+
+			}
+
+			else{
+
+				strcpy(Logged,"logged-out");
+
+			}
+
 /*				char* Hostname=malloc(50*sizeof(char));*/
 
-				sprintf(ReturnM+strlen(ReturnM),"%-5d%-35s%-8d%-8d%-8s\n", id,List[i].Name,List[i].MessagesSent,List[i].MessagesReceived, List[i].LoggedIn ? "logged-in" : "logged-out");
+				sprintf(ReturnM+strlen(ReturnM),"%-5d%-35s%-8d%-8d%-8%s\n", id,List[i].Name,List[i].MessagesSent,List[i].MessagesReceived,Logged);
 
 
 
