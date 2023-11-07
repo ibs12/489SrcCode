@@ -1142,9 +1142,11 @@ char* statistics(const Client LIST[]) {
 
 		if (List[i].FD!=-2){
 
-			char* Logged[];
+			char* Logged;
 
 			if (List[i].LoggedIn==1){
+
+				Logged=malloc(9*sizeof(char));
 
 				strcpy(Logged,"logged-in");
 
@@ -1152,9 +1154,13 @@ char* statistics(const Client LIST[]) {
 
 			else{
 
+				Logged=malloc(10*sizeof(char));
+
 				strcpy(Logged,"logged-out");
 
 			}
+
+			
 
 /*				char* Hostname=malloc(50*sizeof(char));*/
 
