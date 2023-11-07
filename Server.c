@@ -1496,7 +1496,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 								if (strcmp(Command1,"BLOCKED")==0){
 
-									printf("AARG1 is %s\n",AARG1);
+									printf("AARG1 is %s\n",AArg1);
 
 									BlockedMessage(AArg1);
 
