@@ -1146,7 +1146,7 @@ void statistics(const Client LIST[]) {
 
 /*				char* Hostname=malloc(50*sizeof(char));*/
 
-				sprintf(ReturnM+strlen(ReturnM),("%-5d%-35s%-8d%-8d%-8%s\n", id,List[i].Name,List[i].MessagesSent,List[i].MessagesReceived, List[i].LoggedIn ? "logged-in" : "logged-out"));
+				sprintf(ReturnM+strlen(ReturnM),"%-5d%-35s%-8d%-8d%-8s\n", id,List[i].Name,List[i].MessagesSent,List[i].MessagesReceived, List[i].LoggedIn ? "logged-in" : "logged-out");
 
 
 
