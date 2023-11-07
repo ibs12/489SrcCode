@@ -952,8 +952,6 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 		Parse1(&Command,&Arg1,&Arg2,DataReceived);
 
-		Arg1[strlen(Arg1)-1]='\0';
-
 		for (int i = 0; i < 5; i++) {
 
 			Client currentClient = List[i];
