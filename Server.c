@@ -1142,7 +1142,7 @@ char* statistics(const Client LIST[]) {
 
 		if (List[i].FD!=-2){
 
-			char* Logged;
+			char* Logged=malloc(30*sizeof(char));
 
 			if (List[i].LoggedIn==1){
 
@@ -1164,7 +1164,7 @@ char* statistics(const Client LIST[]) {
 
 /*				char* Hostname=malloc(50*sizeof(char));*/
 
-				sprintf(ReturnM+strlen(ReturnM),"%-5d%-35s%-8d%-8d%-8s\n%s\n", id,List[i].Name,List[i].MessagesSent,List[i].MessagesReceived,Logged);
+				sprintf(ReturnM+strlen(ReturnM),"%-5d%-35s%-8d%-8d%-8s\n", id,List[i].Name,List[i].MessagesSent,List[i].MessagesReceived,Logged);
 
 
 
@@ -1529,12 +1529,6 @@ char* statistics(const Client LIST[]) {
 								cse4589_print_and_log("[STATISTICS:SUCCESS]\n");
 
 								cse4589_print_and_log("%s", Data);
-
-								for(int i=0;i<strlen(Data);i++){
-
-									printf("%c",Data[i]);
-
-								}
 
 								cse4589_print_and_log("[STATISTICS:END]\n");
 
