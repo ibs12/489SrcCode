@@ -262,11 +262,9 @@ void remove_connection(int socket) {
 
 
 
-		close(socket);
-
 		char* Ip=GetIPAddress(socket);
 
-		
+		close(socket);
 
 		FD_CLR(socket, &master_list);
 
@@ -276,7 +274,7 @@ void remove_connection(int socket) {
 
 
 
-			if (strcmp(List[i].IPaddress,IP)== 0) {
+			if (strcmp(List[i].IPaddress,Ip)== 0) {
 
 				List[i]=*Dummy;
 
