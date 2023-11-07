@@ -1166,7 +1166,7 @@ void statistics(const Client LIST[]) {
 
 /*				char* Hostname=malloc(50*sizeof(char));*/
 
-				sprintf(ReturnM+strlen(ReturnM),"%-5d%-35s%-8d%-8d%-8s\n", id,List[i].Name,List[i].MessagesSent,List[i].MessagesReceived,Logged);
+				sprintf(ReturnM+strlen(ReturnM),"%-5d%-35s%-8d%-8d%-8s\n%s\n", id,List[i].Name,List[i].MessagesSent,List[i].MessagesReceived,Logged,"[STATISTICS:END]");
 
 
 
@@ -1177,8 +1177,6 @@ void statistics(const Client LIST[]) {
 		}
 
 	}
-
-	sprintf(ReturnM+strlen(ReturnM),"[STATISTICS:END]");
 
 	cse4589_print_and_log(ReturnM);
 
