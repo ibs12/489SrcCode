@@ -1142,13 +1142,15 @@ char* statistics(const Client LIST[]) {
 
 		if (List[i].FD!=-2){
 
-			char* Logged= malloc(30*sizeof(char));
+			char* Logged;
 
 			if (List[i].LoggedIn==1){
 
 				strcpy(Logged,"logged-in");
 
 			}
+
+			Logged[strlen(Logged)]='\0';
 
 			else{
 
