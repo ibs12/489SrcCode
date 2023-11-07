@@ -1050,6 +1050,8 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 					send(sock_index,MessageToSender,MSLen,0);
 
+					printf("MESSAGE SENT");
+
 			}
 
 }
