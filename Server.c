@@ -1150,9 +1150,9 @@ void statistics(const Client LIST[]) {
 
 				strcpy(Logged,"logged-in");
 
-			}
+				printf("LOGGED IN");
 
-			printf("LOGGED IN");
+			}
 
 			else{
 
