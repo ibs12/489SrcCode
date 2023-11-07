@@ -1530,6 +1530,12 @@ char* statistics(const Client LIST[]) {
 
 								cse4589_print_and_log("%s", Data);
 
+								for(int i=0;i<strlen(Data);i++){
+
+									printf("%c",Data[i]);
+
+								}
+
 								cse4589_print_and_log("[STATISTICS:END]\n");
 
 								statistics(List);
