@@ -434,55 +434,7 @@ void remove_connection(int socket) {
 
 	}
 
-	int BlockedMessage(char* IPaddress){
 
-		Client LIST[5];
-
-		for (int i=0;i<5;i++){
-
-			LIST[i]=*Dummy;
-
-		}
-
-		char *ReturnM = malloc(1024);
-
-		int ClientFD=GetClientByIP(IPaddress);
-
-		if (ClientFD=-1){
-
-			cse4589_print_and_log("[BLOCKED:ERROR]\n[BLOCKED:END]\n");
-
-			return 1;
-
-		}
-
-		else{
-
-			for(int i=0; i<5; i++){
-
-				if(GetClientByIP(List[ClientFD].BlockList[i])!=-1){
-
-					LIST[i]=List[GetClientByIP(List[ClientFD].BlockList[i])];
-
-				}
-
-			}	
-
-		}
-
-		qsort(LIST, 5, sizeof(Client), compareClients);
-
-		sprintf(ReturnM+strlen(ReturnM),"[BLOCKED:SUCCESS]\n");
-
-		sprintf(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, LIST[i].ListeningPort);
-
-		sprintf(ReturnM+strlen(ReturnM),"[BLOCKED:END]\n");
-
-		cse4589_print_and_log(ReturnM);
-
-	return	1;
-
-}
 
 	int compareClients(const void *a, const void *b) {
 
@@ -770,7 +722,55 @@ return 0;
 
 }
 
+int BlockedMessage(char* IPaddress){
 
+		Client LIST[5];
+
+		for (int i=0;i<5;i++){
+
+			LIST[i]=*Dummy;
+
+		}
+
+		char *ReturnM = malloc(1024);
+
+		int ClientFD=GetClientByIP(IPaddress);
+
+		if (ClientFD=-1){
+
+			cse4589_print_and_log("[BLOCKED:ERROR]\n[BLOCKED:END]\n");
+
+			return 1;
+
+		}
+
+		else{
+
+			for(int i=0; i<5; i++){
+
+				if(GetClientByIP(List[ClientFD].BlockList[i])!=-1){
+
+					LIST[i]=List[GetClientByIP(List[ClientFD].BlockList[i])];
+
+				}
+
+			}	
+
+		}
+
+		qsort(LIST, 5, sizeof(Client), compareClients);
+
+		sprintf(ReturnM+strlen(ReturnM),"[BLOCKED:SUCCESS]\n");
+
+		sprintf(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, LIST[i].ListeningPort);
+
+		sprintf(ReturnM+strlen(ReturnM),"[BLOCKED:END]\n");
+
+		cse4589_print_and_log(ReturnM);
+
+	return	1;
+
+}
 
 
 
@@ -1454,7 +1454,27 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 							}
 
+							
+
 							else{
+
+								char *Command1= (char*) malloc(256*sizeof(char));
+
+								char *AArg1= (char*) malloc(256*sizeof(char));
+
+								char *AArg2 = (char*) malloc(256*sizeof(char));
+
+								AArg1[strlen(AArg1)-1]='\0';
+
+								char *SenderIP=(char*) malloc(256*sizeof(char));
+
+								Parse1(&Command1,&AArg1,&AArg2,cmd);
+
+								if (strcmp(Command1,"BLOCKED")==0){
+
+									BlockedMessage(AArg1);
+
+								}
 
 
 
