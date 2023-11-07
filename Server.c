@@ -1152,11 +1152,17 @@ void statistics(const Client LIST[]) {
 
 			}
 
+			printf("LOGGED IN");
+
 			else{
 
 				strcpy(Logged,"logged-out");
 
+				printf("LOGGED OUT");
+
 			}
+
+			
 
 /*				char* Hostname=malloc(50*sizeof(char));*/
 
