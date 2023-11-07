@@ -736,7 +736,7 @@ int BlockedMessage(char* IPaddress){
 
 		int ClientFD=GetClientByIP(IPaddress);
 
-		if (ClientFD=-1){
+		if (ClientFD=-2){
 
 			cse4589_print_and_log("[BLOCKED:ERROR]\n[BLOCKED:END]\n");
 
@@ -1496,19 +1496,21 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 								if (strcmp(Command1,"BLOCKED")==0){
 
+									printf("AARG1 is %s\n",AARG1);
+
 									BlockedMessage(AArg1);
 
 								}
 
 
 
+								else{
 
+									cse4589_print_and_log("[%s:ERROR]\n",cmd);
 
-								cse4589_print_and_log("[%s:ERROR]\n",cmd);
+									cse4589_print_and_log("[%s:END]\n",cmd);
 
-								cse4589_print_and_log("[%s:END]\n",cmd);
-
-								
+								}
 
 
 
