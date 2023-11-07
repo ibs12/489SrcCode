@@ -872,7 +872,7 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 /*								printf("SENDER IP IS *%s*\n",SenderIP);*/
 
-								if(strcmp(List[DestID].BlockList[j],SenderIP)==0){
+								if(strcmp(List[i].BlockList[j],SenderIP)==0){
 
 /*									printf("SEND FUNCTION, CLIENT IS BLOCKED\n");*/
 
@@ -982,7 +982,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 /*								printf("SENDER IP IS *%s*\n",SenderIP);*/
 
-								if(strcmp(List[DestID].BlockList[j],SenderIP)==0){
+								if(strcmp(List[i].BlockList[j],SenderIP)==0){
 
 /*									printf("SEND FUNCTION, CLIENT IS BLOCKED\n");*/
 
