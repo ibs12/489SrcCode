@@ -744,17 +744,29 @@ int BlockedMessage(char* IPaddress){
 
 		}
 
+		int exists=0;
+
 		else{
 
 			for(int i=0; i<5; i++){
 
 				if(GetClientByIP(List[ClientFD].BlockList[i])!=-1){
 
+					exists=1;
+
 					LIST[i]=List[GetClientByIP(List[ClientFD].BlockList[i])];
 
 				}
 
 			}	
+
+		}
+
+		if (exists==0){
+
+			cse4589_print_and_log("[BLOCKED:ERROR]\n[BLOCKED:END]\n");
+
+			return 1;
 
 		}
 
@@ -1495,8 +1507,6 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 								Parse1(&Command1,&AArg1,&AArg2,cmd);
 
 								if (strcmp(Command1,"BLOCKED")==0){
-
-									printf("AARG1 is %s\n",AArg1);
 
 									BlockedMessage(AArg1);
 
