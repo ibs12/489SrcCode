@@ -1528,7 +1528,7 @@ char* statistics(const Client LIST[]) {
 
 								cse4589_print_and_log("[STATISTICS:SUCCESS]\n");
 
-								cse4589_print_and_log("%s", DataToSend);
+								cse4589_print_and_log("%s", Data);
 
 								cse4589_print_and_log("[STATISTICS:END]\n");
 
