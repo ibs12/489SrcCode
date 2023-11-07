@@ -1136,7 +1136,7 @@ void statistics(const Client LIST[]) {
 
 	char *ReturnM = malloc(1024);
 
-	cse4589_print_and_log("[STATISTICS:SUCCESS]\n");
+	sprintf(ReturnM,"[STATISTICS:SUCCESS]\n");
 
 	int id=1;
 
@@ -1144,9 +1144,9 @@ void statistics(const Client LIST[]) {
 
 		if (List[i].FD!=-2){
 
+/*				char* Hostname=malloc(50*sizeof(char));*/
 
-
-				sprintf(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, LIST[i].ListeningPort);
+				sprintf(ReturnM+strlen(ReturnM),("%-5d%-35s%-8d%-8d%-8%s\n", id,List[i].Name,List[i].MessagesSent,List[i].MessagesReceived, List[i].LoggedIn ? "logged-in" : "logged-out"));
 
 
 
@@ -1158,9 +1158,9 @@ void statistics(const Client LIST[]) {
 
 	}
 
-	cse4589_print_and_log("%s",ReturnM);
+	sprintf(ReturnM+strlen(ReturnM)"[STATISTICS:END]");
 
-	cse4589_print_and_log("[STATISTICS:END]");
+	cse4589_print_and_log(ReturnM);
 
 	}
 
