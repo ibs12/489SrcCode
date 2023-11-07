@@ -428,19 +428,61 @@ void remove_connection(int socket) {
 
 		}
 
-		for (int j=0;j<strlen(ReturnM);j++){
-
-			printf("%c\n",ReturnM[j]);
-
-			}
-
 		return	ReturnM;
 
 
 
 	}
 
+	int BlockedMessage(char* IPaddress){
 
+		Client LIST[5];
+
+		for (int i=0;i<5;i++){
+
+			LIST[i]=*Dummy;
+
+		}
+
+		char *ReturnM = malloc(1024);
+
+		int ClientFD=GetClientByIP(IPaddress);
+
+		if (ClientFD=-1){
+
+			cse4589_print_and_log("[BLOCKED:ERROR]\n[BLOCKED:END]\n");
+
+			return 1;
+
+		}
+
+		else{
+
+			for(int i=0; i<5; i++){
+
+				if(GetClientByIP(List[ClientFD].BlockList[i])!=-1){
+
+					LIST[i]=List[GetClientByIP(List[ClientFD].BlockList[i])];
+
+				}
+
+			}	
+
+		}
+
+		qsort(LIST, 5, sizeof(Client), compareClients);
+
+		sprintf(ReturnM+strlen(ReturnM),"[BLOCKED:SUCCESS]\n");
+
+		sprintf(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, LIST[i].ListeningPort);
+
+		sprintf(ReturnM+strlen(ReturnM),"[BLOCKED:END]\n");
+
+		cse4589_print_and_log(ReturnM);
+
+	return	1;
+
+}
 
 	int compareClients(const void *a, const void *b) {
 
