@@ -736,7 +736,7 @@ int BlockedMessage(char* IPaddress){
 
 		int ClientFD=GetClientByIP(IPaddress);
 
-		if (ClientFD=-2){
+		if (ClientFD==-2){
 
 			cse4589_print_and_log("[BLOCKED:ERROR]\n[BLOCKED:END]\n");
 
