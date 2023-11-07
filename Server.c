@@ -1134,7 +1134,7 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 
 void statistics(const Client LIST[]) {
 
-	char *ReturnM = malloc(1024);
+	char *ReturnM = malloc(1024*sizeof(char));
 
 	sprintf(ReturnM,"[STATISTICS:SUCCESS]\n");
 
