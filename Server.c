@@ -276,7 +276,7 @@ void remove_connection(int socket) {
 
 
 
-			if (List[i].IPaddress == Ip) {
+			if (strcmp(List[i].IPaddress,IP)== 0) {
 
 				List[i]=*Dummy;
 
@@ -1000,8 +1000,6 @@ void SendMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *DataRe
 
 			}
 
-/*		printf("FUCK ME\n");*/
-
 		if (Exists==0){
 
 /*					printf("GO FUCK YOURSELF\n");*/
@@ -1135,6 +1133,40 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 }
 
 	// Initialize the server
+
+void statistics(const Client LIST[]) {
+
+	char *ReturnM = malloc(1024);
+
+	cse4589_print_and_log("[STATISTICS:SUCCESS]\n");
+
+	int id=1;
+
+	for(int i=0; i<5; i++){
+
+		if (List[i].FD!=-2){
+
+
+
+				sprintf(ReturnM+strlen(ReturnM), "%-5d%-35s%-20s%-8d\n",id,LIST[i].Name,LIST[i].IPaddress, LIST[i].ListeningPort);
+
+
+
+				id+=1;
+
+
+
+		}
+
+	}
+
+	cse4589_print_and_log("%s",ReturnM);
+
+	cse4589_print_and_log("[STATISTICS:END]");
+
+	}
+
+	
 
 
 
@@ -1471,6 +1503,34 @@ void BroadcastMessage(char *Command,char *Arg1,char *Arg2,char *SenderIP,char *D
 								handle_port_command(PORT);
 
 
+
+							}
+
+							else if (strcmp(cmd,"STATISTICS")==0){
+
+							void display_statistics(const Client LIST[], int numClients) {
+
+							cse4589_print_and_log("[STATISTICS:SUCCESS]\n");
+
+							for (int i = 0; i < numClients; i++) {
+
+							if (sortedList[i].FD != -2) {
+
+							cse4589_print_and_log("%-5d%-35s%-8d%-8d%-8s\n",
+
+							i + 1, sortedList[i].Name, sortedList[i].MessagesSent,
+
+							sortedList[i].MessagesReceived, sortedList[i].LoggedIn ? "logged-in" : "logged-out");
+
+							}
+
+							}
+
+
+
+							cse4589_print_and_log("[STATISTICS:END]\n");
+
+}
 
 							}
 
